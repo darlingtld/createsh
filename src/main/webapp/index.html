@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html ng-app="MycaiModule">
+<head>
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <meta charset="utf-8">
+    <title>送达</title>
+    <link rel="stylesheet" type="text/css" href="css/reset.css">
+    <link rel="stylesheet" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="css/preview.css">
+    <link rel="stylesheet" href="css/main.css">
+
+
+</head>
+<body ng-controller="mainController">
+<div class="navbar-fixed-top">
+    <div style='padding: 5px 10px;text-align: center;' class="js-search-bar bg-info">
+
+        <div class="logo" ng-click="clearAndReload()">
+            <img class="user-icon" src="images/head.jpg"/>
+        </div>
+        <div class="msg">
+            <a href="#/message"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span></a>
+
+            <div class="notification"><span id="message_count"></span></div>
+        </div>
+    </div>
+
+    <div class="js-menu-bar" id="ma-menu-bar"
+         style="height:47px; width:100%; overflow-x:auto; overflow-y:hidden; -webkit-overflow-scrolling: touch; position:relative;">
+        <div class="menu-mask"
+             style="height:37px; background-color:rgba(0,0,0,0.6); text-align:center; line-height:37px; color:#fff; font-size:14px; font-weight:bold; position:absolute; top:0; left:0; width:100%;">
+            <-- 左右滑动切换分类哦~ -->
+        </div>
+        <ul class="menu fl"></ul>
+
+        <div class="clear"></div>
+    </div>
+</div>
+<div class="js-content">
+    <div id="subCategoryBlock" class="fl scroll-y leftSider" style="height:100%;width:25%; position:relative;">
+        <ul class="js-category" style="margin-bottom:80px;">
+        </ul>
+    </div>
+    <div id="mainListBlock" class="fl scroll-y"
+         style="position:relative;height:100%;width:75%;-webkit-overflow-scrolling: touch;">
+
+        <ng-view></ng-view>
+    </div>
+    <div class="clear"></div>
+</div>
+<footer class="footer bg-dark nav-bar-fixed-bottom">
+    <div class="checkout">
+        <div><span class="glyphicon glyphicon-shopping-cart" ng-click="clearAndReload()"></span>
+        </div>
+        <div>
+            物件数：<span id="totalAmount">0</span>件
+        </div>
+
+        <div>
+            总价：<span id="totalPrice">0</span>元
+        </div>
+        <div style="text-align: center;"><a class="next btn btn-info" href="#/checkout">下一步</a>
+        </div>
+    </div>
+</footer>
+
+<!--js load -->
+<script type="text/javascript" src="bower_components/jquery/dist/jquery.min.js"></script>
+<script type="text/javascript" src="bower_components/angular/angular.min.js"></script>
+<script type="text/javascript" src="bower_components/angular-route/angular-route.min.js"></script>
+<script type="text/javascript" src="javascript/all.js"></script>
+<script type="text/javascript" src="javascript/main.js"></script>
+<script type="text/javascript" src="javascript/spinner.js"></script>
+<script type="text/javascript" src="javascript/test.js"></script>
+
+<script>
+    (function () {
+        $('.menu-mask').on('touchstart click', function () {
+            $(this).hide();
+        })
+        //global variables
+        var $category = $(".js-category");
+        var $navga = $('.menu');
+        var $curCat1, $curCat2;
+        var ccat1, ccat2;
+        $(".js-content").css("height", ($(window).height() - $(".js-reminder").height() - $(".js-menu-bar").height() - $(".js-footer").height()) + "px");
+        $(".js-search-content").css("height", $(window).height() - 90);
+
+        if (PlusMinus.isLowerAndriod3()) {
+            PlusMinus.touchScroll("subCategoryBlock");
+            PlusMinus.touchScroll("mainListBlock");
+            PlusMinus.touchScrollY("ma-menu-bar");
+        }
+
+        function geneLevel2DOM(data, ccat1) {
+            var level2HTML = "";
+            _.each(_.pairs(data[ccat1]), function (item) {
+                if (ccat1 == '常用菜') {
+                    level2HTML += "<li class='cp'><a href='#/product/" + item[1] + "'>" + item[0] + "</a></li>";
+                } else {
+                    level2HTML += "<li class='cp'><a href='#/product/" + item[1] + "'>" + item[0] + "</a></li>";
+                }
+            });
+            $category.html("").append($(level2HTML));
+
+            //bind category event
+            _.each($category.find("li"), function (item) {
+                $item = $(item);
+                $item.click(function () {
+                    resetCategoryBgColor($curCat2);
+                    $this = $curCat2 = $(this);
+                    ccat2 = $this.text().trim();
+                    $this.addClass("active");
+                });
+            });
+
+            $firstCategory = $($category.find("li")[0]);
+            if ($firstCategory) {
+                $curCat2 = $firstCategory;
+                $firstCategory.click();
+            }
+        }
+
+        function resetCategoryBgColor($link) {
+            if (!$link) return;
+            $link.removeClass("active");
+        }
+
+        window.data = {
+            "常用菜": {
+                "蔬菜水果": "most_bought/shucaishuiguo",
+                "禽肉蛋类": "most_bought/qinroudanlei",
+                "水产冻货": "most_bought/shuichandonghuo",
+                "米面粮油": "most_bought/mimianliangyou",
+                "调料其他": "most_bought/tiaoliaoqita",
+                "餐厨用品": "most_bought/canchuyongpin",
+                "酒水饮料": "most_bought/jiushuiyinliaoh",
+            },
+            "蔬菜水果": {
+                "叶菜类": "category/yecailei",
+                "根茎类": "category/genjinglei",
+                "茄果类": "category/qieguolei",
+                "豆类": "category/doulei",
+                "葱姜蒜": "category/congjiangsuan",
+                "菌类": "category/junlei",
+                "特菜": "category/tecai"
+            },
+            "禽肉蛋类": {
+                "猪肉": "category/zhurou",
+                "羊肉": "category/yangrou",
+                "牛肉": "category/niurou",
+                "鸡肉": "category/jirou",
+                "鸭肉": "category/yarou",
+                "禽类": "category/qinlei",
+                "禽蛋类": "category/qindanlei",
+                "熟食加工": "category/shushijiagong"
+            },
+            "水产冻货": {
+                "海鲜水产": "category/haixianshuichan",
+                "鱼丸火锅": "category/yuwanhuoguo",
+            },
+            "米面粮油": {
+                "大米": "category/dami",
+                "面粉面条": "category/mianfenmiantiao",
+                "食用油": "category/shiyongyou",
+                "杂粮": "category/zaliang",
+                "面点": "category/miandian",
+                "烘焙佐料": "category/hongbeizuoliao",
+            },
+            "调料其他": {
+                "调味品": "category/tiaoweipin",
+                "粉丝粉条": "category/fensifentiao",
+                "豆制品": "category/douzhipin",
+                "干货": "category/ganhuo",
+                "调味品": "category/tiaoweipin",
+                "酱油醋": "category/jiangyoucu",
+                "腌菜罐头": "category/yancaiguantou"
+            },
+            "餐厨用品": {
+                "纸品湿巾": "category/zhipinshijin",
+                "餐饮用具": "category/canyinyongju",
+            },
+            "酒水饮料": {
+                "饮料": "category/yinliao",
+                "饮用水": "category/yinyongshui",
+            }
+        };
+        var navHtml = '';
+        window.hasFavorite = true;
+        _.each(_.keys(data), function (key) {
+            navHtml += "<li>" + key + "</li>";
+        });
+
+        $navga.append($(navHtml));
+
+
+        _.each($navga.find("li"), function (item) {
+            var $item = $(item);
+            $item.click(function () {
+                resetCategoryBgColor($curCat1);
+                $this = $curCat1 = $(this);
+                ccat1 = $this.text().trim();
+                $this.addClass("active");
+                geneLevel2DOM(data, ccat1);
+
+            });
+        });
+
+        var $level1 = $($navga.find("li")[1]);
+        if ($level1) {
+            $curCat1 = $level1;
+            $level1.click();
+        }
+
+        $('ul.menu').on('click', 'li', function () {
+            restoreBuyPage();
+
+            $category.find("li>a")[0].click();
+        })
+    }());
+</script>
+</body>
+</html>
