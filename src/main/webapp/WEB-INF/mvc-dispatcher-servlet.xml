@@ -7,17 +7,17 @@
         http://www.springframework.org/schema/beans/spring-beans.xsd
         http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd   http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
 
-    <context:component-scan base-package="mycai,event"/>
+    <context:component-scan base-package="createsh,event"/>
 
     <mvc:annotation-driven/>
     <tx:annotation-driven/>
     <aop:aspectj-autoproxy/>
-    <bean class="mycai.advice.MethodAdvice"></bean>
-    <bean class="mycai.advice.StatAdvice"></bean>
+    <bean class="createsh.advice.MethodAdvice"></bean>
+    <bean class="createsh.advice.StatAdvice"></bean>
 
     <mvc:resources location="/" mapping="/**"/>
 
-    <context:property-placeholder ignore-unresolvable="true" location="classpath*:/mycai.properties"/>
+    <context:property-placeholder ignore-unresolvable="true" location="classpath*:/createsh.properties"/>
 
     <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
           destroy-method="close">
@@ -34,10 +34,10 @@
         <property name="dataSource" ref="dataSource"/>
         <property name="annotatedClasses">
             <list>
-                <value>mycai.pojo.Product</value>
-                <value>mycai.pojo.Order</value>
-                <value>mycai.pojo.User</value>
-                <value>mycai.pojo.Procurement</value>
+                <value>createsh.pojo.Product</value>
+                <value>createsh.pojo.Order</value>
+                <value>createsh.pojo.User</value>
+                <value>createsh.pojo.Procurement</value>
                 <value>event.coupon.pojo.Coupon</value>
                 <value>event.coupon.pojo.Voucher</value>
                 <value>event.coupon.pojo.Discount</value>
@@ -47,7 +47,7 @@
         <property name="hibernateProperties">
             <props>
                 <!--<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>-->
-                <prop key="hibernate.dialect">mycai.util.MySQL5LocalDialect</prop>
+                <prop key="hibernate.dialect">createsh.util.MySQL5LocalDialect</prop>
                 <prop key="hibernate.show_sql">true</prop>
             </props>
         </property>

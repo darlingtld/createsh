@@ -3,7 +3,7 @@
  */
 var mycaiModule = angular.module('MycaiModule', ['ngRoute']);
 
-var app = '/mycai';
+var app = '/createsh';
 var bill = {
     items: [],
     totalAmount: 0,

@@ -5,7 +5,7 @@
     <artifactId>cai</artifactId>
     <packaging>war</packaging>
     <version>1.0-SNAPSHOT</version>
-    <name>mycai</name>
+    <name>createsh</name>
 
     <properties>
         <spring.version>4.1.6.RELEASE</spring.version>
@@ -248,7 +248,7 @@
     </dependencies>
 
     <build>
-        <finalName>mycai</finalName>
+        <finalName>createsh</finalName>
         <plugins>
             <plugin>
                 <artifactId>maven-compiler-plugin</artifactId>

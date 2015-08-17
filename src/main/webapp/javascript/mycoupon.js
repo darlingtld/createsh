@@ -2,7 +2,7 @@
  * Created by darlingtld on 2015/7/4 0004.
  */
 var couponModule = angular.module('CouponModule', ['ngRoute']);
-var app = '/mycai';
+var app = '/createsh';
 var user;
 var wechatId;
 

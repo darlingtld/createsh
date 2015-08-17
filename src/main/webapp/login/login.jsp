@@ -10,7 +10,7 @@
 <body>
 
 <div class="container">
-    <h1 class="text-center">送达管理员登录</h1>
+    <h1 class="text-center">管理员登录</h1>
 
     <div id="login-box">
 

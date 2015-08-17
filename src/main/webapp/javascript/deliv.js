@@ -13,7 +13,7 @@ var orderStatus = {
     DELIVERED_PAID: "已配送（已付款）"
 }
 
-var app = '/mycai';
+var app = '/createsh';
 var bill = {
     items: [],
     totalAmount: 0,

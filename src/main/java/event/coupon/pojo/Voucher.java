@@ -1,7 +1,7 @@
 package event.coupon.pojo;
 
-import mycai.pojo.Order;
-import mycai.util.Utils;
+import createsh.pojo.Order;
+import createsh.util.Utils;
 import org.joda.time.DateTime;
 
 import javax.persistence.Column;

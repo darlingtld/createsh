@@ -4,7 +4,7 @@
 
 var _order;
 var _dadaId=0;
-var app='/mycai';
+var app='/createsh';
 
 //$(function () {
 //    _initialPage();

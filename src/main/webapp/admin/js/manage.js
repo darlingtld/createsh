@@ -2,7 +2,7 @@
  * Created by tangld on 2015/6/8.
  */
 var adminModule = angular.module('AdminModule', ['ngRoute']);
-var app = '/mycai';
+var app = '/createsh';
 var cdata = {
     "蔬菜水果": {
         "叶菜类": "category/yecailei",
