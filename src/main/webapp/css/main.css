@@ -161,7 +161,7 @@ div.checkout_info {
 }
 
 .js-content {
-    margin-top: 40px;
+    /*margin-top: 40px;*/
 }
 
 table.register input {
@@ -194,11 +194,48 @@ table.register span {
     color: darkcyan;
     display: block;
     font-family: fantasy;
-    font-size:large;
+    font-size: large;
 }
 
 .message-ts {
     display: block;
     font-size: small;
     text-align: left;
+}
+
+.shelf {
+    background-color: whitesmoke;
+    border-radius: 10px 10px 10px 10px;
+    -moz-border-radius: 10px 10px 10px 10px;
+    -webkit-border-radius: 10px 10px 10px 10px;
+    border: 0px solid #000000;
+    margin-bottom: 10px;
+}
+
+.shelf img {
+    width: 97%;
+}
+
+.item-info {
+    font-size: x-large;
+    font-weight: bold;
+    margin-left: 20px;
+}
+
+.item-price {
+    color: rgba(227, 95, 23, 0.9);
+    font-size: large;
+    font-weight: bold;
+    margin-left: 20px;
+    align-self: center;
+
+}
+
+body {
+    background-color: lightgrey;
+}
+
+.orange {
+    color: whitesmoke;
+    background-color: rgba(227, 95, 23, 0.9);
 }

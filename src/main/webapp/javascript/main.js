@@ -1,7 +1,7 @@
 /**
  * Created by darlingtld on 2015/7/4 0004.
  */
-var mycaiModule = angular.module('MycaiModule', ['ngRoute']);
+var ctModule = angular.module('CtModule', ['ngRoute']);
 
 var app = '/createsh';
 var bill = {
@@ -14,7 +14,7 @@ var wechatId;
 var username;
 
 
-mycaiModule.service('authService', function ($http) {
+ctModule.service('authService', function ($http) {
     this.getUserInfo = function (callback) {
         if (user != undefined && user != null) {
             wechatId = user.openid;
@@ -39,7 +39,7 @@ mycaiModule.service('authService', function ($http) {
     };
 });
 
-mycaiModule.config(function () {
+ctModule.config(function () {
         var isOrderHistory = getURLParameter('order_history');
         if (isOrderHistory != null) {
             goToOrderHistory();
@@ -69,7 +69,7 @@ mycaiModule.config(function () {
 )
 
 
-mycaiModule.controller('mainController', function ($scope, $location, authService) {
+ctModule.controller('mainController', function ($scope, $location, authService) {
     authService.getUserInfo();
     var isOrderHistory = getURLParameter('order_history');
     if (isOrderHistory != null) {
@@ -78,24 +78,22 @@ mycaiModule.controller('mainController', function ($scope, $location, authServic
         $location.path("/order/history");
     }
     $scope.clearAndReload = function () {
-        //if (confirm('确认清空缓存?')) {
-            console.log('clear local storage');
-            localStorage.removeItem('bill');
-            localStorage.removeItem('wechatId');
-            location.reload();
-        //}
+        console.log('clear local storage');
+        localStorage.removeItem('bill');
+        localStorage.removeItem('wechatId');
+        location.reload();
     }
 });
 
-mycaiModule.controller('navController', function ($scope, $http, $routeParams) {
-    var url = app + '/nav/' + $routeParams.nav + '/20';
-    $http.get(url).success(function (data, status, headers, config) {
-        $scope.products = data;
-        fillSpinner($scope.products);
-    });
+ctModule.controller('navController', function ($scope, $http, $routeParams) {
+    //var url = app + '/nav/' + $routeParams.nav + '/20';
+    //$http.get(url).success(function (data, status, headers, config) {
+    //    $scope.products = data;
+    //    fillSpinner($scope.products);
+    //});
 });
 
-mycaiModule.controller('productController', function ($scope, $http, $routeParams) {
+ctModule.controller('productController', function ($scope, $http, $routeParams) {
     goToProduct();
     if (user == undefined || user == null) {
         var code = getURLParameter('code');
@@ -116,7 +114,7 @@ mycaiModule.controller('productController', function ($scope, $http, $routeParam
     });
 });
 
-mycaiModule.controller('mostBuyController', function ($scope, $http, $routeParams) {
+ctModule.controller('mostBuyController', function ($scope, $http, $routeParams) {
     goToProduct();
     if (user == undefined || user == null) {
         var code = getURLParameter('code');
@@ -137,7 +135,7 @@ mycaiModule.controller('mostBuyController', function ($scope, $http, $routeParam
     });
 });
 
-mycaiModule.controller('checkoutController', function ($scope, $location, $http) {
+ctModule.controller('checkoutController', function ($scope, $location, $http) {
     if (bill.totalAmount == 0) {
         alert('您还未购买任何物品');
         init();
@@ -161,7 +159,7 @@ mycaiModule.controller('checkoutController', function ($scope, $location, $http)
 });
 
 
-mycaiModule.controller('confirmController', function ($scope, $http, $location) {
+ctModule.controller('confirmController', function ($scope, $http, $location) {
         if (bill.totalAmount == 0) {
             alert('您还未购买任何物品');
             init();
@@ -198,9 +196,9 @@ mycaiModule.controller('confirmController', function ($scope, $http, $location) 
             }).success(function (data, status, headers, config) {
                 $scope.couponList = data;
             });
-            var origTotalPrice=$scope.bill.totalPrice;
+            var origTotalPrice = $scope.bill.totalPrice;
             $scope.modifyTotalPrice = function () {
-                if($scope.selectedCoupon==null){
+                if ($scope.selectedCoupon == null) {
                     $scope.bill.totalPrice = origTotalPrice;
                     $scope.bill.usedCoupon = null;
                 } else {
@@ -269,7 +267,7 @@ mycaiModule.controller('confirmController', function ($scope, $http, $location) 
 )
 ;
 
-mycaiModule.controller('messageController', function ($scope, $location, $http) {
+ctModule.controller('messageController', function ($scope, $location, $http) {
     goToMessage();
     if (user == undefined || user == null) {
         var code = getURLParameter('code');
@@ -290,7 +288,7 @@ mycaiModule.controller('messageController', function ($scope, $location, $http) 
 
 });
 
-mycaiModule.controller('orderController', function ($http, $scope) {
+ctModule.controller('orderController', function ($http, $scope) {
     goToOrderHistory();
     var url = app + '/order/get/' + wechatId;
     $http.get(url).success(function (data, status, headers, config) {
@@ -298,7 +296,7 @@ mycaiModule.controller('orderController', function ($http, $scope) {
     });
 });
 
-mycaiModule.controller('orderDetailController', function ($http, $scope, $routeParams) {
+ctModule.controller('orderDetailController', function ($http, $scope, $routeParams) {
     goToOrderHistory();
     var url = app + '/order/detail/' + $routeParams.id;
     $http.get(url).success(function (data, status, headers, config) {
@@ -314,7 +312,7 @@ mycaiModule.controller('orderDetailController', function ($http, $scope, $routeP
     });
 
 });
-mycaiModule.controller('routerController', function ($http, $scope, $location) {
+ctModule.controller('routerController', function ($http, $scope, $location) {
     if (user == undefined || user.username == undefined) {
         alert('您尚未注册，请先注册~')
         $location.path('/register');
@@ -322,7 +320,7 @@ mycaiModule.controller('routerController', function ($http, $scope, $location) {
         $location.path('/confirm')
     }
 });
-mycaiModule.controller('registerController', function ($http, $scope, $location) {
+ctModule.controller('registerController', function ($http, $scope, $location) {
     goToRegister();
     $scope.register = function () {
         if (user == undefined) {
@@ -363,12 +361,12 @@ function clearBill() {
     }
 }
 
-mycaiModule.controller('submitController', function ($scope) {
+ctModule.controller('submitController', function ($scope) {
     $('footer.bg-dark').hide();
     clearBill();
 });
 
-mycaiModule.directive('spinnerInstance', function () {
+ctModule.directive('spinnerInstance', function () {
     return {
         restrict: 'AE',
         scope: {},
@@ -388,7 +386,7 @@ mycaiModule.directive('spinnerInstance', function () {
     }
 });
 
-mycaiModule.directive('confirmCode', function () {
+ctModule.directive('confirmCode', function () {
     return {
         restrict: 'AE',
         scope: {},
@@ -401,7 +399,7 @@ mycaiModule.directive('confirmCode', function () {
     }
 });
 
-mycaiModule.config(['$routeProvider', function ($routeProvider) {
+ctModule.config(['$routeProvider', function ($routeProvider) {
     $routeProvider
         .when('/product/category/:category', {
             controller: 'productController',
@@ -423,9 +421,9 @@ mycaiModule.config(['$routeProvider', function ($routeProvider) {
             controller: 'submitController',
             templateUrl: 'success.html'
         })
-        .when('/nav/:nav', {
+        .when('/nav', {
             controller: 'navController',
-            templateUrl: 'product.html'
+            templateUrl: 'nav.html'
         })
         .when('/order/history', {
             controller: 'orderController',
@@ -448,11 +446,11 @@ mycaiModule.config(['$routeProvider', function ($routeProvider) {
             templateUrl: 'message_all.html'
         })
         .otherwise({
-            redirectTo: '/product/category/yecailei'
+            redirectTo: '/nav'
         });
 }]);
 
-mycaiModule.filter('part', function () {
+ctModule.filter('part', function () {
     return function (input, which) {
         if (!angular.isString(input)) {
             return input;
