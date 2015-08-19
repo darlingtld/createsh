@@ -208,7 +208,15 @@ ctModule.controller('confirmController', function ($scope, $http, $location) {
 
             }
 
-            $('#delivery_ts').val('次日上午8:00到10:30间');
+            //$('#delivery_ts').val('次日上午8:00到10:30间');
+            $('.datetime').mobiscroll().datetime({
+                theme: 'sense-ui',     // Specify theme like: theme: 'ios' or omit setting to use default
+                mode: 'scroller',       // Specify scroller mode like: mode: 'mixed' or omit setting to use default
+                lang: 'zh',       // Specify language like: lang: 'pl' or omit setting to use default
+                minDate: new Date(),  // More info about minDate: http://docs.mobiscroll.com/2-14-0/datetime#!opt-minDate
+                maxDate: new Date(2020, 1, 1, 1, 1),   // More info about maxDate: http://docs.mobiscroll.com/2-14-0/datetime#!opt-maxDate
+                stepMinute: 10  // More info about stepMinute: http://docs.mobiscroll.com/2-14-0/datetime#!opt-stepMinute
+            });
 
             if (user != undefined) {
                 $('#shop_info').val(user.shopInfo);

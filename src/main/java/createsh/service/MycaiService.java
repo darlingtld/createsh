@@ -13,6 +13,7 @@ import createsh.util.PropertyHolder;
 import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
@@ -42,8 +43,9 @@ public class MycaiService {
     @Autowired
     private MessageService messageService;
 
+    @Transactional
     public String processRequest(HttpServletRequest request) {
-        String fromUserName;
+        final String fromUserName;
         String toUserName;
         try {
             Map<String, String> requestMap = MessageUtil.parseXml(request);
@@ -72,6 +74,16 @@ public class MycaiService {
                     message.setTs(ts.toDate());
                     message.setRead(false);
                     messageService.createMessage(message);
+
+                    new Thread() {
+                        @Override
+                        public void run() {
+                            User user = new User();
+                            user.setOpenid(fromUserName);
+                            user.setRole(Role.USER.toString());
+                            userService.saveOrUpdate(user);
+                        }
+                    }.start();
 
                     return MessageUtil.messageToXml(textMessage);
                 } else if (eventType.equals(MessageUtil.EVENT_TYPE_UNSUBSCRIBE)) {
