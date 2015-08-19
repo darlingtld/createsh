@@ -1,19 +1,29 @@
 <div>
     <div ng-repeat="product in products">
         <div class="item">
-            <div style="float: left;">
+            <div style="align-self: center;width: 98%">
                 <img ng-src="{{product.picurl}}" class="product-img">
+            </div>
 
+            <div>
                 <p class="product_content">
-                    <span class="block" ng-bind="product.name"></span>
-                    <span class="block" ng-bind="product.description"></span>
-                    <span style="color: red;" ng-bind="product.price"></span>元/<span ng-bind="product.unit"></span>
+                    <span class="block">
+                        <span ng-bind="product.name"></span>
+                        <span ng-bind="product.description"></span>
+                    </span>
+                    <span style="color: red;" ng-bind="product.price | currency: '￥'"></span>
                 </p>
             </div>
+
             <div class="incr_decr_bar">
-                <span>已购买<span class="item_bought">0</span>斤</span>
-                <input spinner-instance="{{product.purchaseAmount}}" disabled/></div>
-            <div>
+                <span>已购买<span class="item_bought">0</span><span ng-bind="product.unit"></span></span>
+                <input spinner-instance="{{product.purchaseAmount}}" disabled/>
+            </div>
+            <div class="fakegood">
+                <span class="glyphicon glyphicon-thumbs-up green"></span><span>健康食品</span>
+                <span class="glyphicon glyphicon-thumbs-up green"></span><span>品质保证</span>
+            </div>
+            <div hidden>
                 <input class="product_id" data-product_id="{{product.id}}" type="hidden"/>
                 <input class="product_description" data-product_description="{{product.description}}" type="hidden"/>
                 <input class="product_name" data-product_name="{{product.name}}" type="hidden"/>

@@ -95,14 +95,19 @@
 }
 
 .product-img {
-    width: 90px;
-    float: left;
-    margin: 5px 10px 0px 10px
+    /*margin: 5px 10px 0px 10px*/
+    width: 100%;
 }
 
-.product_content {
+.item > div {
+    padding: 5px;
+    border-bottom: 1px solid lightgray
+}
+
+.product_content span {
+    font-weight: bold;
     font-size: medium;
-    float: left;
+    margin: 5px 0px 0px 5px;
 }
 
 button.increase {
@@ -118,9 +123,9 @@ button.decrease {
 }
 
 .item {
-    border-bottom: 1px solid gray;
-    padding-bottom: 10px;
-    display: inline-block;
+    display: flex;
+    flex-direction: column;
+    background-color: whitesmoke;
 }
 
 .incr_decr_bar {
@@ -238,4 +243,19 @@ body {
 .orange {
     color: whitesmoke;
     background-color: rgba(227, 95, 23, 0.9);
+}
+
+.fakegood {
+    margin-left: 10px;
+}
+
+.fakegood > span:nth-child(odd) {
+    margin-left: 10px;
+}
+.fakegood > span:nth-child(even) {
+    margin-left: 5px;
+}
+
+.green {
+    color: lightgreen;
 }

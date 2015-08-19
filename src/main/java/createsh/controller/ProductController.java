@@ -2,6 +2,7 @@ package createsh.controller;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.google.common.collect.Lists;
 import createsh.excel.ExcelFactory;
 import createsh.pojo.*;
 import createsh.service.ProductService;
@@ -42,6 +43,13 @@ public class ProductController {
     List<Product> getList(@PathVariable("category") String category, @PathVariable("wechatid") String wechatid) {
 //        return productService.getListByFavourites(category, wechatid);
         return productService.getList(category);
+    }
+
+    @RequestMapping(value = "/itemid/{itemid}", method = RequestMethod.GET)
+    public
+    @ResponseBody
+    List<Product> getProductById(@PathVariable("itemid") int itemId) {
+        return Lists.newArrayList(productService.getById(itemId));
     }
 
     @RequestMapping(value = "/category/{category}/pinyin/asc", method = RequestMethod.GET)

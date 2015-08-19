@@ -1,56 +1,56 @@
 <div>
-    <div class="shelf text-center">
-        <img src="product_images/nianmiji.jpg">
+    <div class="shelf text-center" ng-repeat="product in productList">
+        <img ng-src="{{product.picurl}}">
 
         <div style="display: flex;justify-content: space-between;flex-wrap: wrap;">
 
             <div style="flex-basis: 100%;
                       display: flex;
                       justify-content: space-between;">
-                <span class="item-info">碾米机</span>
+                <span class="item-info" ng-bind="product.name"></span>
             </div>
             <div style="flex-basis: 100%; display: flex;
                       justify-content: space-between;">
-                <span class="item-price">￥100</span>
-                <button class="btn btn-sm orange" style="margin: 0px 20px 5px;">订购</button>
+                <span class="item-price" ng-bind="product.price | currency : '￥'"></span>
+                <a class="btn btn-sm orange" style="margin: 0px 20px 5px;" href="#/product/itemid/{{product.id}}">查看详情</a>
             </div>
         </div>
     </div>
 
-    <div class="shelf text-center">
-        <img src="product_images/daogu.jpg">
+    <!--<div class="shelf text-center">-->
+        <!--<img src="product_images/daogu.jpg">-->
 
-        <div style="display: flex;justify-content: space-between;flex-wrap: wrap;">
+        <!--<div style="display: flex;justify-content: space-between;flex-wrap: wrap;">-->
 
-            <div style="flex-basis: 100%;
-                      display: flex;
-                      justify-content: space-between;">
-                <span class="item-info">稻谷</span>
-            </div>
-            <div style="flex-basis: 100%; display: flex;
-                      justify-content: space-between;">
-                <span class="item-price">￥100</span>
-                <button class="btn btn-sm orange" style="margin: 0px 20px 5px;">订购</button>
-            </div>
-        </div>
-    </div>
+            <!--<div style="flex-basis: 100%;-->
+                      <!--display: flex;-->
+                      <!--justify-content: space-between;">-->
+                <!--<span class="item-info">稻谷</span>-->
+            <!--</div>-->
+            <!--<div style="flex-basis: 100%; display: flex;-->
+                      <!--justify-content: space-between;">-->
+                <!--<span class="item-price">￥100</span>-->
+                <!--<button class="btn btn-sm orange" style="margin: 0px 20px 5px;">查看详情</button>-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</div>-->
 
-    <div class="shelf text-center">
-        <img src="product_images/daogu1.jpg">
+    <!--<div class="shelf text-center">-->
+        <!--<img src="product_images/daogu1.jpg">-->
 
-        <div style="display: flex;justify-content: space-between;flex-wrap: wrap;">
+        <!--<div style="display: flex;justify-content: space-between;flex-wrap: wrap;">-->
 
-            <div style="flex-basis: 100%;
-                      display: flex;
-                      justify-content: space-between;">
-                <span class="item-info">稻谷2</span>
-            </div>
-            <div style="flex-basis: 100%; display: flex;
-                      justify-content: space-between;">
-                <span class="item-price">￥100</span>
-                <button class="btn btn-sm orange" style="margin: 0px 20px 5px;">订购</button>
-            </div>
-        </div>
+            <!--<div style="flex-basis: 100%;-->
+                      <!--display: flex;-->
+                      <!--justify-content: space-between;">-->
+                <!--<span class="item-info">稻谷2</span>-->
+            <!--</div>-->
+            <!--<div style="flex-basis: 100%; display: flex;-->
+                      <!--justify-content: space-between;">-->
+                <!--<span class="item-price">￥100</span>-->
+                <!--<button class="btn btn-sm orange" style="margin: 0px 20px 5px;">查看详情</button>-->
+            <!--</div>-->
+        <!--</div>-->
     </div>
 </div>
 

@@ -58,13 +58,6 @@ public class NavController {
         return productService.getList(category);
     }
 
-    @RequestMapping(value = "/zuixincaipin/{limit}", method = RequestMethod.GET)
-    public
-    @ResponseBody
-    List<Product> getLatest(@PathVariable("limit") int limit) {
-        return productService.getLatest(limit);
-    }
-
     @RequestMapping(value = "/most_bought/{type}/wechatid/{wechatid}", method = RequestMethod.GET)
     public
     @ResponseBody

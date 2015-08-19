@@ -86,11 +86,11 @@ ctModule.controller('mainController', function ($scope, $location, authService) 
 });
 
 ctModule.controller('navController', function ($scope, $http, $routeParams) {
-    //var url = app + '/nav/' + $routeParams.nav + '/20';
-    //$http.get(url).success(function (data, status, headers, config) {
-    //    $scope.products = data;
-    //    fillSpinner($scope.products);
-    //});
+    goToNav();
+    var url = app + '/nav/all';
+    $http.get(url).success(function (data, status, headers, config) {
+        $scope.productList = data;
+    });
 });
 
 ctModule.controller('productController', function ($scope, $http, $routeParams) {
@@ -107,7 +107,7 @@ ctModule.controller('productController', function ($scope, $http, $routeParams) 
     if (wechatId == undefined) {
         wechatId = getLocalStorage('wechatid');
     }
-    var url = app + '/product/category/' + $routeParams.category + '/wechatid/' + wechatId;
+    var url = app + '/product/itemid/' + $routeParams.itemid;
     $http.get(url).success(function (data, status, headers, config) {
         $scope.products = data;
         fillSpinner($scope.products);
@@ -405,6 +405,10 @@ ctModule.config(['$routeProvider', function ($routeProvider) {
             controller: 'productController',
             templateUrl: 'product.html'
         })
+        .when('/product/itemid/:itemid', {
+            controller: 'productController',
+            templateUrl: 'product.html'
+        })
         .when('/product/most_bought/:type', {
             controller: 'mostBuyController',
             templateUrl: 'product.html'
@@ -676,9 +680,6 @@ function goToCheckout() {
 
 function goToConfirm() {
     init();
-    $('#ma-menu-bar').show();
-    $('#subCategoryBlock').hide();
-    $('#mainListBlock').css('width', '100%');
     $('.checkout').html('<div><a class="next">提交</a>');
     $('a.next').css('margin-left', '43%');
     $('a.next').css('font-size', 'x-large');
@@ -698,10 +699,12 @@ function goToRegister() {
     $('footer').hide();
 }
 
+function goToNav() {
+    $('footer').hide();
+}
+
 function goToProduct() {
-    $('#ma-menu-bar').show();
-    $('#subCategoryBlock').show();
-    $('#mainListBlock').css('width', '75%');
+    $('footer').show();
 }
 
 function goToMessage() {
