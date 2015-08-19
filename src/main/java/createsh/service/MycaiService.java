@@ -59,7 +59,7 @@ public class MycaiService {
             if (msgType.equals(MessageUtil.REQ_MESSAGE_TYPE_EVENT)) {
                 String eventType = requestMap.get("Event");
                 if (eventType.equals(MessageUtil.EVENT_TYPE_SUBSCRIBE)) {
-                    String respContent = "您好，欢迎关注送达\n我们提供各类蔬菜/水果/酒水等食材的送达服务！";
+                    String respContent = "您好，欢迎关注含嘉优品！";
                     TextMessage textMessage = new TextMessage();
                     textMessage.setToUserName(fromUserName);
                     textMessage.setFromUserName(toUserName);
@@ -69,7 +69,7 @@ public class MycaiService {
 
                     Message message = new Message();
                     message.setOpenid(fromUserName);
-                    message.setContent("欢迎您使用送达");
+                    message.setContent("欢迎您关注我们");
                     DateTime ts = new DateTime();
                     message.setTs(ts.toDate());
                     message.setRead(false);

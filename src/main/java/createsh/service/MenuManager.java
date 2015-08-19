@@ -73,7 +73,7 @@ public class MenuManager {
         mainBtn1.setSub_button(new ViewButton[]{btn11});
 
         ComplexButton mainBtn2 = new ComplexButton();
-        mainBtn2.setName(PropertyHolder.MENU_MY_SONGDA);
+        mainBtn2.setName(PropertyHolder.MENU_MY_LIANGYUAN);
         mainBtn2.setSub_button(new ViewButton[]{btn21, btn22});
 
         ComplexButton mainBtn3 = new ComplexButton();

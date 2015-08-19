@@ -15,12 +15,10 @@ import java.net.URL;
 import java.net.URLEncoder;
 
 /**
- * ����ͼ�������api�ӿڣ���ȡ���ܻظ�����
  */
 @Service
 public class TulingApiService {
     /**
-     * ����ͼ�������api�ӿڣ���ȡ���ܻظ����ݣ�������ȡ�Լ�������
      *
      * @param content
      * @return
@@ -52,7 +50,7 @@ public class TulingApiService {
                 break;
             } catch (Exception e) {
                 e.printStackTrace();
-                result = "�Բ�����˵�Ļ�����̫�����ˡ���";
+                result = "我不明白哦~";
             }
         }
         try {

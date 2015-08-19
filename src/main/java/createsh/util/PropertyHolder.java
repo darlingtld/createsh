@@ -27,7 +27,7 @@ public class PropertyHolder {
 
     public static final String MENU_GO_ORDER = "我要下单";
     public static final String MENU_MY_ORDER = "我的订单";
-    public static final String MENU_MY_SONGDA = "我的送达";
+    public static final String MENU_MY_LIANGYUAN = "我的优品";
     public static final String MENU_MY_COUPON = "我的卡券";
     public static final String MENU_NEW_PRODUCT = "新鲜资讯";
     public static final String MENU_ABOUT_US = "关于我们";
