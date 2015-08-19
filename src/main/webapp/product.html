@@ -23,6 +23,7 @@
                 <span class="glyphicon glyphicon-thumbs-up green"></span><span>健康食品</span>
                 <span class="glyphicon glyphicon-thumbs-up green"></span><span>品质保证</span>
             </div>
+
             <div hidden>
                 <input class="product_id" data-product_id="{{product.id}}" type="hidden"/>
                 <input class="product_description" data-product_description="{{product.description}}" type="hidden"/>
@@ -32,7 +33,23 @@
                 <input class="product_picurl" data-product_picurl="{{product.picurl}}" type="hidden"/>
             </div>
         </div>
+        <div class="item" style="margin-top: 5px;">
+            <div class="text-center">
+                <span>商品详情</span>
+            </div>
+            <div class="details">
+
+                <span ng-bind="product.detail"></span>
+            </div>
+        </div>
     </div>
+</div>
+
+<div class="logo-mark text-center">
+    <img ng-src="images/lylogo.jpg">
+    <span>粮源食品</span>
+    <span>含嘉优品</span>
+
 </div>
 
 <div class="row row-sm">

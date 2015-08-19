@@ -29,14 +29,20 @@
     -moz-border-radius: 50%;
     border-radius: 50%;
     max-height: 35px;
-    margin-left: 50%;
+    /*margin-left: 50%;*/
 }
 
 .msg {
     float: right;
+    color: #019bb8;
 }
 
-.msg span {
+.home {
+    float: left;
+    color: #dfb16d;
+}
+
+.home span, .msg span {
     margin-top: 30%;
     font-size: large;
 }
@@ -247,13 +253,32 @@ body {
 
 .fakegood {
     margin-left: 10px;
+    font-size: small;
 }
 
 .fakegood > span:nth-child(odd) {
     margin-left: 10px;
 }
+
 .fakegood > span:nth-child(even) {
     margin-left: 5px;
+}
+
+.details {
+    padding: 10px;
+}
+
+.logo-mark {
+    margin-top: 30px;
+}
+
+.logo-mark img {
+    width: 10%;
+}
+
+.logo-mark span {
+    font-size: small;
+    font-style: oblique;
 }
 
 .green {

@@ -37,6 +37,16 @@ public class Product {
     private double procindex;
     @Column(name = "order_index")
     private int orderIndex;
+    @Column(name = "detail")
+    private String detail;
+
+    public String getDetail() {
+        return detail;
+    }
+
+    public void setDetail(String detail) {
+        this.detail = detail;
+    }
 
     public int getOrderIndex() {
         return orderIndex;
