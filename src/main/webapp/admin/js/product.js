@@ -2,7 +2,7 @@
  * Created by tangld on 2015/6/8.
  */
 var productModule = angular.module('ProductModule', []);
-var app = '/createsh';
+var app = '/mycai';
 
 productModule.controller('productController', function ($scope, $http) {
     var url = app + '/product/all';

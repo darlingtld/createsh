@@ -6,13 +6,13 @@ $(function () {
     _initialPage();
 });
 
-var app = '/createsh/';
+var app = '/mycai/';
 function _initialPage() {
 
     //init table
     $.ajax({
         type: "get",
-        url: "/createsh/order/detail/" + getURLParameter("id"),
+        url: "/mycai/order/detail/" + getURLParameter("id"),
         dataType: "json",
         success: function (data) {
             $("#orderTs").text(data.orderTs);

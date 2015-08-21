@@ -3,6 +3,7 @@ package event.coupon.dao;
 import event.coupon.pojo.Coupon;
 import event.coupon.pojo.Voucher;
 import org.hibernate.Criteria;
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +21,21 @@ public class CouponDao {
     private SessionFactory sessionFactory;
 
     public void createCoupon(Coupon coupon) {
-        sessionFactory.getCurrentSession().save(coupon);
+        Session session = sessionFactory.getCurrentSession();
+        session.save(coupon);
+        session.flush();
+        session.clear();
+    }
+
+    public void createBatchCoupons(List<Coupon> couponList) {
+        Session session = sessionFactory.getCurrentSession();
+        for (int i = 0; i < couponList.size(); i++) {
+            session.save(couponList.get(i));
+            if (i % 20 == 0) {
+                session.flush();
+                session.clear();
+            }
+        }
     }
 
     public Coupon getCoupon(int id) {

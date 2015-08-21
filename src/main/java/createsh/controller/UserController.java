@@ -1,5 +1,6 @@
 package createsh.controller;
 
+
 import createsh.pojo.User;
 import createsh.service.UserService;
 import org.slf4j.Logger;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;
+import java.util.List;
 
 /**
  * Created by darlingtld on 2015/6/24 0024.
@@ -52,5 +54,13 @@ public class UserController {
     User getUser(@PathVariable("wechatId") String wechatId) {
         logger.info("Get user information with wechatId {}", wechatId);
         return userService.getUserByWechatId(wechatId);
+    }
+
+    @RequestMapping(value = "/all", method = RequestMethod.GET)
+    public
+    @ResponseBody
+    List<User> getAllUser() {
+        logger.info("Get all users");
+        return userService.getAll();
     }
 }

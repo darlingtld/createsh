@@ -471,6 +471,8 @@ adminModule.controller('couponController', function ($scope, $http, $location) {
             }
         }
         coupon.used = false;
+        coupon.startTime = Date.parse($scope.createdCoupon.startTime);
+        coupon.endTime = Date.parse($scope.createdCoupon.endTime);
         $http.post(app + '/coupon/' + $scope.createdCoupon.cType + '/create', coupon).success(function () {
             alert('优惠券创建成功');
             window.location.href = app + '/admin/manage.html#/coupon';
@@ -486,15 +488,36 @@ adminModule.controller('couponController', function ($scope, $http, $location) {
 adminModule.controller('messageController', function ($scope, $http) {
     $('li[role]').removeClass('active');
     $('li[role="manage_message"]').addClass('active');
-    $http.get(app + '/message/list').success(function (data) {
-        $scope.messageList = data;
+    $http.get(app + '/user/all').success(function (data) {
+        $scope.userList = data;
     });
 
-    $scope.export = function () {
-        window.location.href = app + '/message/export/';
-    };
 
-});
+    $scope.sendMessage = function (openid) {
+        $scope.openid2Send = openid;
+    }
+    $scope.send = function () {
+        var message = {
+            openid: $scope.openid2Send,
+            content: $('#message-body').val(),
+            ts: new Date(),
+            read: false
+        }
+        console.log(message)
+        $http.post(app + '/message/create', message).success(function () {
+            alert('消息发送成功');
+            window.location.href = app + '/admin/manage.html#/message';
+            window.location.reload();
+        }).error(function () {
+            alert('消息发送失败');
+            window.location.href = app + '/admin/manage.html#/message';
+            window.location.reload();
+        });
+    }
+
+
+})
+;
 adminModule.filter('translate', function () {
     return function (text, type) {
         if (!angular.isString(text)) {

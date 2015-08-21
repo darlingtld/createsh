@@ -2,13 +2,13 @@ package event.coupon.service;
 
 import com.google.common.base.Function;
 import com.google.common.collect.Maps;
-import event.coupon.dao.CouponDao;
-import event.coupon.pojo.Coupon;
-import event.coupon.pojo.Voucher;
 import createsh.dao.UserDao;
 import createsh.pojo.Order;
 import createsh.pojo.User;
 import createsh.util.Utils;
+import event.coupon.dao.CouponDao;
+import event.coupon.pojo.Coupon;
+import event.coupon.pojo.Voucher;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,7 +37,11 @@ public class CouponService {
     @Transactional
     public void createCoupon(Coupon coupon) {
         logger.info("Create coupon {}", coupon.toString());
-        couponDao.createCoupon(coupon);
+        List<User> userList = userDao.getAll();
+        for (User user : userList) {
+            coupon.setOpenid(user.getOpenid());
+            couponDao.createCoupon(coupon);
+        }
     }
 
     @Transactional

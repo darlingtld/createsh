@@ -18,7 +18,6 @@ public class Message {
     @Column(name = "ts")
     private Date ts;
     @Column(name="has_read")
-//    @Transient
     private boolean read;
 
     @Override
