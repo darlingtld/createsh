@@ -83,11 +83,9 @@ public class EventService {
         textMessage.setCreateTime(new Date().getTime());
         textMessage.setMsgType(MessageUtil.RESP_MESSAGE_TYPE_TEXT);
         StringBuffer sb = new StringBuffer();
-        sb.append("提供各类蔬菜/水果/酒水等食材的送达服务").append("\n");
+        sb.append("田园到餐桌零距离，为您提供最高品质的主食").append("\n");
         sb.append("如果您有任何问题，请拨打售后服务热线").append("\n");
-        sb.append("18616021572 茹先生").append("\n");
-        sb.append("15801911483 陈先生").append("\n");
-        sb.append("13402188638 唐先生").append("\n");
+        sb.append("400-000-0000").append("\n");
         textMessage.setContent(sb.toString());
         return MessageUtil.messageToXml(textMessage);
     }
@@ -114,7 +112,7 @@ public class EventService {
             for (int i = 0; i < Math.min(5, orderList.size()); i++) {
                 Order order = orderList.get(i);
                 Article oArticle = new Article();
-                oArticle.setTitle(String.format("下单时间:%s\n商户信息:%s", order.getOrderTs(), order.getShopInfo()));
+                oArticle.setTitle(String.format("下单时间:%s\n用户信息:%s", order.getOrderTs(), order.getShopInfo()));
                 oArticle.setUrl(PropertyHolder.SERVER + "/checkorder.html#/order/details/" + order.getId());
                 articleList.add(oArticle);
             }

@@ -47,7 +47,7 @@ ctModule.config(function () {
 
         if (typeof(Storage) != "undefined") {
             try {
-                var ls = localStorage.getItem('bill');
+                var ls = getLocalStorage('bill');
                 if (ls != undefined) {
                     bill = JSON.parse(ls);
                     refreshCheckoutUI(bill.totalAmount, bill.totalPrice);
@@ -79,8 +79,8 @@ ctModule.controller('mainController', function ($scope, $location, authService) 
     }
     $scope.clearAndReload = function () {
         console.log('clear local storage');
-        localStorage.removeItem('bill');
-        localStorage.removeItem('wechatId');
+        setLocalStorage('bill', null);
+        setLocalStorage('wechatId', null);
         location.reload();
     }
 });
@@ -725,31 +725,11 @@ function saveToLocalStorage(bill) {
     setLocalStorage('bill', JSON.stringify(bill));
 }
 
-function setLocalStorage(key, value) {
-    if (typeof(Storage) != "undefined") {
-        localStorage.setItem(key, value);
-        //console.log('[' + key + ']:[' + value + ']');
-    } else {
-        console.log("local storage is not supported!")
-    }
-}
-
-function getLocalStorage(key) {
-    if (typeof(Storage) != "undefined") {
-        return localStorage.getItem(key);
-    } else {
-        console.log("local storage is not supported!");
-    }
-}
-
 function clearLocalStorage() {
     if (typeof(Storage) != "undefined") {
-        localStorage.removeItem('bill');
+        setLocalStorage('bill', null);
     } else {
         console.log("local storage is not supported!")
     }
 }
 
-function sleep(d) {
-    for (var t = Date.now(); Date.now() - t <= d;);
-}

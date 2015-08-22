@@ -2,17 +2,14 @@
     <div class="shelf text-center" ng-repeat="product in productList">
         <img ng-src="{{product.picurl}}">
 
-        <div style="display: flex;justify-content: space-between;flex-wrap: wrap;">
+        <div>
 
-            <div style="flex-basis: 100%;
-                      display: flex;
-                      justify-content: space-between;">
+            <div class="text-left">
                 <span class="item-info" ng-bind="product.name"></span>
             </div>
-            <div style="flex-basis: 100%; display: flex;
-                      justify-content: space-between;">
+            <div class="text-left">
                 <span class="item-price" ng-bind="product.price | currency : '￥'"></span>
-                <a class="btn btn-sm orange" style="margin: 0px 20px 5px;"
+                <a class="btn btn-sm orange" style="margin-bottom: 5px;margin-left: 40%;"
                    href="#/product/itemid/{{product.id}}">查看详情</a>
             </div>
         </div>

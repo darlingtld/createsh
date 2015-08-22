@@ -40,4 +40,11 @@ public class MessageServiceTest {
         }
     }
 
+    @Test
+    public void getMessageList() {
+        for(Message message : messageService.getMessageList(openid)){
+            System.out.println(message);
+        }
+    }
+
 }
