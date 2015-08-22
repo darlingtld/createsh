@@ -243,8 +243,8 @@ ctModule.controller('confirmController', function ($scope, $http, $location) {
                         bill: JSON.stringify(bill),
                         orderTs: new Date().Format("yyyy-MM-dd hh:mm:ss"),
                         deliveryTs: $('#delivery_ts').val(),
-                        shopInfo: $('#shop_info').val(),
-                        shopAddress: $('#shop_address').val(),
+                        shopInfo: $('#buyer_info').val(),
+                        shopAddress: $('#buyer_address').val(),
                         consignee: $('#consignee').val(),
                         consigneeContact: $('#consignee_contact').val()
                     };
