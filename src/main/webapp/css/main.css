@@ -143,7 +143,7 @@ button.decrease {
 
 .incr_decr_bar > span {
     float: left;
-    /*line-height: 2;*/
+    line-height: 2;
     margin-left: 10px;
 }
 
