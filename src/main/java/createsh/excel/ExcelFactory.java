@@ -88,7 +88,7 @@ public class ExcelFactory {
             List<String[]> content = new ArrayList<>();
             List<Order> subOrderList = getOrderListByStatus(orderList, status);
             for (Order order : subOrderList) {
-                content.add(new String[]{order.getUserId(), order.getOrderTs(), order.getDeliveryTs(), order.getShopInfo(), order.getConsignee(), order.getConsigneeContact(), order.getStatus()});
+                content.add(new String[]{order.getUserId(), order.getOrderTs(), order.getDeliveryTs(), order.getBuyerInfo(), order.getConsignee(), order.getConsigneeContact(), order.getStatus()});
             }
             contents.add(content);
         }

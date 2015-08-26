@@ -46,8 +46,8 @@ public class OrderService {
         if (user != null) {
             user.setConsignee(order.getConsignee());
             user.setConsigneeContact(order.getConsigneeContact());
-            user.setConsigneeInfo(order.getShopInfo());
-            user.setConsgineeAddress(order.getShopAddress());
+            user.setBuyerInfo(order.getBuyerInfo());
+            user.setBuyerAddress(order.getBuyerAddress());
             userDao.update(user);
         } else {
             String unknownUser = "songda user";
@@ -57,8 +57,8 @@ public class OrderService {
             user.setNickname(unknownUser);
             user.setConsignee(order.getConsignee());
             user.setConsigneeContact(order.getConsigneeContact());
-            user.setConsigneeInfo(order.getShopInfo());
-            user.setConsgineeAddress(order.getShopAddress());
+            user.setBuyerInfo(order.getBuyerInfo());
+            user.setBuyerAddress(order.getBuyerAddress());
             userDao.save(user);
         }
         String code = generateConfirmCode();
@@ -204,7 +204,7 @@ public class OrderService {
     }
 
     private String getKeyInfo(Order order, Integer amount, String unit) {
-        return String.format("[数量]%s%s [送货时间]%s [收件人]%s %s [收货地址]%s [电话]%s [下单时间]%s", amount, unit, order.getDeliveryTs(), order.getConsignee(), order.getShopInfo(), order.getShopAddress(), order.getConsigneeContact(), order.getOrderTs());
+        return String.format("[数量]%s%s [送货时间]%s [收件人]%s %s [收货地址]%s [电话]%s [下单时间]%s", amount, unit, order.getDeliveryTs(), order.getConsignee(), order.getBuyerInfo(), order.getBuyerAddress(), order.getConsigneeContact(), order.getOrderTs());
     }
 
     public List<String> getStatusList() {

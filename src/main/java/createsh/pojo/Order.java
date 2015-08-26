@@ -30,10 +30,10 @@ public class Order {
     private String deliveryTs;
     @Column(name = "order_ts")
     private String orderTs;
-    @Column(name = "shop_info")
-    private String shopInfo;
-    @Column(name = "shop_address")
-    private String shopAddress;
+    @Column(name = "buyer_info")
+    private String buyerInfo;
+    @Column(name = "buyer_address")
+    private String buyerAddress;
     @Column(name = "consignee")
     private String consignee;
     @Column(name = "consignee_contact")
@@ -56,8 +56,8 @@ public class Order {
                 ", bill='" + bill + '\'' +
                 ", deliveryTs='" + deliveryTs + '\'' +
                 ", orderTs='" + orderTs + '\'' +
-                ", shopInfo='" + shopInfo + '\'' +
-                ", shopAddress='" + shopAddress + '\'' +
+                ", buyerInfo='" + buyerInfo + '\'' +
+                ", buyerAddress='" + buyerAddress + '\'' +
                 ", consignee='" + consignee + '\'' +
                 ", consigneeContact='" + consigneeContact + '\'' +
                 ", status='" + status + '\'' +
@@ -67,12 +67,12 @@ public class Order {
                 '}';
     }
 
-    public String getShopAddress() {
-        return shopAddress;
+    public String getBuyerAddress() {
+        return buyerAddress;
     }
 
-    public void setShopAddress(String shopAddress) {
-        this.shopAddress = shopAddress;
+    public void setBuyerAddress(String buyerAddress) {
+        this.buyerAddress = buyerAddress;
     }
 
     public String getConfirmTs() {
@@ -147,12 +147,12 @@ public class Order {
         this.deliveryTs = deliveryTs;
     }
 
-    public String getShopInfo() {
-        return shopInfo;
+    public String getBuyerInfo() {
+        return buyerInfo;
     }
 
-    public void setShopInfo(String shopInfo) {
-        this.shopInfo = shopInfo;
+    public void setBuyerInfo(String buyerInfo) {
+        this.buyerInfo = buyerInfo;
     }
 
     public String getConsignee() {

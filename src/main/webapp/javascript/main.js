@@ -219,13 +219,13 @@ ctModule.controller('confirmController', function ($scope, $http, $location) {
             });
 
             if (user != undefined) {
-                $('#shop_info').val(user.shopInfo);
-                $('#shop_address').val(user.shopAddress);
+                $('#buyer_info').val(user.buyerInfo);
+                $('#buyer_address').val(user.buyerAddress);
                 $('#consignee').val(user.consignee);
                 $('#consignee_contact').val(user.consigneeContact);
-            } else if (getLocalStorage('shop_info') != undefined && getLocalStorage('shop_info') != null) {
-                $('#shop_info').val(getLocalStorage('shop_info'));
-                $('#shop_address').val(getLocalStorage('shop_address'));
+            } else if (getLocalStorage('buyer_info') != undefined && getLocalStorage('buyer_info') != null) {
+                $('#buyer_info').val(getLocalStorage('buyer_info'));
+                $('#buyer_address').val(getLocalStorage('buyer_address'));
                 $('#consignee').val(getLocalStorage('consignee'));
                 $('#consignee_contact').val(getLocalStorage('consignee_contact'));
             }
@@ -243,8 +243,8 @@ ctModule.controller('confirmController', function ($scope, $http, $location) {
                         bill: JSON.stringify(bill),
                         orderTs: new Date().Format("yyyy-MM-dd hh:mm:ss"),
                         deliveryTs: $('#delivery_ts').val(),
-                        shopInfo: $('#shop_info').val(),
-                        shopAddress: $('#shop_address').val(),
+                        buyerInfo: $('#buyer_info').val(),
+                        buyerAddress: $('#buyer_address').val(),
                         consignee: $('#consignee').val(),
                         consigneeContact: $('#consignee_contact').val()
                     };
@@ -256,8 +256,8 @@ ctModule.controller('confirmController', function ($scope, $http, $location) {
                             success(function (data, status, headers, config) {
                                 alert('提交订单成功！');
                                 clearLocalStorage();
-                                setLocalStorage('shop_info', order.shopInfo);
-                                setLocalStorage('shop_address', order.shopAddress);
+                                setLocalStorage('buyer_info', order.buyerInfo);
+                                setLocalStorage('buyer_address', order.buyerAddress);
                                 setLocalStorage('consignee', order.consignee);
                                 setLocalStorage('consignee_contact', order.consigneeContact);
                                 clearBill();
@@ -513,11 +513,11 @@ function validateOrder(order) {
     if (order.deliveryTs.trim() == '') {
         alert('请选择配送时间');
         return false;
-    } else if (order.shopInfo.trim() == '') {
-        alert('请输入商户信息');
+    } else if (order.buyerInfo.trim() == '') {
+        alert('请输入买家信息');
         return false;
-    } else if (order.shopAddress.trim() == '') {
-        alert('请输入商户地址');
+    } else if (order.buyerAddress.trim() == '') {
+        alert('请输入买家地址');
         return false;
     } else if (order.consignee.trim() == '') {
         alert('请输入收货人姓名');
