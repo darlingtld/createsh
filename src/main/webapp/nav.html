@@ -1,3 +1,8 @@
+<div id="slides">
+    <img src="product_images/nianmiji.jpg">
+    <img src="product_images/daogu.jpg">
+    <img src="product_images/daogu1.jpg">
+</div>
 <div>
     <div class="shelf text-center" ng-repeat="product in productList">
         <img ng-src="{{product.picurl}}">
@@ -28,3 +33,17 @@
 <div class="row row-sm">
     <div class="placeholder"></div>
 </div>
+
+<script>
+    $(function () {
+        $('#slides').slidesjs({
+            width: 500,
+            height: 375,
+            navigation: false,
+            start: 3,
+            play: {
+                auto: true
+            }
+        });
+    })
+</script>

@@ -24,37 +24,38 @@
     <div style='padding: 5px 10px;text-align: center;' class="js-search-bar bg-info">
 
         <div class="home">
-            <a href="#/nav"><span class="glyphicon glyphicon-home" aria-hidden="true" style="color: rgba(34, 49, 67, 0.5);"></span></a>
+            <a href="#/nav"><span class="glyphicon glyphicon-home" aria-hidden="true"
+                                  style="color: rgba(34, 49, 67, 0.5);"></span></a>
         </div>
 
         <div class="logo" ng-click="clearAndReload()">
             <img class="user-icon" src="images/head.jpg"/>
         </div>
         <div class="msg">
-            <a href="#/message"><span class="glyphicon glyphicon-envelope" aria-hidden="true" style="color: #b7dfc9;"></span></a>
+            <a href="#/message"><span class="glyphicon glyphicon-envelope" aria-hidden="true"
+                                      style="color: #b7dfc9;"></span></a>
 
             <div class="notification"><span id="message_count"></span></div>
         </div>
     </div>
 
     <!--<div class="js-menu-bar" id="ma-menu-bar"-->
-         <!--style="height:47px; width:100%; overflow-x:auto; overflow-y:hidden; -webkit-overflow-scrolling: touch; position:relative;">-->
-        <!--<div class="menu-mask"-->
-             <!--style="height:37px; background-color:rgba(0,0,0,0.6); text-align:center; line-height:37px; color:#fff; font-size:14px; font-weight:bold; position:absolute; top:0; left:0; width:100%;">-->
-            <!--<&#45;&#45; 左右滑动切换分类哦~ &ndash;&gt;-->
-        <!--</div>-->
-        <!--<ul class="menu fl"></ul>-->
+    <!--style="height:47px; width:100%; overflow-x:auto; overflow-y:hidden; -webkit-overflow-scrolling: touch; position:relative;">-->
+    <!--<div class="menu-mask"-->
+    <!--style="height:37px; background-color:rgba(0,0,0,0.6); text-align:center; line-height:37px; color:#fff; font-size:14px; font-weight:bold; position:absolute; top:0; left:0; width:100%;">-->
+    <!--<&#45;&#45; 左右滑动切换分类哦~ &ndash;&gt;-->
+    <!--</div>-->
+    <!--<ul class="menu fl"></ul>-->
 
-        <!--<div class="clear"></div>-->
+    <!--<div class="clear"></div>-->
     <!--</div>-->
 </div>
 <div class="js-content">
     <!--<div id="subCategoryBlock" class="fl scroll-y leftSider" style="height:100%;width:25%; position:relative;">-->
-        <!--<ul class="js-category" style="margin-bottom:80px;">-->
-        <!--</ul>-->
+    <!--<ul class="js-category" style="margin-bottom:80px;">-->
+    <!--</ul>-->
     <!--</div>-->
-    <div id="mainListBlock" class="fl scroll-y"
-         style="position:relative;height:100%;width:100%;-webkit-overflow-scrolling: touch;">
+    <div id="mainListBlock" class="fl scroll-y">
 
         <ng-view></ng-view>
     </div>
@@ -81,6 +82,7 @@
 <script type="text/javascript" src="bower_components/jquery/dist/jquery.min.js"></script>
 <script type="text/javascript" src="bower_components/angular/angular.min.js"></script>
 <script type="text/javascript" src="bower_components/angular-route/angular-route.min.js"></script>
+<script type="text/javascript" src="bower_components/jquery.slides.min.js"></script>
 <script type="text/javascript" src="javascript/all.js"></script>
 <script type="text/javascript" src="javascript/main.js"></script>
 <script type="text/javascript" src="javascript/spinner.js"></script>

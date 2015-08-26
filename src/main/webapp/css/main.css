@@ -284,3 +284,19 @@ body {
 .green {
     color: lightgreen;
 }
+
+#slides {
+    display: none;
+    margin-bottom: 5px;
+}
+
+.slidesjs-pagination {
+    display: none;
+}
+
+#mainListBlock {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    -webkit-overflow-scrolling: touch;
+}
