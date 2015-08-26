@@ -112,7 +112,7 @@ public class EventService {
             for (int i = 0; i < Math.min(5, orderList.size()); i++) {
                 Order order = orderList.get(i);
                 Article oArticle = new Article();
-                oArticle.setTitle(String.format("下单时间:%s\n用户信息:%s", order.getOrderTs(), order.getShopInfo()));
+                oArticle.setTitle(String.format("下单时间:%s\n用户信息:%s", order.getOrderTs(), order.getBuyerInfo()));
                 oArticle.setUrl(PropertyHolder.SERVER + "/checkorder.html#/order/details/" + order.getId());
                 articleList.add(oArticle);
             }
