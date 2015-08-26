@@ -47,7 +47,7 @@ ctModule.config(function () {
 
         if (typeof(Storage) != "undefined") {
             try {
-                var ls = localStorage.getItem('bill');
+                var ls = getLocalStorage('bill');
                 if (ls != undefined) {
                     bill = JSON.parse(ls);
                     refreshCheckoutUI(bill.totalAmount, bill.totalPrice);
@@ -79,8 +79,8 @@ ctModule.controller('mainController', function ($scope, $location, authService) 
     }
     $scope.clearAndReload = function () {
         console.log('clear local storage');
-        localStorage.removeItem('bill');
-        localStorage.removeItem('wechatId');
+        setLocalStorage('bill', null);
+        setLocalStorage('wechatId', null);
         location.reload();
     }
 });
@@ -219,13 +219,13 @@ ctModule.controller('confirmController', function ($scope, $http, $location) {
             });
 
             if (user != undefined) {
-                $('#buyer_info').val(user.buyerInfo);
-                $('#buyer_address').val(user.buyerAddress);
+                $('#shop_info').val(user.shopInfo);
+                $('#shop_address').val(user.shopAddress);
                 $('#consignee').val(user.consignee);
                 $('#consignee_contact').val(user.consigneeContact);
-            } else if (getLocalStorage('buyer_info') != undefined && getLocalStorage('buyer_info') != null) {
-                $('#buyer_info').val(getLocalStorage('buyer_info'));
-                $('#buyer_address').val(getLocalStorage('buyer_address'));
+            } else if (getLocalStorage('shop_info') != undefined && getLocalStorage('shop_info') != null) {
+                $('#shop_info').val(getLocalStorage('shop_info'));
+                $('#shop_address').val(getLocalStorage('shop_address'));
                 $('#consignee').val(getLocalStorage('consignee'));
                 $('#consignee_contact').val(getLocalStorage('consignee_contact'));
             }
@@ -243,8 +243,8 @@ ctModule.controller('confirmController', function ($scope, $http, $location) {
                         bill: JSON.stringify(bill),
                         orderTs: new Date().Format("yyyy-MM-dd hh:mm:ss"),
                         deliveryTs: $('#delivery_ts').val(),
-                        buyerInfo: $('#buyer_info').val(),
-                        buyerAddress: $('#buyer_address').val(),
+                        shopInfo: $('#buyer_info').val(),
+                        shopAddress: $('#buyer_address').val(),
                         consignee: $('#consignee').val(),
                         consigneeContact: $('#consignee_contact').val()
                     };
@@ -256,8 +256,8 @@ ctModule.controller('confirmController', function ($scope, $http, $location) {
                             success(function (data, status, headers, config) {
                                 alert('提交订单成功！');
                                 clearLocalStorage();
-                                setLocalStorage('buyer_info', order.buyerInfo);
-                                setLocalStorage('buyer_address', order.buyerAddress);
+                                setLocalStorage('shop_info', order.shopInfo);
+                                setLocalStorage('shop_address', order.shopAddress);
                                 setLocalStorage('consignee', order.consignee);
                                 setLocalStorage('consignee_contact', order.consigneeContact);
                                 clearBill();
@@ -513,11 +513,11 @@ function validateOrder(order) {
     if (order.deliveryTs.trim() == '') {
         alert('请选择配送时间');
         return false;
-    } else if (order.buyerInfo.trim() == '') {
-        alert('请输入买家信息');
+    } else if (order.shopInfo.trim() == '') {
+        alert('请输入商户信息');
         return false;
-    } else if (order.buyerAddress.trim() == '') {
-        alert('请输入买家地址');
+    } else if (order.shopAddress.trim() == '') {
+        alert('请输入商户地址');
         return false;
     } else if (order.consignee.trim() == '') {
         alert('请输入收货人姓名');
@@ -725,31 +725,11 @@ function saveToLocalStorage(bill) {
     setLocalStorage('bill', JSON.stringify(bill));
 }
 
-function setLocalStorage(key, value) {
-    if (typeof(Storage) != "undefined") {
-        localStorage.setItem(key, value);
-        //console.log('[' + key + ']:[' + value + ']');
-    } else {
-        console.log("local storage is not supported!")
-    }
-}
-
-function getLocalStorage(key) {
-    if (typeof(Storage) != "undefined") {
-        return localStorage.getItem(key);
-    } else {
-        console.log("local storage is not supported!");
-    }
-}
-
 function clearLocalStorage() {
     if (typeof(Storage) != "undefined") {
-        localStorage.removeItem('bill');
+        setLocalStorage('bill', null);
     } else {
         console.log("local storage is not supported!")
     }
 }
 
-function sleep(d) {
-    for (var t = Date.now(); Date.now() - t <= d;);
-}

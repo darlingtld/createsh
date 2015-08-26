@@ -16,7 +16,7 @@ public class MessageDao {
     private SessionFactory sessionFactory;
 
     public List<Message> getMessageList(String openid) {
-        return sessionFactory.getCurrentSession().createQuery(String.format("from Message where openid='%s'", openid)).list();
+        return sessionFactory.getCurrentSession().createQuery(String.format("from Message where openid='%s' order by ts desc", openid)).list();
     }
 
     public void createMessage(Message message) {

@@ -202,6 +202,9 @@ public class ProductService {
 
     public Map<Type, List<Category>> getTypeMap() {
         Map<Type, List<Category>> typeListMap = new TreeMap<>();
+        List<Category> machineList = new ArrayList<>();
+        machineList.add(Category.NIANMIJI);
+        typeListMap.put(Type.MACHINE, machineList);
         List<Category> shucaishuiguoList = new ArrayList<>();
         shucaishuiguoList.add(Category.YECAILEI);
         shucaishuiguoList.add(Category.GENJINGLEI);
