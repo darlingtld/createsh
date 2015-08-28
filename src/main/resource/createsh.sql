@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50625
 File Encoding         : 65001
 
-Date: 2015-08-19 17:52:48
+Date: 2015-08-28 15:41:23
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -42,8 +42,8 @@ CREATE TABLE `bill_order` (
   `bill` text CHARACTER SET utf8 COLLATE utf8_unicode_ci,
   `order_ts` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
   `delivery_ts` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
-  `shop_info` text CHARACTER SET utf8 COLLATE utf8_unicode_ci,
-  `shop_address` text,
+  `buyer_info` text CHARACTER SET utf8 COLLATE utf8_unicode_ci,
+  `buyer_address` text,
   `consignee` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
   `consignee_contact` varchar(45) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
   `status` varchar(45) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
@@ -51,7 +51,7 @@ CREATE TABLE `bill_order` (
   `confirm_bill` text,
   `confirm_ts` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=75 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=76 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of bill_order
@@ -69,6 +69,7 @@ INSERT INTO `bill_order` VALUES ('70', '1314', 'o5Irvtx1HMDEgD18RESTS_tZ89rQ', '
 INSERT INTO `bill_order` VALUES ('72', '1314', 'o5Irvtx1HMDEgD18RESTS_tZ89rQ', '{\"items\":[{\"$$hashKey\":\"object:786\",\"amount\":3,\"description\":\"精选球生菜\",\"picurl\":\"product_images/pic29503968554936053590323155.jpg\",\"productId\":340,\"productName\":\"球生菜\",\"productPrice\":4.5,\"productUnit\":\"斤\"},{\"$$hashKey\":\"object:787\",\"amount\":5,\"description\":\"精选莴苣\",\"picurl\":\"product_images/pic1078703987859450-931019923.jpg\",\"productId\":282,\"productName\":\"莴苣\",\"productPrice\":2.5,\"productUnit\":\"斤\"},{\"$$hashKey\":\"object:788\",\"amount\":8,\"description\":\"精选西兰花\",\"picurl\":\"product_images/pic34505984559938069-931019923.jpg\",\"productId\":288,\"productName\":\"西兰花\",\"productPrice\":3.5,\"productUnit\":\"斤\"},{\"$$hashKey\":\"object:789\",\"amount\":15,\"description\":\"精选绢豆腐\",\"picurl\":\"product_images/pic32361516557793601590323155.jpg\",\"productId\":345,\"productName\":\"绢豆腐\",\"productPrice\":1.5,\"productUnit\":\"盒\"},{\"$$hashKey\":\"object:790\",\"amount\":3,\"description\":\"精选毛豆米\",\"picurl\":\"product_images/pic27679240553111325590323155.jpg\",\"productId\":334,\"productName\":\"毛豆米\",\"productPrice\":7.5,\"productUnit\":\"斤\"},{\"$$hashKey\":\"object:791\",\"amount\":3,\"description\":\"精选刀豆\",\"picurl\":\"product_images/pic686662987467409-931019923.jpg\",\"productId\":220,\"productName\":\"刀豆\",\"productPrice\":3.5,\"productUnit\":\"斤\"},{\"$$hashKey\":\"object:793\",\"amount\":3,\"description\":\"精选空心菜\",\"picurl\":\"product_images/pic30924915556357000-931019923.jpg\",\"productId\":256,\"productName\":\"空心菜\",\"productPrice\":1.8,\"productUnit\":\"斤\"},{\"$$hashKey\":\"object:794\",\"amount\":3,\"description\":\"精选青菜\",\"picurl\":\"product_images/pic1234634988015381-931019923.jpg\",\"productId\":297,\"productName\":\"青菜\",\"productPrice\":1.5,\"productUnit\":\"斤\"},{\"$$hashKey\":\"object:795\",\"amount\":3,\"description\":\"精选鸡毛菜\",\"picurl\":\"product_images/pic39791938565224023-931019923.jpg\",\"productId\":327,\"productName\":\"鸡毛菜\",\"productPrice\":2.5,\"productUnit\":\"斤\"},{\"$$hashKey\":\"object:796\",\"amount\":3,\"description\":\"精选小葱\",\"picurl\":\"product_images/pic764482987545229-931019923.jpg\",\"productId\":314,\"productName\":\"小葱\",\"productPrice\":3,\"productUnit\":\"斤\"},{\"$$hashKey\":\"object:797\",\"amount\":5,\"description\":\"精选杭椒\",\"picurl\":\"product_images/pic847685987628432-931019923.jpg\",\"productId\":328,\"productName\":\"杭椒\",\"productPrice\":6,\"productUnit\":\"斤\"},{\"$$hashKey\":\"object:798\",\"amount\":3,\"description\":\"精选番茄\",\"picurl\":\"product_images/pic965338987746085-931019923.jpg\",\"productId\":253,\"productName\":\"番茄\",\"productPrice\":2.8,\"productUnit\":\"斤\"},{\"$$hashKey\":\"object:799\",\"amount\":5,\"description\":\"精选百合\",\"picurl\":\"product_images/pic961866987742613590323155.jpg\",\"productId\":336,\"productName\":\"百合\",\"productPrice\":6,\"productUnit\":\"斤\"},{\"$$hashKey\":\"object:800\",\"amount\":3,\"description\":\"精选青椒\",\"picurl\":\"product_images/pic1227776988008523-931019923.jpg\",\"productId\":296,\"productName\":\"青椒\",\"productPrice\":2.5,\"productUnit\":\"斤\"},{\"$$hashKey\":\"object:801\",\"amount\":3,\"description\":\"精选薄百叶\",\"picurl\":\"product_images/pic33808828559240913590323155.jpg\",\"productId\":337,\"productName\":\"薄百叶\",\"productPrice\":1.5,\"productUnit\":\"包\"},{\"$$hashKey\":\"object:802\",\"amount\":1,\"description\":\"精选香芹\",\"picurl\":\"product_images/pic0987654321.jpg\",\"productId\":347,\"productName\":\"香芹\",\"productPrice\":2.5,\"productUnit\":\"斤\"},{\"$$hashKey\":\"object:803\",\"amount\":4,\"description\":\"精选西芹\",\"picurl\":\"product_images/pic33206351558638436-931019923.jpg\",\"productId\":271,\"productName\":\"西芹\",\"productPrice\":2.5,\"productUnit\":\"斤\"},{\"$$hashKey\":\"object:804\",\"amount\":5,\"description\":\"精选酸豇豆\",\"picurl\":\"product_images/pic36936791562368876-931019923.jpg\",\"productId\":344,\"productName\":\"酸豇豆\",\"productPrice\":3,\"productUnit\":\"斤\"}],\"totalAmount\":78,\"totalPrice\":243.8}', '2015-08-08 21:16:07', '次日上午8:00到10:30间', '聚缘酒家', '盛苑路596号', '刘群', '17749759259', '已配送（未付款）', '405456740', '{\"items\":[{\"$$hashKey\":\"object:786\",\"amount\":3,\"description\":\"精选球生菜\",\"picurl\":\"product_images/pic29503968554936053590323155.jpg\",\"productId\":340,\"productName\":\"球生菜\",\"productPrice\":4.5,\"productUnit\":\"斤\"},{\"$$hashKey\":\"object:787\",\"amount\":\"5.6\",\"description\":\"精选莴苣\",\"picurl\":\"product_images/pic1078703987859450-931019923.jpg\",\"productId\":282,\"productName\":\"莴苣\",\"productPrice\":2.5,\"productUnit\":\"斤\"},{\"$$hashKey\":\"object:788\",\"amount\":\"8.6\",\"description\":\"精选西兰花\",\"picurl\":\"product_images/pic34505984559938069-931019923.jpg\",\"productId\":288,\"productName\":\"西兰花\",\"productPrice\":3.5,\"productUnit\":\"斤\"},{\"$$hashKey\":\"object:789\",\"amount\":15,\"description\":\"精选绢豆腐\",\"picurl\":\"product_images/pic32361516557793601590323155.jpg\",\"productId\":345,\"productName\":\"绢豆腐\",\"productPrice\":1.5,\"productUnit\":\"盒\"},{\"$$hashKey\":\"object:790\",\"amount\":\"3.1\",\"description\":\"精选毛豆米\",\"picurl\":\"product_images/pic27679240553111325590323155.jpg\",\"productId\":334,\"productName\":\"毛豆米\",\"productPrice\":7.5,\"productUnit\":\"斤\"},{\"$$hashKey\":\"object:791\",\"amount\":3,\"description\":\"精选刀豆\",\"picurl\":\"product_images/pic686662987467409-931019923.jpg\",\"productId\":220,\"productName\":\"刀豆\",\"productPrice\":3.5,\"productUnit\":\"斤\"},{\"$$hashKey\":\"object:793\",\"amount\":3,\"description\":\"精选空心菜\",\"picurl\":\"product_images/pic30924915556357000-931019923.jpg\",\"productId\":256,\"productName\":\"空心菜\",\"productPrice\":1.8,\"productUnit\":\"斤\"},{\"$$hashKey\":\"object:794\",\"amount\":3,\"description\":\"精选青菜\",\"picurl\":\"product_images/pic1234634988015381-931019923.jpg\",\"productId\":297,\"productName\":\"青菜\",\"productPrice\":1.5,\"productUnit\":\"斤\"},{\"$$hashKey\":\"object:795\",\"amount\":\"4\",\"description\":\"精选鸡毛菜\",\"picurl\":\"product_images/pic39791938565224023-931019923.jpg\",\"productId\":327,\"productName\":\"鸡毛菜\",\"productPrice\":2.5,\"productUnit\":\"斤\"},{\"$$hashKey\":\"object:796\",\"amount\":3,\"description\":\"精选小葱\",\"picurl\":\"product_images/pic764482987545229-931019923.jpg\",\"productId\":314,\"productName\":\"小葱\",\"productPrice\":3,\"productUnit\":\"斤\"},{\"$$hashKey\":\"object:797\",\"amount\":5,\"description\":\"精选杭椒\",\"picurl\":\"product_images/pic847685987628432-931019923.jpg\",\"productId\":328,\"productName\":\"杭椒\",\"productPrice\":6,\"productUnit\":\"斤\"},{\"$$hashKey\":\"object:798\",\"amount\":\"3.3\",\"description\":\"精选番茄\",\"picurl\":\"product_images/pic965338987746085-931019923.jpg\",\"productId\":253,\"productName\":\"番茄\",\"productPrice\":2.8,\"productUnit\":\"斤\"},{\"$$hashKey\":\"object:799\",\"amount\":5,\"description\":\"精选百合\",\"picurl\":\"product_images/pic961866987742613590323155.jpg\",\"productId\":336,\"productName\":\"百合\",\"productPrice\":6,\"productUnit\":\"斤\"},{\"$$hashKey\":\"object:800\",\"amount\":3,\"description\":\"精选青椒\",\"picurl\":\"product_images/pic1227776988008523-931019923.jpg\",\"productId\":296,\"productName\":\"青椒\",\"productPrice\":2.5,\"productUnit\":\"斤\"},{\"$$hashKey\":\"object:801\",\"amount\":3,\"description\":\"精选薄百叶\",\"picurl\":\"product_images/pic33808828559240913590323155.jpg\",\"productId\":337,\"productName\":\"薄百叶\",\"productPrice\":1.5,\"productUnit\":\"包\"},{\"$$hashKey\":\"object:802\",\"amount\":\"1.7\",\"description\":\"精选香芹\",\"picurl\":\"product_images/pic0987654321.jpg\",\"productId\":347,\"productName\":\"香芹\",\"productPrice\":2.5,\"productUnit\":\"斤\"},{\"$$hashKey\":\"object:803\",\"amount\":\"4.4\",\"description\":\"精选西芹\",\"picurl\":\"product_images/pic33206351558638436-931019923.jpg\",\"productId\":271,\"productName\":\"西芹\",\"productPrice\":2.5,\"productUnit\":\"斤\"},{\"$$hashKey\":\"object:804\",\"amount\":5,\"description\":\"精选酸豇豆\",\"picurl\":\"product_images/pic36936791562368876-931019923.jpg\",\"productId\":344,\"productName\":\"酸豇豆\",\"productPrice\":3,\"productUnit\":\"斤\"}],\"totalAmount\":78,\"totalPrice\":\"254.24\"}', '2015-08-09 08:20:52');
 INSERT INTO `bill_order` VALUES ('73', 'songda user', 'o5Irvt3tty06NYT8W-nJa0gPERvM', '{\"items\":[{\"$$hashKey\":\"object:350\",\"amount\":5,\"description\":\"精选大白菜\",\"picurl\":\"product_images/pic22906982548339067-931019923.jpg\",\"productId\":225,\"productName\":\"大白菜\",\"productPrice\":1,\"productUnit\":\"斤\"},{\"$$hashKey\":\"object:351\",\"amount\":\"1\",\"description\":\"精选卷心菜\",\"picurl\":\"product_images/pic21327408546759493-931019923.jpg\",\"productId\":222,\"productName\":\"卷心菜\",\"productPrice\":2,\"productUnit\":\"斤\"},{\"$$hashKey\":\"object:352\",\"amount\":\"1\",\"description\":\"精选牛肉\",\"picurl\":\"product_images/pic940430987721177-931019923.jpg\",\"productId\":245,\"productName\":\"牛肉\",\"productPrice\":32,\"productUnit\":\"斤\"},{\"$$hashKey\":\"object:353\",\"amount\":\"1\",\"description\":\"精选柠檬\",\"picurl\":\"product_images/pic851660987632407-9310199231439096911338.jpg\",\"productId\":366,\"productName\":\"柠檬\",\"productPrice\":14,\"productUnit\":\"斤\"},{\"$$hashKey\":\"object:354\",\"amount\":\"1\",\"description\":\"情人草\",\"picurl\":\"product_images/pic2446523624465236-9310199231439096777930.jpg\",\"productId\":362,\"productName\":\"情人草\",\"productPrice\":6,\"productUnit\":\"包\"},{\"$$hashKey\":\"object:355\",\"amount\":\"1\",\"description\":\"精选酸豇豆\",\"picurl\":\"product_images/pic36936791562368876-931019923.jpg\",\"productId\":344,\"productName\":\"酸豇豆\",\"productPrice\":3,\"productUnit\":\"斤\"},{\"$$hashKey\":\"object:356\",\"amount\":\"1\",\"description\":\"正宗阳澄湖大闸蟹原价58\",\"picurl\":\"product_images/pic1584810882008770418-16683468771439191030183.jpg\",\"productId\":353,\"productName\":\"大闸蟹雄3.2两/雌3.2两\",\"productPrice\":29,\"productUnit\":\"只\"},{\"$$hashKey\":\"object:357\",\"amount\":7,\"description\":\"正宗阳澄湖大闸蟹原价168元\",\"picurl\":\"product_images/pic7991079101987957247-16683468771439191522082.jpg\",\"productId\":402,\"productName\":\"大闸蟹雄4.8两/雌3.8两\",\"productPrice\":84,\"productUnit\":\"只\"},{\"$$hashKey\":\"object:358\",\"amount\":\"1\",\"description\":\"正宗阳澄湖大闸蟹原价78\",\"picurl\":\"product_images/pic-661424311-106609897-16683468771439020991221.jpg\",\"productId\":354,\"productName\":\"大闸蟹雄3.6两/雌2.6两\",\"productPrice\":39,\"productUnit\":\"只\"},{\"$$hashKey\":\"object:359\",\"amount\":\"1\",\"description\":\"正宗阳澄湖大闸蟹原价98元\",\"picurl\":\"product_images/pic-537302423-106609897-16683468771439021004821.jpg\",\"productId\":355,\"productName\":\"大闸蟹雄4.0两/雌3.0两\",\"productPrice\":49,\"productUnit\":\"只\"},{\"$$hashKey\":\"object:360\",\"amount\":10,\"description\":\"正宗阳澄湖大闸蟹原价108元\",\"picurl\":\"product_images/pic-10678196941987951481-16683468771439191256342.jpg\",\"productId\":399,\"productName\":\"大闸蟹雄4.2两/雌3.2两\",\"productPrice\":54,\"productUnit\":\"只\"}],\"totalAmount\":30,\"totalPrice\":1299,\"usedCoupon\":{\"deductedMoney\":8,\"detailInfo\":\"单笔订单满100.0减8.0\",\"endTime\":1440950400000,\"id\":22,\"modifiedTotalPrice\":1299,\"openid\":\"o5Irvt3tty06NYT8W-nJa0gPERvM\",\"reachedMoney\":100,\"startTime\":1438185600000,\"timeLimit\":\"2015年07月30日—2015年08月31日\",\"used\":false}}', '2015-08-12 22:37:44', '次日上午8:00到10:30间', '厉害的商户', '你猜', '美女', '13402188638', '未配送', '356093198', null, null);
 INSERT INTO `bill_order` VALUES ('74', 'songda user', 'o5Irvt3tty06NYT8W-nJa0gPERvM', '{\"items\":[{\"$$hashKey\":\"object:162\",\"amount\":\"1\",\"description\":\"精选丝瓜\",\"picurl\":\"product_images/pic649823987430570-931019923.jpg\",\"productId\":215,\"productName\":\"丝瓜\",\"productPrice\":2,\"productUnit\":\"斤\"}],\"totalAmount\":1,\"totalPrice\":1.9,\"usedCoupon\":{\"detailInfo\":\"单笔订单9.5折优惠\",\"discountFactor\":0.95,\"endTime\":1440950400000,\"id\":23,\"modifiedTotalPrice\":1.9,\"openid\":\"o5Irvt3tty06NYT8W-nJa0gPERvM\",\"startTime\":1438185600000,\"timeLimit\":\"2015年07月30日—2015年08月31日\",\"used\":false}}', '2015-08-12 22:42:37', '次日上午8:00到10:30间', '天才的商户', '你再猜', '帅锅', '13402188638', '未配送', '108291800', null, null);
+INSERT INTO `bill_order` VALUES ('75', 'lingda', 'o5Irvt5957jQ4xmdHmDp59epk0UU', '{\"items\":[{\"$$hashKey\":\"object:4\",\"amount\":2,\"description\":\"粮源食品碾米机 品质保证 健康食品保证 \",\"picurl\":\"product_images/nianmiji.jpg\",\"productId\":215,\"productName\":\"碾米机\",\"productPrice\":1299,\"productUnit\":\"台\"}],\"totalAmount\":2,\"totalPrice\":2598}', '2015-08-28 15:30:47', '2015/08/28 15:30', '新中源大楼', '长阳路1930号', '灵达', '13402188638', '未配送', '758468275', null, null);
 
 -- ----------------------------
 -- Table structure for coupon
@@ -162,164 +163,6 @@ CREATE TABLE `procurement` (
 -- ----------------------------
 -- Records of procurement
 -- ----------------------------
-INSERT INTO `procurement` VALUES ('10', '282', '2.5', '1', '2015-07-29 19:05:05');
-INSERT INTO `procurement` VALUES ('11', '215', '2', '1', '2015-08-09 13:11:19');
-INSERT INTO `procurement` VALUES ('12', '216', '19', '1', '2015-08-09 09:09:10');
-INSERT INTO `procurement` VALUES ('13', '217', '13', '1', '2015-08-08 17:23:33');
-INSERT INTO `procurement` VALUES ('14', '218', '1.2', '1', '2015-08-06 00:07:12');
-INSERT INTO `procurement` VALUES ('15', '219', '12', '1', '2015-08-08 16:20:34');
-INSERT INTO `procurement` VALUES ('16', '220', '3.5', '1', '2015-08-08 16:22:10');
-INSERT INTO `procurement` VALUES ('17', '221', '2', '1', '2015-08-06 00:07:25');
-INSERT INTO `procurement` VALUES ('18', '222', '1.8', '1', '2015-08-08 16:19:22');
-INSERT INTO `procurement` VALUES ('19', '223', '2', '1', '2015-08-08 16:22:13');
-INSERT INTO `procurement` VALUES ('20', '224', '2.5', '1', '2015-08-02 19:49:39');
-INSERT INTO `procurement` VALUES ('21', '225', '1', '1', '2015-08-08 16:19:12');
-INSERT INTO `procurement` VALUES ('22', '226', '2.8', '1', '2015-08-05 23:43:41');
-INSERT INTO `procurement` VALUES ('23', '227', '5', '1', '2015-08-08 16:22:47');
-INSERT INTO `procurement` VALUES ('24', '228', '2.5', '1', '2015-08-08 16:20:29');
-INSERT INTO `procurement` VALUES ('25', '229', '2', '1', '2015-08-05 23:22:14');
-INSERT INTO `procurement` VALUES ('26', '230', '5', '1', '2015-08-08 16:19:50');
-INSERT INTO `procurement` VALUES ('27', '231', '5', '1', '2015-07-29 19:05:59');
-INSERT INTO `procurement` VALUES ('28', '232', '8', '1', '2015-08-08 16:20:31');
-INSERT INTO `procurement` VALUES ('29', '233', '8', '1', '2015-08-08 16:22:21');
-INSERT INTO `procurement` VALUES ('30', '234', '24', '1', '2015-08-09 09:05:26');
-INSERT INTO `procurement` VALUES ('31', '235', '9', '1', '2015-08-09 09:08:40');
-INSERT INTO `procurement` VALUES ('32', '236', '7.5', '1', '2015-08-08 18:26:40');
-INSERT INTO `procurement` VALUES ('33', '237', '5', '1', '2015-08-08 16:23:14');
-INSERT INTO `procurement` VALUES ('34', '238', '4.5', '1', '2015-08-06 00:07:57');
-INSERT INTO `procurement` VALUES ('35', '239', '4', '1', '2015-08-08 16:24:19');
-INSERT INTO `procurement` VALUES ('36', '240', '2.5', '1', '2015-08-08 16:22:25');
-INSERT INTO `procurement` VALUES ('37', '241', '1.6', '1', '2015-08-06 08:53:05');
-INSERT INTO `procurement` VALUES ('38', '242', '3', '1', '2015-08-08 16:24:20');
-INSERT INTO `procurement` VALUES ('39', '243', '5', '1', '2015-08-08 16:24:20');
-INSERT INTO `procurement` VALUES ('40', '244', '10', '1', '2015-08-08 16:23:16');
-INSERT INTO `procurement` VALUES ('41', '245', '27', '1', '2015-08-08 17:14:19');
-INSERT INTO `procurement` VALUES ('42', '246', '30', '1', '2015-08-09 09:08:21');
-INSERT INTO `procurement` VALUES ('43', '247', '11', '1', '2015-08-08 17:23:28');
-INSERT INTO `procurement` VALUES ('44', '248', '12.5', '1', '2015-08-09 09:04:35');
-INSERT INTO `procurement` VALUES ('45', '249', '8', '1', '2015-08-09 09:05:34');
-INSERT INTO `procurement` VALUES ('46', '250', '12.5', '1', '2015-08-09 09:05:18');
-INSERT INTO `procurement` VALUES ('47', '251', '12', '1', '2015-08-05 23:54:50');
-INSERT INTO `procurement` VALUES ('48', '252', '2.5', '1', '2015-08-08 16:20:27');
-INSERT INTO `procurement` VALUES ('49', '253', '2.8', '1', '2015-08-05 23:39:42');
-INSERT INTO `procurement` VALUES ('50', '254', '1.2', '1', '2015-08-08 16:19:39');
-INSERT INTO `procurement` VALUES ('51', '255', '3', '1', '2015-08-08 16:14:33');
-INSERT INTO `procurement` VALUES ('52', '256', '1.8', '1', '2015-08-08 16:14:58');
-INSERT INTO `procurement` VALUES ('53', '257', '5', '1', '2015-08-08 16:20:34');
-INSERT INTO `procurement` VALUES ('54', '258', '2.5', '1', '2015-08-08 16:20:28');
-INSERT INTO `procurement` VALUES ('55', '259', '15', '1', '2015-08-02 20:12:14');
-INSERT INTO `procurement` VALUES ('56', '260', '2', '1', '2015-08-08 16:20:23');
-INSERT INTO `procurement` VALUES ('57', '261', '14', '1', '2015-08-09 09:04:29');
-INSERT INTO `procurement` VALUES ('58', '262', '1.5', '1', '2015-07-29 19:27:06');
-INSERT INTO `procurement` VALUES ('59', '263', '31', '1.15', '2015-07-29 18:49:02');
-INSERT INTO `procurement` VALUES ('60', '264', '12', '1.15', '2015-08-02 20:45:24');
-INSERT INTO `procurement` VALUES ('61', '265', '2.3', '1', '2015-08-08 16:19:43');
-INSERT INTO `procurement` VALUES ('62', '266', '3.5', '1', '2015-08-08 16:20:25');
-INSERT INTO `procurement` VALUES ('63', '267', '3.5', '1', '2015-08-08 16:14:40');
-INSERT INTO `procurement` VALUES ('64', '268', '8', '1', '2015-08-08 16:19:59');
-INSERT INTO `procurement` VALUES ('65', '269', '2.5', '1', '2015-08-08 16:19:25');
-INSERT INTO `procurement` VALUES ('66', '270', '2', '1', '2015-07-30 15:49:31');
-INSERT INTO `procurement` VALUES ('67', '271', '2.5', '1', '2015-08-02 20:01:06');
-INSERT INTO `procurement` VALUES ('68', '272', '2.5', '1', '2015-08-05 23:22:03');
-INSERT INTO `procurement` VALUES ('69', '273', '2.8', '1', '2015-08-06 00:07:18');
-INSERT INTO `procurement` VALUES ('70', '274', '2.2', '1', '2015-08-05 23:39:58');
-INSERT INTO `procurement` VALUES ('71', '275', '3.5', '1', '2015-08-08 16:20:18');
-INSERT INTO `procurement` VALUES ('72', '276', '18', '1.15', '2015-07-29 18:49:04');
-INSERT INTO `procurement` VALUES ('73', '277', '6', '1', '2015-08-08 16:23:10');
-INSERT INTO `procurement` VALUES ('74', '278', '8', '1', '2015-08-02 20:02:13');
-INSERT INTO `procurement` VALUES ('75', '279', '10', '1', '2015-08-08 16:23:17');
-INSERT INTO `procurement` VALUES ('76', '280', '7.5', '1', '2015-08-08 16:14:28');
-INSERT INTO `procurement` VALUES ('77', '281', '7', '1', '2015-08-08 16:20:21');
-INSERT INTO `procurement` VALUES ('78', '283', '5', '1', '2015-08-08 16:14:26');
-INSERT INTO `procurement` VALUES ('79', '284', '5', '1', '2015-08-05 23:57:18');
-INSERT INTO `procurement` VALUES ('80', '285', '4', '1', '2015-08-08 16:14:02');
-INSERT INTO `procurement` VALUES ('81', '286', '8', '1', '2015-08-05 23:53:02');
-INSERT INTO `procurement` VALUES ('82', '287', '4', '1', '2015-08-08 16:22:32');
-INSERT INTO `procurement` VALUES ('83', '288', '3.5', '1', '2015-08-08 16:15:38');
-INSERT INTO `procurement` VALUES ('84', '289', '2.17', '1.15', '2015-07-25 14:29:33');
-INSERT INTO `procurement` VALUES ('85', '290', '2.5', '1.15', '2015-07-29 18:49:06');
-INSERT INTO `procurement` VALUES ('86', '291', '6', '1', '2015-08-08 17:43:00');
-INSERT INTO `procurement` VALUES ('87', '292', '25', '1.15', '2015-07-29 18:49:06');
-INSERT INTO `procurement` VALUES ('88', '293', '4.5', '1', '2015-08-08 16:23:12');
-INSERT INTO `procurement` VALUES ('89', '294', '50', '1', '2015-08-05 23:54:46');
-INSERT INTO `procurement` VALUES ('90', '295', '2.8', '1', '2015-08-08 16:22:16');
-INSERT INTO `procurement` VALUES ('91', '296', '2.8', '1', '2015-08-09 12:58:54');
-INSERT INTO `procurement` VALUES ('92', '297', '1.5', '1', '2015-08-08 16:21:32');
-INSERT INTO `procurement` VALUES ('93', '298', '2.5', '1', '2015-08-05 23:41:30');
-INSERT INTO `procurement` VALUES ('94', '299', '6', '1', '2015-08-06 09:47:19');
-INSERT INTO `procurement` VALUES ('95', '300', '12', '1', '2015-08-04 09:27:07');
-INSERT INTO `procurement` VALUES ('96', '301', '8', '1', '2015-08-08 16:14:18');
-INSERT INTO `procurement` VALUES ('97', '302', '5', '1', '2015-08-06 08:52:42');
-INSERT INTO `procurement` VALUES ('98', '303', '2', '1', '2015-08-08 16:20:24');
-INSERT INTO `procurement` VALUES ('99', '304', '13', '1', '2015-08-08 17:43:55');
-INSERT INTO `procurement` VALUES ('100', '305', '8', '1', '2015-08-08 17:43:58');
-INSERT INTO `procurement` VALUES ('101', '306', '4', '1', '2015-08-08 16:23:15');
-INSERT INTO `procurement` VALUES ('102', '307', '5', '1', '2015-08-08 18:26:06');
-INSERT INTO `procurement` VALUES ('103', '308', '2.8', '1', '2015-07-30 15:50:31');
-INSERT INTO `procurement` VALUES ('104', '309', '1.3', '1', '2015-08-09 13:00:24');
-INSERT INTO `procurement` VALUES ('105', '310', '50', '1', '2015-08-05 23:54:45');
-INSERT INTO `procurement` VALUES ('106', '311', '2.5', '1', '2015-08-05 23:43:10');
-INSERT INTO `procurement` VALUES ('107', '312', '1.5', '1', '2015-08-05 23:43:21');
-INSERT INTO `procurement` VALUES ('108', '313', '5', '1.15', '2015-07-29 18:49:10');
-INSERT INTO `procurement` VALUES ('109', '314', '3', '1', '2015-08-06 08:53:18');
-INSERT INTO `procurement` VALUES ('110', '315', '2', '1', '2015-08-08 16:13:13');
-INSERT INTO `procurement` VALUES ('111', '316', '10.5', '1', '2015-08-09 09:05:14');
-INSERT INTO `procurement` VALUES ('112', '317', '8', '1', '2015-08-09 09:08:44');
-INSERT INTO `procurement` VALUES ('113', '320', '4.8', '1', '2015-08-04 09:20:18');
-INSERT INTO `procurement` VALUES ('114', '321', '10', '1', '2015-08-05 23:46:06');
-INSERT INTO `procurement` VALUES ('115', '322', '2.2', '1', '2015-08-08 16:16:03');
-INSERT INTO `procurement` VALUES ('116', '323', '3.5', '1.1', '2015-08-02 20:11:39');
-INSERT INTO `procurement` VALUES ('117', '324', '7', '1', '2015-08-06 08:56:05');
-INSERT INTO `procurement` VALUES ('118', '325', '1.3', '1', '2015-08-09 13:00:22');
-INSERT INTO `procurement` VALUES ('119', '326', '8', '1', '2015-08-04 09:30:37');
-INSERT INTO `procurement` VALUES ('120', '327', '2.5', '1', '2015-08-08 16:12:56');
-INSERT INTO `procurement` VALUES ('121', '329', '6.5', '1', '2015-08-06 08:56:19');
-INSERT INTO `procurement` VALUES ('122', '328', '6', '1', '2015-08-02 19:50:18');
-INSERT INTO `procurement` VALUES ('123', '330', '1', '1', '2015-08-02 18:56:29');
-INSERT INTO `procurement` VALUES ('124', '333', '5', '1', '2015-08-05 23:41:53');
-INSERT INTO `procurement` VALUES ('125', '334', '7.5', '1', '2015-08-04 09:23:01');
-INSERT INTO `procurement` VALUES ('126', '335', '1.5', '1', '2015-08-02 19:35:29');
-INSERT INTO `procurement` VALUES ('127', '336', '6', '1', '2015-08-02 19:35:38');
-INSERT INTO `procurement` VALUES ('128', '337', '1.5', '1', '2015-08-02 19:48:39');
-INSERT INTO `procurement` VALUES ('129', '339', '2', '1', '2015-08-02 19:35:58');
-INSERT INTO `procurement` VALUES ('130', '338', '3.6', '1', '2015-08-02 19:36:02');
-INSERT INTO `procurement` VALUES ('131', '331', '1', '1', '2015-08-02 19:49:03');
-INSERT INTO `procurement` VALUES ('132', '332', '4.3', '1', '2015-08-02 19:42:47');
-INSERT INTO `procurement` VALUES ('133', '359', '4', '1', '2015-08-06 08:54:33');
-INSERT INTO `procurement` VALUES ('134', '356', '7', '1', '2015-08-05 23:16:52');
-INSERT INTO `procurement` VALUES ('135', '360', '5', '1', '2015-08-05 23:17:07');
-INSERT INTO `procurement` VALUES ('136', '365', '3', '1', '2015-08-05 23:20:52');
-INSERT INTO `procurement` VALUES ('137', '368', '2.5', '1', '2015-08-05 23:22:08');
-INSERT INTO `procurement` VALUES ('138', '369', '6', '1', '2015-08-05 23:22:10');
-INSERT INTO `procurement` VALUES ('139', '361', '1.5', '1', '2015-08-05 23:22:51');
-INSERT INTO `procurement` VALUES ('140', '364', '1.8', '1', '2015-08-05 23:23:45');
-INSERT INTO `procurement` VALUES ('141', '373', '7', '1', '2015-08-05 23:23:49');
-INSERT INTO `procurement` VALUES ('142', '366', '14', '1', '2015-08-05 23:24:40');
-INSERT INTO `procurement` VALUES ('143', '363', '5', '1', '2015-08-05 23:25:18');
-INSERT INTO `procurement` VALUES ('144', '372', '5', '1', '2015-08-05 23:25:43');
-INSERT INTO `procurement` VALUES ('145', '357', '35', '1', '2015-08-06 08:50:23');
-INSERT INTO `procurement` VALUES ('146', '358', '3.5', '1', '2015-08-05 23:26:46');
-INSERT INTO `procurement` VALUES ('147', '371', '10', '1', '2015-08-05 23:27:45');
-INSERT INTO `procurement` VALUES ('148', '362', '6', '1', '2015-08-05 23:28:06');
-INSERT INTO `procurement` VALUES ('149', '370', '1', '1', '2015-08-05 23:28:18');
-INSERT INTO `procurement` VALUES ('150', '374', '8', '1', '2015-08-05 23:28:27');
-INSERT INTO `procurement` VALUES ('151', '367', '10', '1', '2015-08-05 23:32:00');
-INSERT INTO `procurement` VALUES ('152', '340', '4.5', '1', '2015-08-08 16:16:20');
-INSERT INTO `procurement` VALUES ('153', '379', '26', '1', '2015-08-09 09:07:25');
-INSERT INTO `procurement` VALUES ('154', '380', '29', '1', '2015-08-09 09:07:29');
-INSERT INTO `procurement` VALUES ('155', '381', '29', '1', '2015-08-09 09:07:27');
-INSERT INTO `procurement` VALUES ('156', '382', '29', '1', '2015-08-09 09:07:30');
-INSERT INTO `procurement` VALUES ('157', '383', '30', '1', '2015-08-09 09:07:46');
-INSERT INTO `procurement` VALUES ('158', '389', '14', '1', '2015-08-09 09:07:17');
-INSERT INTO `procurement` VALUES ('159', '390', '12.5', '1', '2015-08-09 09:05:44');
-INSERT INTO `procurement` VALUES ('160', '391', '12.5', '1', '2015-08-09 09:05:46');
-INSERT INTO `procurement` VALUES ('161', '385', '27', '1', '2015-08-09 09:07:36');
-INSERT INTO `procurement` VALUES ('162', '384', '33', '1', '2015-08-09 09:07:48');
-INSERT INTO `procurement` VALUES ('163', '386', '12', '1', '2015-08-09 09:08:06');
-INSERT INTO `procurement` VALUES ('164', '388', '27', '1', '2015-08-09 09:08:17');
-INSERT INTO `procurement` VALUES ('165', '387', '19', '1', '2015-08-09 09:08:28');
-INSERT INTO `procurement` VALUES ('166', '392', '8.5', '1', '2015-08-09 09:08:55');
-INSERT INTO `procurement` VALUES ('167', '393', '9', '1', '2015-08-09 09:09:06');
 
 -- ----------------------------
 -- Table structure for product
@@ -339,7 +182,7 @@ CREATE TABLE `product` (
   `order_index` int(11) DEFAULT NULL,
   `detail` text COLLATE utf8_unicode_ci,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=403 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=218 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- ----------------------------
 -- Records of product
@@ -360,8 +203,8 @@ CREATE TABLE `user` (
   `headimgurl` text,
   `consignee` varchar(45) DEFAULT NULL,
   `consignee_contact` varchar(45) DEFAULT NULL,
-  `consignee_info` varchar(255) DEFAULT NULL,
-  `consignee_address` text,
+  `buyer_info` varchar(255) DEFAULT NULL,
+  `buyer_address` text,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8;
 
@@ -370,7 +213,7 @@ CREATE TABLE `user` (
 -- ----------------------------
 INSERT INTO `user` VALUES ('2', 'o5Irvt1IzDfOZ7S3jsWKT_5G07w0', ' 滚雪球', 'DELIVERYMAN', 'http://wx.qlogo.cn/mmopen/rxXF7qF9c6ECQgDibfKCsgPd2g9icFXlC2lP7uib4bDJMVYXBCOuTYWm6YQibaPFcCsG0icRZjtFYLmUU8myOFXzrTvLqFO8L6eeia/0', 'gdfj', '13457889', 'hgfd', 'gfdh');
 INSERT INTO `user` VALUES ('9', 'o5Irvt6r7U71oT6FlnAuLCKqqsvY', '凤权', 'USER', 'http://wx.qlogo.cn/mmopen/oGt7IeDr3prIZM8b9MyzLLT3oepKSb98jl2qL7ic3GGtFoE4rAicicutof40wiaRDUWRe7Pky9wLo8mEmp9jLWibBtBZrckCyAxVm/0', '唐凤', '13764301160', '骏产货源充足', '');
-INSERT INTO `user` VALUES ('10', 'o5Irvt5957jQ4xmdHmDp59epk0UU', '灵达', 'DELIVERYMAN', 'http://wx.qlogo.cn/mmopen/0pygn8iaZdEeVBqUntWJB9rzhkKIyKnQFzIqswrYFrhHefEXiaCOhJnBqIicxMRd0IeOHe9ffAtKTvXzOfokp9UhS2BlYXh5PxO/0', 'a', '13402188638', 'abc', '');
+INSERT INTO `user` VALUES ('10', 'o5Irvt5957jQ4xmdHmDp59epk0UU', '灵达', 'DELIVERYMAN', 'http://wx.qlogo.cn/mmopen/0pygn8iaZdEeVBqUntWJB9rzhkKIyKnQFzIqswrYFrhHefEXiaCOhJnBqIicxMRd0IeOHe9ffAtKTvXzOfokp9UhS2BlYXh5PxO/0', '灵达', '13402188638', '新中源大楼', '长阳路1930号');
 INSERT INTO `user` VALUES ('11', 'o5Irvtw83iWQ7aI0F17_RHCkylQw', '小傅', 'DELIVERYMAN', 'http://wx.qlogo.cn/mmopen/rxXF7qF9c6ECQgDibfKCsgNRdvaibog31ViaUHc88ms8yv4lcBjqXAxUOduIECJ0qicNJqV7OUbSibnu7OPXpiby0x5ibZib0tqwNNiac/0', '阿', '123', '肯', '些');
 INSERT INTO `user` VALUES ('13', 'o5Irvt01SBZtq6JSDVwvhL-1Apf4', '小鱼', 'USER', 'http://wx.qlogo.cn/mmopen/rxXF7qF9c6ECQgDibfKCsgPXP6Nbc4HCplyaHDYuAZ5fAMLGBrz9U8KTupEzNHUjDTaujiaU7iaq2R6xsQH1YqicZbqjWfK6XdKO/0', null, null, null, '');
 INSERT INTO `user` VALUES ('14', 'o5Irvtx1HMDEgD18RESTS_tZ89rQ', '1314', 'USER', 'http://wx.qlogo.cn/mmopen/Q3auHgzwzM5rS0YrTcsATmU50ApbNIfa7cgEdiceUZadg2RePFiavgV8yLaoic12IcNvlrEgXqgbjFsZaVn3V1Bk8xWB0mZTvpwLWvfOcRUtbE/0', '刘群', '17749759259', '聚缘酒家', '盛苑路596号');

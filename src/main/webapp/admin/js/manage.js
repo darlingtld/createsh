@@ -4,6 +4,9 @@
 var adminModule = angular.module('AdminModule', ['ngRoute']);
 var app = '/createsh';
 var cdata = {
+    "机器": {
+        "碾米机": "category/nianmiji",
+    },
     "蔬菜水果": {
         "叶菜类": "category/yecailei",
         "根茎类": "category/genjinglei",
@@ -55,6 +58,7 @@ var cdata = {
 }
 
 var tdata = {
+    "机器": "machine",
     "蔬菜水果": "shucaishuiguo",
     "禽肉蛋类": "qinroudanlei",
     "水产冻货": "shuichandonghuo",
@@ -92,7 +96,7 @@ adminModule.controller('productController', function ($scope, $http, $routeParam
 
     //console.log(isFirst)
     if (isFirst == true) {
-        setTimeout("objS.val('category/yecailei')", 1000);
+        setTimeout("objS.val('category/nianmiji')", 1000);
         isFirst = false;
     }
 
@@ -580,6 +584,6 @@ adminModule.config(['$routeProvider', function ($routeProvider) {
             templateUrl: 'message.html'
         })
         .otherwise({
-            redirectTo: '/product/category/yecailei'
+            redirectTo: '/product/category/nianmiji'
         });
 }]);
