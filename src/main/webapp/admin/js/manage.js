@@ -7,14 +7,14 @@ var cdata = {
     "机器": {
         "碾米机": "category/nianmiji",
     },
-    "蔬菜水果": {
-        "叶菜类": "category/yecailei",
+    "蔬商水果": {
+        "叶商类": "category/yecailei",
         "根茎类": "category/genjinglei",
         "茄果类": "category/qieguolei",
         "豆类": "category/doulei",
         "葱姜蒜": "category/congjiangsuan",
         "菌类": "category/junlei",
-        "特菜": "category/tecai"
+        "特商": "category/tecai"
     },
     "禽肉蛋类": {
         "猪肉": "category/zhurou",
@@ -45,7 +45,7 @@ var cdata = {
         "干货": "category/ganhuo",
         "调味品": "category/tiaoweipin",
         "酱油醋": "category/jiangyoucu",
-        "腌菜罐头": "category/yancaiguantou"
+        "腌商罐头": "category/yancaiguantou"
     },
     "餐厨用品": {
         "纸品湿巾": "category/zhipinshijin",
@@ -59,7 +59,7 @@ var cdata = {
 
 var tdata = {
     "机器": "machine",
-    "蔬菜水果": "shucaishuiguo",
+    "蔬商水果": "shucaishuiguo",
     "禽肉蛋类": "qinroudanlei",
     "水产冻货": "shuichandonghuo",
     "米面粮油": "mimianliangyou",
@@ -156,7 +156,7 @@ adminModule.controller('productController', function ($scope, $http, $routeParam
     //});
     $scope.modify = function (id) {
         $('#myDialog').attr('method', 'update');
-        $('#myDialog .title').text('修改菜品');
+        $('#myDialog .title').text('修改商品');
         for (var i = 0; i < $scope.products.length; i++) {
             var product;
             if (id == $scope.products[i].id) {
@@ -173,10 +173,11 @@ adminModule.controller('productController', function ($scope, $http, $routeParam
         $('#unit').val(product.unit);
         $('#pic').attr('src', app + "/" + product.picurl);
         $('#ppic').val('');
+        $('#detail').val(product.detail);
     };
 
     $scope.delete = function (id) {
-        if (confirm('确认删除该菜品')) {
+        if (confirm('确认删除该商品')) {
             $http.post(app + '/product/delete/' + id, {}).success(function () {
                 alert('删除成功！');
                 location.reload();
@@ -195,6 +196,7 @@ adminModule.controller('productController', function ($scope, $http, $routeParam
         $('#uprice').val('');
         $('#uunit').val('');
         $('#upic').val('');
+        $('#udetail').val('');
     };
 
     $scope.export = function () {
@@ -211,6 +213,7 @@ adminModule.controller('productController', function ($scope, $http, $routeParam
             product.append("category", $('#category').val());
             product.append("price", $('#price').val());
             product.append("unit", $('#unit').val());
+            product.append("detail", $("#detail").val());
             product.append("pic", $("#ppic").get(0).files[0]);
             $.ajax({
                 type: 'POST',
@@ -235,25 +238,30 @@ adminModule.controller('productController', function ($scope, $http, $routeParam
                 type: $('#type').val(),
                 category: $('#category').val(),
                 price: $('#price').val(),
-                unit: $('#unit').val()
+                unit: $('#unit').val(),
+                detail: $('#detail').val()
             };
-
-            $.ajax({
-                type: "post",
-                url: app + "/product/update",
-                contentType: "application/json",
-                data: JSON.stringify(product),
-                success: function (data) {
-                    alert('保存成功！');
-                    location.reload();
-                },
-                error: function (data) {
-                    alert('保存失败!');
-                    location.reload();
-                }
-            });
+            if (validate(product)) {
+                $.ajax({
+                    type: "post",
+                    url: app + "/product/update",
+                    contentType: "application/json",
+                    data: JSON.stringify(product),
+                    success: function (data) {
+                        alert('保存成功！');
+                        location.reload();
+                    },
+                    error: function (data) {
+                        alert('保存失败!');
+                        location.reload();
+                    }
+                });
+            } else {
+                location.reload();
+            }
         }
     }
+
 
     function validateProduct() {
         if ($('#uname').val() == '') {
@@ -274,8 +282,37 @@ adminModule.controller('productController', function ($scope, $http, $routeParam
         } else if ($('#uunit').val() == '') {
             alert("请填写单位");
             return false;
+        } else if ($('#udetail').val() == '') {
+            alert("请填写详细");
+            return false;
         } else if ($('#upic').val() == '') {
             alert("请上传图片");
+            return false;
+        }
+        return true;
+    }
+
+    function validate(product) {
+        if (product.name == '') {
+            alert("请填写名字");
+            return false;
+        } else if (product.description == '') {
+            alert("请填写描述");
+            return false;
+        } else if (product.type == '') {
+            alert("请填写大类");
+            return false;
+        } else if (product.category == '') {
+            alert("请填写小类");
+            return false;
+        } else if (product.price == '') {
+            alert("请填写价格");
+            return false;
+        } else if (product.unit == '') {
+            alert("请填写单位");
+            return false;
+        } else if (product.detail == '') {
+            alert("请填写详细");
             return false;
         }
         return true;
@@ -290,6 +327,7 @@ adminModule.controller('productController', function ($scope, $http, $routeParam
             product.append("category", $('#ucategory').val());
             product.append("price", $('#uprice').val());
             product.append("unit", $('#uunit').val());
+            product.append("detail", $("#udetail").val());
             product.append("pic", $("#upic").get(0).files[0]);
 
 
@@ -331,7 +369,7 @@ adminModule.controller('productController', function ($scope, $http, $routeParam
             console.log(productArr[i].innerText + " ==> " + orderArr[i].innerText);
             data.push({productId: productArr[i].innerText, orderIndex: i})
         }
-        $('body').html('<h3 class="text-center">正在保存菜品顺序</h3>');
+        $('body').html('<h3 class="text-center">正在保存商品顺序</h3>');
         $http.post(app + "/product/save_sort", data).success(function () {
             alert('保存成功');
             location.reload();

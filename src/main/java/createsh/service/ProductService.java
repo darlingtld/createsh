@@ -178,6 +178,7 @@ public class ProductService {
             productInDB.setPrice(Utils.formatDouble(product.getPrice(), 2));
             productInDB.setUnit(product.getUnit());
             productInDB.setDataChangeLastTime(new Timestamp(System.currentTimeMillis()));
+            productInDB.setDetail(product.getDetail());
             if (product.getPicurl() != null) {
                 productInDB.setPicurl(product.getPicurl());
             }
