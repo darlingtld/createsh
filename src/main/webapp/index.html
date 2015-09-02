@@ -39,22 +39,23 @@
         </div>
     </div>
 
-    <!--<div class="js-menu-bar" id="ma-menu-bar"-->
-    <!--style="height:47px; width:100%; overflow-x:auto; overflow-y:hidden; -webkit-overflow-scrolling: touch; position:relative;">-->
-    <!--<div class="menu-mask"-->
-    <!--style="height:37px; background-color:rgba(0,0,0,0.6); text-align:center; line-height:37px; color:#fff; font-size:14px; font-weight:bold; position:absolute; top:0; left:0; width:100%;">-->
-    <!--<&#45;&#45; 左右滑动切换分类哦~ &ndash;&gt;-->
-    <!--</div>-->
-    <!--<ul class="menu fl"></ul>-->
+    <div class="js-menu-bar" id="ma-menu-bar"
+         style="height:47px; width:100%; overflow-x:auto; overflow-y:hidden; -webkit-overflow-scrolling: touch; position:relative;">
+        <div class="menu-mask"
+             style="height:37px; background-color:rgba(0,0,0,0.6); text-align:center; line-height:37px; color:#fff; font-size:14px; font-weight:bold; position:absolute; top:0; left:0; width:100%;">
+            <-- 左右滑动切换分类哦~ -->
+        </div>
+        <ul class="menu fl"></ul>
 
-    <!--<div class="clear"></div>-->
-    <!--</div>-->
+        <div class="clear"></div>
+    </div>
 </div>
 <div class="js-content">
-    <!--<div id="subCategoryBlock" class="fl scroll-y leftSider" style="height:100%;width:25%; position:relative;">-->
-    <!--<ul class="js-category" style="margin-bottom:80px;">-->
-    <!--</ul>-->
-    <!--</div>-->
+    <div id="subCategoryBlock" class="fl scroll-y leftSider"
+         style="height:100%;width:25%; position:relative;">
+        <ul class="js-category" style="margin-bottom:80px;">
+        </ul>
+    </div>
     <div id="mainListBlock" class="fl scroll-y">
 
         <ng-view></ng-view>
@@ -119,11 +120,7 @@
         function geneLevel2DOM(data, ccat1) {
             var level2HTML = "";
             _.each(_.pairs(data[ccat1]), function (item) {
-                if (ccat1 == '常用菜') {
-                    level2HTML += "<li class='cp'><a href='#/product/" + item[1] + "'>" + item[0] + "</a></li>";
-                } else {
-                    level2HTML += "<li class='cp'><a href='#/product/" + item[1] + "'>" + item[0] + "</a></li>";
-                }
+                level2HTML += "<li class='cp'><a href='#/nav/" + item[1] + "'>" + item[0] + "</a></li>";
             });
             $category.html("").append($(level2HTML));
 
@@ -151,62 +148,57 @@
         }
 
         window.data = {
-            "常用菜": {
-                "蔬菜水果": "most_bought/shucaishuiguo",
-                "禽肉蛋类": "most_bought/qinroudanlei",
-                "水产冻货": "most_bought/shuichandonghuo",
-                "米面粮油": "most_bought/mimianliangyou",
-                "调料其他": "most_bought/tiaoliaoqita",
-                "餐厨用品": "most_bought/canchuyongpin",
-                "酒水饮料": "most_bought/jiushuiyinliaoh",
-            },
-            "蔬菜水果": {
-                "叶菜类": "category/yecailei",
-                "根茎类": "category/genjinglei",
-                "茄果类": "category/qieguolei",
-                "豆类": "category/doulei",
-                "葱姜蒜": "category/congjiangsuan",
-                "菌类": "category/junlei",
-                "特菜": "category/tecai"
-            },
-            "禽肉蛋类": {
-                "猪肉": "category/zhurou",
-                "羊肉": "category/yangrou",
-                "牛肉": "category/niurou",
-                "鸡肉": "category/jirou",
-                "鸭肉": "category/yarou",
-                "禽类": "category/qinlei",
-                "禽蛋类": "category/qindanlei",
-                "熟食加工": "category/shushijiagong"
-            },
-            "水产冻货": {
-                "海鲜水产": "category/haixianshuichan",
-                "鱼丸火锅": "category/yuwanhuoguo",
+            "机器": {
+                "碾米机": "nianmiji",
             },
             "米面粮油": {
-                "大米": "category/dami",
-                "面粉面条": "category/mianfenmiantiao",
-                "食用油": "category/shiyongyou",
-                "杂粮": "category/zaliang",
-                "面点": "category/miandian",
-                "烘焙佐料": "category/hongbeizuoliao",
+                "大米": "dami",
+                "面粉面条": "mianfenmiantiao",
+                "食用油": "shiyongyou",
+                "杂粮": "zaliang",
+                "面点": "miandian",
+                "烘焙佐料": "hongbeizuoliao",
             },
+            "蔬菜水果": {
+                "叶菜类": "yecailei",
+                "根茎类": "genjinglei",
+                "茄果类": "qieguolei",
+                "豆类": "doulei",
+                "葱姜蒜": "congjiangsuan",
+                "菌类": "junlei",
+                "特菜": "tecai"
+            },
+            "禽肉蛋类": {
+                "猪肉": "zhurou",
+                "羊肉": "yangrou",
+                "牛肉": "niurou",
+                "鸡肉": "jirou",
+                "鸭肉": "yarou",
+                "禽类": "qinlei",
+                "禽蛋类": "qindanlei",
+                "熟食加工": "shushijiagong"
+            },
+            "水产冻货": {
+                "海鲜水产": "haixianshuichan",
+                "鱼丸火锅": "yuwanhuoguo",
+            },
+
             "调料其他": {
-                "调味品": "category/tiaoweipin",
-                "粉丝粉条": "category/fensifentiao",
-                "豆制品": "category/douzhipin",
-                "干货": "category/ganhuo",
-                "调味品": "category/tiaoweipin",
-                "酱油醋": "category/jiangyoucu",
-                "腌菜罐头": "category/yancaiguantou"
+                "调味品": "tiaoweipin",
+                "粉丝粉条": "fensifentiao",
+                "豆制品": "douzhipin",
+                "干货": "ganhuo",
+                "调味品": "tiaoweipin",
+                "酱油醋": "jiangyoucu",
+                "腌菜罐头": "yancaiguantou"
             },
             "餐厨用品": {
-                "纸品湿巾": "category/zhipinshijin",
-                "餐饮用具": "category/canyinyongju",
+                "纸品湿巾": "zhipinshijin",
+                "餐饮用具": "canyinyongju",
             },
             "酒水饮料": {
-                "饮料": "category/yinliao",
-                "饮用水": "category/yinyongshui",
+                "饮料": "yinliao",
+                "饮用水": "yinyongshui",
             }
         };
         var navHtml = '';
@@ -230,7 +222,7 @@
             });
         });
 
-        var $level1 = $($navga.find("li")[1]);
+        var $level1 = $($navga.find("li")[0]);
         if ($level1) {
             $curCat1 = $level1;
             $level1.click();

@@ -87,7 +87,7 @@ ctModule.controller('mainController', function ($scope, $location, authService) 
 
 ctModule.controller('navController', function ($scope, $http, $routeParams) {
     goToNav();
-    var url = app + '/nav/all';
+    var url = app + '/nav/admin/category/' + $routeParams.category;
     $http.get(url).success(function (data, status, headers, config) {
         $scope.productList = data;
     });
@@ -433,7 +433,7 @@ ctModule.config(['$routeProvider', function ($routeProvider) {
             controller: 'submitController',
             templateUrl: 'success.html'
         })
-        .when('/nav', {
+        .when('/nav/:category', {
             controller: 'navController',
             templateUrl: 'nav.html'
         })
@@ -458,7 +458,7 @@ ctModule.config(['$routeProvider', function ($routeProvider) {
             templateUrl: 'message_all.html'
         })
         .otherwise({
-            redirectTo: '/nav'
+            redirectTo: '/nav/nianmiji'
         });
 }]);
 
@@ -670,6 +670,10 @@ function DateAdd(interval, number, date) {
     }
 }
 
+function goToNav() {
+    $('footer').hide();
+}
+
 function restoreBuyPage() {
     $('#ma-menu-bar').show();
     $('#subCategoryBlock').show();
@@ -688,6 +692,9 @@ function goToCheckout() {
 
 function goToConfirm() {
     init();
+    $('#ma-menu-bar').show();
+    $('#subCategoryBlock').hide();
+    $('#mainListBlock').css('width', '100%');
     $('.checkout').html('<div><a class="next">提交</a>');
     $('a.next').css('margin-left', '43%');
     $('a.next').css('font-size', 'x-large');
@@ -707,11 +714,10 @@ function goToRegister() {
     $('footer').hide();
 }
 
-function goToNav() {
-    $('footer').hide();
-}
-
 function goToProduct() {
+    $('#ma-menu-bar').show();
+    $('#subCategoryBlock').hide();
+    $('#mainListBlock').css('width', '100%');
     $('footer').show();
 }
 
@@ -725,11 +731,27 @@ function saveToLocalStorage(bill) {
     setLocalStorage('bill', JSON.stringify(bill));
 }
 
-function clearLocalStorage() {
+function setLocalStorage(key, value) {
     if (typeof(Storage) != "undefined") {
-        setLocalStorage('bill', null);
+        localStorage.setItem(key, value);
+        //console.log('[' + key + ']:[' + value + ']');
     } else {
         console.log("local storage is not supported!")
     }
 }
 
+function getLocalStorage(key) {
+    if (typeof(Storage) != "undefined") {
+        return localStorage.getItem(key);
+    } else {
+        console.log("local storage is not supported!");
+    }
+}
+
+function clearLocalStorage() {
+    if (typeof(Storage) != "undefined") {
+        localStorage.removeItem('bill');
+    } else {
+        console.log("local storage is not supported!")
+    }
+}

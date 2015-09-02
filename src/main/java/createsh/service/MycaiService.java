@@ -89,13 +89,7 @@ public class MycaiService {
                 } else if (eventType.equals(MessageUtil.EVENT_TYPE_UNSUBSCRIBE)) {
                 } else if (eventType.equals(MessageUtil.EVENT_TYPE_CLICK)) {
                     String eventKey = requestMap.get("EventKey");
-                    if (PropertyHolder.MENU_ABOUT_US.equals(eventKey)) {
-                        return eventService.doAboutUs(fromUserName, toUserName);
-                    } else if (PropertyHolder.MENU_NEW_PRODUCT.equals(eventKey)) {
-                        return eventService.doProductInquiry(fromUserName, toUserName);
-                    } else if (PropertyHolder.MENU_POST_SALE_SERVICE.equals(eventKey)) {
-                        return eventService.doPostSaleService(fromUserName, toUserName);
-                    }
+
                 }
             } else if (msgType.equals(MessageUtil.REQ_MESSAGE_TYPE_TEXT)) {
                 if ("code".equals(content.toLowerCase())) {

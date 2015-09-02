@@ -32,7 +32,7 @@ public class PropertyHolder {
 
     public static final String MENU_LIANGYUAN_ENCYCLO = "梁源百科";
     public static final String MENU_ABOUT_LIANGYUAN = "关于梁源";
-    public static final String MENU_RICE_KNWOLEDGE = "稻谷知识";
+    public static final String MENU_RICE_KNOWLEDGE = "稻谷知识";
     public static final String MENU_COOK_TRICKS = "煮饭窍门";
 
     public static final String MENU_POST_SALE_SERVICE = "售后信息";
