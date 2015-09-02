@@ -671,6 +671,9 @@ function DateAdd(interval, number, date) {
 }
 
 function goToNav() {
+    $('#ma-menu-bar').show();
+    $('#subCategoryBlock').show();
+    $('#mainListBlock').css('width', '75%');
     $('footer').hide();
 }
 
