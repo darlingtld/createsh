@@ -33,8 +33,6 @@ public class User {
     private String openid;
     @Column(name = "nickname")
     private String nickname;
-    //    @Column(name = "username")
-//    private String username;
     @Column(name = "role")
     private String role;
     @Transient
@@ -59,8 +57,16 @@ public class User {
     private String buyerInfo;
     @Column(name = "buyer_address")
     private String buyerAddress;
-//    @Column(name = "email")
-//    private String email;
+    @Column(name = "account")
+    private double account;
+
+    public double getAccount() {
+        return account;
+    }
+
+    public void setAccount(double account) {
+        this.account = account;
+    }
 
     @Override
     public String toString() {
@@ -80,6 +86,7 @@ public class User {
                 ", consigneeContact='" + consigneeContact + '\'' +
                 ", buyerInfo='" + buyerInfo + '\'' +
                 ", buyerAddress='" + buyerAddress + '\'' +
+                ", account=" + account +
                 '}';
     }
 
