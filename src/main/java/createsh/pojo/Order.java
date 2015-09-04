@@ -22,6 +22,8 @@ public class Order {
     private int id;
     @Column(name = "userid")
     private String userId;
+    @Column(name = "username")
+    private String username;
     @Column(name = "wechat_id")
     private String wechatId;
     @Column(name = "bill")
@@ -52,6 +54,7 @@ public class Order {
         return "Order{" +
                 "id=" + id +
                 ", userId='" + userId + '\'' +
+                ", username='" + username + '\'' +
                 ", wechatId='" + wechatId + '\'' +
                 ", bill='" + bill + '\'' +
                 ", deliveryTs='" + deliveryTs + '\'' +
@@ -65,6 +68,14 @@ public class Order {
                 ", confirmBill='" + confirmBill + '\'' +
                 ", confirmTs='" + confirmTs + '\'' +
                 '}';
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getBuyerAddress() {

@@ -152,4 +152,28 @@ public class UserService {
     public List<User> getAll() {
         return userDao.getAll();
     }
+
+    @Transactional
+    public User login(User user) {
+        User userInDB = userDao.getUserByUsername(user.getUsername());
+        if (userInDB == null || !userInDB.getPassword().equals(user.getPassword())) {
+            throw new RuntimeException("用户名密码错误");
+        }
+        return userInDB;
+    }
+
+    @Transactional
+    public User register(User user) {
+        User userInDB = userDao.getUserByUsername(user.getUsername());
+        if (userInDB != null) {
+            throw new RuntimeException("用户名已存在");
+        } else {
+            if (user.getOpenid() == null || user.getPassword() == null || user.getPassword() == null) {
+                throw new RuntimeException("注册失败");
+            } else {
+                userDao.registerUser(user);
+            }
+        }
+        return user;
+    }
 }

@@ -33,6 +33,12 @@ public class User {
     private String openid;
     @Column(name = "nickname")
     private String nickname;
+    @Column(name = "username")
+    private String username;
+    @Column(name = "password")
+    private String password;
+    @Column(name = "phone")
+    private String phone;
     @Column(name = "role")
     private String role;
     @Transient
@@ -60,20 +66,15 @@ public class User {
     @Column(name = "account")
     private double account;
 
-    public double getAccount() {
-        return account;
-    }
-
-    public void setAccount(double account) {
-        this.account = account;
-    }
-
     @Override
     public String toString() {
         return "User{" +
                 "id=" + id +
                 ", openid='" + openid + '\'' +
                 ", nickname='" + nickname + '\'' +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", phone='" + phone + '\'' +
                 ", role='" + role + '\'' +
                 ", sex='" + sex + '\'' +
                 ", province='" + province + '\'' +
@@ -88,6 +89,38 @@ public class User {
                 ", buyerAddress='" + buyerAddress + '\'' +
                 ", account=" + account +
                 '}';
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public double getAccount() {
+        return account;
+    }
+
+    public void setAccount(double account) {
+        this.account = account;
     }
 
     public String getBuyerAddress() {

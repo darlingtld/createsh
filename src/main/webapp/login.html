@@ -3,7 +3,7 @@
         <tr class="active">
             <td colspan="2" class="text-center">
                 <i class="icon-basket-loaded i-lg"></i>
-                <span class="text-success input-lg">用户注册</span>
+                <span class="text-success input-lg">用户登录</span>
             </td>
         </tr>
         <tr>
@@ -12,11 +12,14 @@
         </tr>
         <tr>
             <td><span class="input-lg">密码</span></td>
-            <td><input type="password" class="mobile input-lg" ng-model="password"></td>
+            <td><input type="password" class="password input-lg" ng-model="password"></td>
         </tr>
     </table>
 </div>
-<button class="btn btn-info btn-lg btn-block" ng-click="register()">注册</button>
+<button class="btn btn-info btn-lg btn-block" ng-click="login()">登录</button>
+<button class="btn btn-primary btn-lg btn-block" style="margin-top:5px;" ng-click="register()">没有账号？请注册
+</button>
+
 </div>
 
 

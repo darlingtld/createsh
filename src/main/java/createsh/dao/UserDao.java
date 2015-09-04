@@ -49,4 +49,11 @@ public class UserDao {
         return (User) sessionFactory.getCurrentSession().createQuery(String.format("from User where openid = '%s'", fromUserName)).uniqueResult();
     }
 
+    public User getUserByUsername(String username) {
+        return (User) sessionFactory.getCurrentSession().createQuery(String.format("from User where username='%s'", username)).uniqueResult();
+    }
+
+    public void registerUser(User user) {
+        sessionFactory.getCurrentSession().createQuery(String.format("update User set username='%s', password='%s' where openid='%s'", user.getUsername(), user.getPassword(), user.getOpenid())).executeUpdate();
+    }
 }

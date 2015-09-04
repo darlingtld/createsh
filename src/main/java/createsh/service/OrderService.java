@@ -50,7 +50,7 @@ public class OrderService {
             user.setBuyerAddress(order.getBuyerAddress());
             userDao.update(user);
         } else {
-            String unknownUser = "songda user";
+            String unknownUser = "na";
             order.setUserId(unknownUser);
             user = new User();
             user.setOpenid(order.getWechatId());

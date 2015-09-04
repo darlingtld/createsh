@@ -48,6 +48,22 @@ public class UserController {
         return userService.saveOrUpdate(user);
     }
 
+    @RequestMapping(value = "/login", method = RequestMethod.POST, headers = "Content-Type=application/json")
+    public
+    @ResponseBody
+    User login(@RequestBody User user) {
+        logger.info("User logs in {}", user.toString());
+        return userService.login(user);
+    }
+
+    @RequestMapping(value = "/register", method = RequestMethod.POST, headers = "Content-Type=application/json")
+    public
+    @ResponseBody
+    User register(@RequestBody User user) {
+        logger.info("User registers {}", user.toString());
+        return userService.register(user);
+    }
+
     @RequestMapping(value = "/wechatId/{wechatId}", method = RequestMethod.GET)
     public
     @ResponseBody

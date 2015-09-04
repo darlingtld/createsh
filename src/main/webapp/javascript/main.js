@@ -136,7 +136,10 @@ ctModule.controller('mostBuyController', function ($scope, $http, $routeParams) 
 });
 
 ctModule.controller('checkoutController', function ($scope, $location, $http) {
-    if (bill.totalAmount == 0) {
+    if (user.username == null) {
+        alert('您尚未登录，请先登录~')
+        $location.path('/login');
+    } else if (bill.totalAmount == 0) {
         alert('您还未购买任何物品');
         init();
         $location.path('/');
@@ -160,7 +163,10 @@ ctModule.controller('checkoutController', function ($scope, $location, $http) {
 
 
 ctModule.controller('confirmController', function ($scope, $http, $location) {
-        if (bill.totalAmount == 0) {
+        if (user.username == null) {
+            alert('您尚未登录，请先登录~')
+            $location.path('/login');
+        } else if (bill.totalAmount == 0) {
             alert('您还未购买任何物品');
             init();
             $location.path('/');
@@ -179,14 +185,6 @@ ctModule.controller('confirmController', function ($scope, $http, $location) {
                     setLocalStorage('wechatid', wechatId);
                 });
             }
-            //$('.datetime').mobiscroll().datetime({
-            //    theme: 'sense-ui',     // Specify theme like: theme: 'ios' or omit setting to use default
-            //    mode: 'scroller',       // Specify scroller mode like: mode: 'mixed' or omit setting to use default
-            //    lang: 'zh',       // Specify language like: lang: 'pl' or omit setting to use default
-            //    minDate: new Date(),  // More info about minDate: http://docs.mobiscroll.com/2-14-0/datetime#!opt-minDate
-            //    maxDate: new Date(2020, 1, 1, 1, 1),   // More info about maxDate: http://docs.mobiscroll.com/2-14-0/datetime#!opt-maxDate
-            //    //stepMinute: 10  // More info about stepMinute: http://docs.mobiscroll.com/2-14-0/datetime#!opt-stepMinute
-            //});
 
             $scope.bill = bill;
             var url = app + '/coupon/calc/wechatid/' + wechatId;
@@ -233,12 +231,14 @@ ctModule.controller('confirmController', function ($scope, $http, $location) {
             $('div.checkout').on('click', 'a.next', function () {
                     if (user == undefined) {
                         user = {
-                            nickname: 'songda',
-                            openid: 'songda'
+                            nickname: 'na',
+                            username: 'na',
+                            openid: 'na'
                         }
                     }
                     var order = {
                         userId: user.nickname,
+                        username: user.username,
                         wechatId: wechatId,
                         bill: JSON.stringify(bill),
                         orderTs: new Date().Format("yyyy-MM-dd hh:mm:ss"),
@@ -328,34 +328,66 @@ ctModule.controller('routerController', function ($http, $scope, $location) {
         $location.path('/confirm')
     }
 });
+
+ctModule.controller('loginController', function ($http, $scope, $location) {
+    goToRegister();
+    $scope.login = function () {
+        if (user == undefined) {
+            user = {
+                username: $scope.username,
+                password: $scope.password
+            }
+        } else {
+            user.username = $scope.username;
+            user.password = $scope.password
+        }
+        if (user.username == undefined || user.username.trim() == '') {
+            alert('请输入用户名');
+            return;
+        } else if (user.password == undefined || user.password.trim() == '') {
+            alert('请输入密码');
+            return;
+        }
+        //console.log(user);
+        $http.post(app + "/user/login", JSON.stringify(user)).success(function (data, status, headers, configs) {
+            alert('登录成功！');
+            $location.path('/confirm');
+        }).error(function () {
+            alert('用户名密码错误！');
+        });
+    }
+
+    $scope.register = function () {
+        $location.path('/register');
+    }
+
+});
+
 ctModule.controller('registerController', function ($http, $scope, $location) {
     goToRegister();
     $scope.register = function () {
         if (user == undefined) {
             user = {
                 username: $scope.username,
-                email: $scope.email,
-                mobile: $scope.mobile
+                password: $scope.password
             }
         } else {
             user.username = $scope.username;
-            user.email = $scope.email;
-            user.mobile = $scope.mobile;
+            user.password = $scope.password;
         }
         if (user.username == undefined || user.username.trim() == '') {
             alert('请输入用户名');
             return;
-        } else if (user.mobile == undefined || user.mobile.trim() == '') {
+        } else if (user.password == undefined || user.password.trim() == '') {
             alert('请输入手机号');
-            return;
-        } else if (user.email == undefined || user.email.trim() == '') {
-            alert('请输入邮箱');
             return;
         }
         //console.log(user);
-        $http.post(app + "/user/save_or_update", JSON.stringify(user)).success(function (data, status, headers, configs) {
+        $http.post(app + "/user/register", JSON.stringify(user)).success(function (data, status, headers, configs) {
             alert('注册成功');
             $location.path('/confirm');
+        }).error(function () {
+            alert('用户名密码已存在');
         });
     }
 
@@ -448,6 +480,10 @@ ctModule.config(['$routeProvider', function ($routeProvider) {
         .when('/register', {
             controller: 'registerController',
             templateUrl: 'register.html'
+        })
+        .when('/login', {
+            controller: 'loginController',
+            templateUrl: 'login.html'
         })
         .when('/router', {
             controller: 'routerController',
