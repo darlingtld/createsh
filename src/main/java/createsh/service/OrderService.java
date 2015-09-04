@@ -106,6 +106,12 @@ public class OrderService {
     }
 
     @Transactional
+    public List<Order> getListByUsername(String wechatid) {
+        User user = userDao.getUserByWechatId(wechatid);
+        return orderDao.getListByUsername(user.getUsername());
+    }
+
+    @Transactional
     public List<Order> getList(String wechatid) {
         return orderDao.getList(wechatid);
     }

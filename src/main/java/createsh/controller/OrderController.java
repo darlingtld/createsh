@@ -48,7 +48,7 @@ public class OrderController {
     public
     @ResponseBody
     List<Order> getOrders(@PathVariable("wechatid") String wechatid) {
-        return orderService.getList(wechatid);
+        return orderService.getListByUsername(wechatid);
     }
 
     @RequestMapping(value = "/all/modify", method = RequestMethod.GET)

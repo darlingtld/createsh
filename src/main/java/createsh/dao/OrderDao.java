@@ -77,4 +77,8 @@ public class OrderDao {
     public void deleteOrder(int orderId) {
         sessionFactory.getCurrentSession().createQuery(String.format("delete Order where id=%d", orderId)).executeUpdate();
     }
+
+    public List<Order> getListByUsername(String username) {
+        return sessionFactory.getCurrentSession().createQuery(String.format("from Order where username='%s' order by id desc", username)).list();
+    }
 }

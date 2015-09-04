@@ -158,6 +158,8 @@ public class UserService {
         User userInDB = userDao.getUserByUsername(user.getUsername());
         if (userInDB == null || !userInDB.getPassword().equals(user.getPassword())) {
             throw new RuntimeException("用户名密码错误");
+        } else {
+            userDao.registerUser(user);
         }
         return userInDB;
     }
