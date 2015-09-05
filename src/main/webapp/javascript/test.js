@@ -1,11 +1,9 @@
 /**
  * Created by tangl9 on 2015-08-06.
  */
-var isTest = true;
+var isTest = false;
 if (isTest) {
     user = {
-        username: 'darlingtld',
-        password: '123',
         nickname: 'lingda',
         openid: 'oh88lwyr0lDwuey9tr3o1hUIajPA',
         headimgurl: 'http://wx.qlogo.cn/mmopen/0pygn8iaZdEeVBqUntWJB9rzhkKIyKnQFzIqswrYFrhHefEXiaCOhJnBqIicxMRd0IeOHe9ffAtKTvXzOfokp9UhS2BlYXh5PxO/0',
@@ -13,7 +11,7 @@ if (isTest) {
         consigneeContact: '13402188638',
         buyerInfo: '新中源大楼',
         buyerAddress: '长阳路1930号',
-        account: 2000
+        account:2000
     }
     wechatId = 'oh88lwyr0lDwuey9tr3o1hUIajPA';
 }

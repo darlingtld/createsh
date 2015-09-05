@@ -351,7 +351,7 @@ ctModule.controller('loginController', function ($http, $scope, $location) {
         //console.log(user);
         $http.post(app + "/user/login", JSON.stringify(user)).success(function (data, status, headers, configs) {
             alert('登录成功！');
-            $location.path('/confirm');
+            $location.path('/checkout');
         }).error(function () {
             alert('用户名密码错误！');
         });
@@ -385,7 +385,7 @@ ctModule.controller('registerController', function ($http, $scope, $location) {
         //console.log(user);
         $http.post(app + "/user/register", JSON.stringify(user)).success(function (data, status, headers, configs) {
             alert('注册成功');
-            $location.path('/confirm');
+            $location.path('/checkout');
         }).error(function () {
             alert('用户名密码已存在');
         });

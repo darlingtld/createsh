@@ -79,4 +79,12 @@ public class UserController {
         logger.info("Get all users");
         return userService.getAll();
     }
+
+    @RequestMapping(value = "/consigneeinfo", method = RequestMethod.POST, headers = "Content-Type=application/json")
+    public
+    @ResponseBody
+    void saveConsigneeInfo(@RequestBody User user) {
+        logger.info("save consignee info {}", user.toString());
+        userService.saveConsigeeInfo(user);
+    }
 }

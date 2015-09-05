@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html ng-app="CIModule">
 <head>
     <meta name="viewport"
           content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
@@ -8,7 +8,8 @@
     <link rel="stylesheet" type="text/css" href="css/reset.css">
     <link rel="stylesheet" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap.min.css"/>
 </head>
-<body>
+<body ng-controller="mainController">
+<a class="btn btn-success btn-block" ng-click="refresh()">点击刷新</a>
 <h3 class="text-center">收货信息</h3>
 
 <div class="table-responsive">
@@ -16,19 +17,22 @@
         <tbody>
         <tr>
             <td>收货人</td>
-            <td><input class="form-control" placeholder="请填写收货人"></td>
+            <td><input class="form-control" placeholder="请填写收货人" ng-model="user.consignee"></td>
         </tr>
         <tr>
             <td>联系方式</td>
-            <td><input class="form-control" placeholder="请填写联系方式"></td>
+            <td><input class="form-control" placeholder="请填写联系方式" ng-model="user.consigneeContact"></td>
         </tr>
         <tr>
             <td>收货地址</td>
-            <td><input class="form-control" placeholder="请填写收货地址"></td>
+            <td><input class="form-control" placeholder="请填写收货地址" ng-model="user.buyerAddress"></td>
         </tr>
         </tbody>
     </table>
-    <button class="btn btn-info btn-block">提交收货信息</button>
+    <button class="btn btn-info btn-block" ng-click="submit()">提交收货信息</button>
 </div>
+<script type="text/javascript" src="bower_components/angular/angular.min.js"></script>
+<script type="text/javascript" src="javascript/consigneeInfo.js"></script>
+<script type="text/javascript" src="javascript/test.js"></script>
 </body>
 </html>

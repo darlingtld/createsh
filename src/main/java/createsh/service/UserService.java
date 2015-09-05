@@ -178,4 +178,17 @@ public class UserService {
         }
         return user;
     }
+
+    @Transactional
+    public void saveConsigeeInfo(User user) {
+        User userInDB = userDao.getUserByWechatId(user.getOpenid());
+        if (userInDB == null) {
+            throw new RuntimeException("Unknown user");
+        } else {
+            userInDB.setConsignee(user.getConsignee());
+            userInDB.setConsigneeContact(user.getConsigneeContact());
+            userInDB.setBuyerAddress(user.getBuyerAddress());
+            userDao.update(userInDB);
+        }
+    }
 }

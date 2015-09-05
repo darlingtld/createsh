@@ -15,7 +15,23 @@
 </style>
 <body>
 <h3 class="text-center">问题反馈</h3>
-<textarea class="form-control" rows="6" placeholder="请反馈您的意见"></textarea>
+<textarea id='feedback-content' class="form-control" rows="6" placeholder="请反馈您的意见"></textarea>
 <button class="btn btn-info btn-block" id="submit-feedback">提交反馈意见</button>
+<script type="text/javascript" src="bower_components/jquery/dist/jquery.min.js"></script>
+<script>
+    var app = '/createsh';
+    $('#submit-feedback').on('click', function () {
+        $.ajax({
+            type: 'POST',
+            url: app + '/service/feedback',
+            data: JSON.stringify({content:$('#feedback-content').val()}),
+//            dataType: 'json',
+            contentType: "application/json",
+            success: function () {
+                alert('感谢您的反馈意见！');
+            }
+        });
+    });
+</script>
 </body>
 </html>
