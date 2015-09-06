@@ -6,6 +6,7 @@ if (isTest) {
     user = {
         nickname: 'lingda',
         openid: 'oh88lwyr0lDwuey9tr3o1hUIajPA',
+        username:'darlingtld',
         headimgurl: 'http://wx.qlogo.cn/mmopen/0pygn8iaZdEeVBqUntWJB9rzhkKIyKnQFzIqswrYFrhHefEXiaCOhJnBqIicxMRd0IeOHe9ffAtKTvXzOfokp9UhS2BlYXh5PxO/0',
         consignee: '灵达',
         consigneeContact: '13402188638',

@@ -7,8 +7,16 @@ var cdata = {
     "机器": {
         "碾米机": "category/nianmiji",
     },
-    "蔬商水果": {
-        "叶商类": "category/yecailei",
+    "米面粮油": {
+        "大米": "category/dami",
+        "面粉面条": "category/mianfenmiantiao",
+        "食用油": "category/shiyongyou",
+        "杂粮": "category/zaliang",
+        "面点": "category/miandian",
+        "烘焙佐料": "category/hongbeizuoliao",
+    },
+    "蔬菜水果": {
+        "叶菜类": "category/yecailei",
         "根茎类": "category/genjinglei",
         "茄果类": "category/qieguolei",
         "豆类": "category/doulei",
@@ -29,14 +37,6 @@ var cdata = {
     "水产冻货": {
         "海鲜水产": "category/haixianshuichan",
         "鱼丸火锅": "category/yuwanhuoguo",
-    },
-    "米面粮油": {
-        "大米": "category/dami",
-        "面粉面条": "category/mianfenmiantiao",
-        "食用油": "category/shiyongyou",
-        "杂粮": "category/zaliang",
-        "面点": "category/miandian",
-        "烘焙佐料": "category/hongbeizuoliao",
     },
     "调料其他": {
         "调味品": "category/tiaoweipin",
@@ -59,10 +59,10 @@ var cdata = {
 
 var tdata = {
     "机器": "machine",
-    "蔬商水果": "shucaishuiguo",
+    "米面粮油": "mimianliangyou",
+    "蔬菜水果": "shucaishuiguo",
     "禽肉蛋类": "qinroudanlei",
     "水产冻货": "shuichandonghuo",
-    "米面粮油": "mimianliangyou",
     "调料其他": "tiaoliaoqita",
     "餐厨用品": "canchuyongpin",
     "酒水饮料": "jiushuiyinliao"
@@ -557,9 +557,42 @@ adminModule.controller('messageController', function ($scope, $http) {
         });
     }
 
+});
+adminModule.controller('accountController', function ($scope, $http) {
+    $('li[role]').removeClass('active');
+    $('li[role="manage_account"]').addClass('active');
+    $http.get(app + '/user/all').success(function (data) {
+        $scope.userList = data;
+    });
 
-})
-;
+
+    $scope.deposit = function (username) {
+        $scope.username = username;
+    }
+    $scope.save = function () {
+        var user = {
+            username: $scope.username,
+            account: $scope.depositAccount
+        }
+        if (user.username == null) {
+            alert('该用户尚未注册,请先注册！');
+            return;
+        }
+        console.log(user)
+        $http.post(app + '/user/account/save', user).success(function () {
+            alert('保存成功');
+            location.href = app + '/admin/manage.html#/account';
+            location.reload();
+        }).error(function () {
+            alert('保存失败');
+            location.href = app + '/admin/manage.html#/account';
+            location.reload();
+        });
+    }
+
+
+});
+
 adminModule.filter('translate', function () {
     return function (text, type) {
         if (!angular.isString(text)) {
@@ -616,6 +649,10 @@ adminModule.config(['$routeProvider', function ($routeProvider) {
         .when('/coupon', {
             controller: 'couponController',
             templateUrl: 'coupon.html'
+        })
+        .when('/account', {
+            controller: 'accountController',
+            templateUrl: 'account.html'
         })
         .when('/message', {
             controller: 'messageController',

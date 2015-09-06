@@ -69,6 +69,11 @@ public class OrderService {
 
         JSONObject jsonObject = JSON.parseObject(order.getBill());
         double totalPrice = jsonObject.getDouble("totalPrice");
+        if (user.getAccount() - totalPrice < 0) {
+            throw new RuntimeException("余额不足");
+        } else {
+            userDao.saveAccount(user.getUsername(), user.getAccount() - totalPrice);
+        }
         jsonObject.put("totalPrice", Utils.formatDouble(totalPrice, 2));
         order.setBill(jsonObject.toJSONString());
         markUsedCoupon(jsonObject.getString("usedCoupon"));

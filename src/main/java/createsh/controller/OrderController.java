@@ -34,14 +34,18 @@ public class OrderController {
     @RequestMapping(value = "/submit", method = RequestMethod.POST, headers = "Content-Type=application/json")
     public
     @ResponseBody
-    void submitOrder(@RequestBody Order order) {
+    void submitOrder(@RequestBody Order order, HttpServletResponse response) {
         order.setStatus(OrderStatus.NOT_DELIVERED);
         try {
             order.setUserId(new String(order.getUserId().getBytes("utf-8"), "utf-8"));
         } catch (UnsupportedEncodingException e) {
             order.setUserId("unknown");
         }
-        orderService.save(order);
+        try {
+            orderService.save(order);
+        } catch (Exception e) {
+            response.setStatus(HttpStatus.EXPECTATION_FAILED.value());
+        }
     }
 
     @RequestMapping(value = "/get/{wechatid}", method = RequestMethod.GET)

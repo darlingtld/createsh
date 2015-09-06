@@ -263,8 +263,9 @@ ctModule.controller('confirmController', function ($scope, $http, $location) {
                                 clearBill();
                                 init();
                                 $location.path('/order/history');
-                            }).error(function () {
-                                alert(data.status);
+                            }).error(function (data) {
+                                alert('余额不足');
+                                $('#content').html('<h2 class="text-center">余额不足</h2>');
                             });
                     }
                 }

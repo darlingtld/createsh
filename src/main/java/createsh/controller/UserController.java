@@ -87,4 +87,12 @@ public class UserController {
         logger.info("save consignee info {}", user.toString());
         userService.saveConsigeeInfo(user);
     }
+
+    @RequestMapping(value = "/account/save", method = RequestMethod.POST, headers = "Content-Type=application/json")
+    public
+    @ResponseBody
+    void saveAccount(@RequestBody User user) {
+        logger.info("save account {} {}", user.getUsername(), user.getAccount());
+        userService.saveAccount(user.getUsername(), user.getAccount());
+    }
 }

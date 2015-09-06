@@ -191,4 +191,9 @@ public class UserService {
             userDao.update(userInDB);
         }
     }
+
+    @Transactional
+    public void saveAccount(String username, double account) {
+        userDao.saveAccount(username, account);
+    }
 }

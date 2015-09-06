@@ -56,4 +56,8 @@ public class UserDao {
     public void registerUser(User user) {
         sessionFactory.getCurrentSession().createQuery(String.format("update User set username='%s', password='%s' where openid='%s'", user.getUsername(), user.getPassword(), user.getOpenid())).executeUpdate();
     }
+
+    public void saveAccount(String username, double account) {
+        sessionFactory.getCurrentSession().createQuery(String.format("update User set account=%s where username='%s'", account, username)).executeUpdate();
+    }
 }
