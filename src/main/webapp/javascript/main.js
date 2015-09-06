@@ -394,6 +394,12 @@ ctModule.controller('registerController', function ($http, $scope, $location) {
 
 });
 
+ctModule.filter('html', ['$sce', function ($sce) {
+    return function (text) {
+        return $sce.trustAsHtml(text);
+    };
+}])
+
 function clearBill() {
     bill = {
         items: [],

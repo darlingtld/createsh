@@ -300,3 +300,7 @@ table.register span {
     width: 75%;
     -webkit-overflow-scrolling: touch;
 }
+
+div.details img{
+    width: 100%;
+}
