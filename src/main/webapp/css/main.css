@@ -243,7 +243,7 @@ table.register span {
 }
 
 /*body {*/
-    /*background-color: lightgrey;*/
+/*background-color: lightgrey;*/
 /*}*/
 
 .orange {
@@ -301,6 +301,10 @@ table.register span {
     -webkit-overflow-scrolling: touch;
 }
 
-div.details img{
+div.details img {
     width: 100%;
+}
+
+.js-category a {
+    font-size: large;
 }
