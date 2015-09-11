@@ -1,6 +1,6 @@
 <div>
     <div class="shelf text-center" ng-repeat="product in productList">
-        <img ng-src="{{product.picurl}}">
+        <img ng-src="{{product.picurl}}" ng-click="goToZoom(product.picurl)">
 
         <div>
 

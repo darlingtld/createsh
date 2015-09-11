@@ -85,15 +85,28 @@ ctModule.controller('mainController', function ($scope, $location, authService) 
     }
 });
 
-ctModule.controller('navController', function ($scope, $http, $routeParams) {
+ctModule.controller('navController', function ($scope, $http, $location, $routeParams) {
     goToNav();
     var url = app + '/nav/admin/category/' + $routeParams.category;
     $http.get(url).success(function (data, status, headers, config) {
         $scope.productList = data;
     });
+    $scope.goToZoom = function (picurl) {
+        picurl = encodeURIComponent(picurl);
+        $location.path('/piczoom/' + picurl);
+    }
 });
 
-ctModule.controller('productController', function ($scope, $http, $routeParams) {
+ctModule.controller('piczoomController', function ($scope, $http, $routeParams) {
+    goToZoom();
+    $scope.picurl = decodeURIComponent($routeParams.picurl);
+    MPreview({
+        data: [$scope.picurl],
+        wrap: '#overlay',
+    });
+});
+
+ctModule.controller('productController', function ($scope, $http, $routeParams, $location) {
     goToProduct();
     if (user == undefined || user == null) {
         var code = getURLParameter('code');
@@ -112,6 +125,10 @@ ctModule.controller('productController', function ($scope, $http, $routeParams) 
         $scope.products = data;
         fillSpinner($scope.products);
     });
+    $scope.goToZoom = function (picurl) {
+        picurl = encodeURIComponent(picurl);
+        $location.path('/piczoom/' + picurl);
+    }
 });
 
 ctModule.controller('mostBuyController', function ($scope, $http, $routeParams) {
@@ -464,6 +481,10 @@ ctModule.config(['$routeProvider', function ($routeProvider) {
             controller: 'checkoutController',
             templateUrl: 'checkout.html'
         })
+        .when('/piczoom/:picurl', {
+            controller: 'piczoomController',
+            templateUrl: 'picture_zoom.html'
+        })
         .when('/confirm', {
             controller: 'confirmController',
             templateUrl: 'confirm.html'
@@ -717,6 +738,13 @@ function goToNav() {
     $('#ma-menu-bar').show();
     $('#subCategoryBlock').show();
     $('#mainListBlock').css('width', '75%');
+    $('footer').hide();
+}
+
+function goToZoom() {
+    $('#ma-menu-bar').show();
+    $('#subCategoryBlock').hide();
+    $('#mainListBlock').css('width', '100%');
     $('footer').hide();
 }
 

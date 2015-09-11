@@ -2,7 +2,7 @@
     <div ng-repeat="product in products">
         <div class="item">
             <div style="align-self: center;width: 98%">
-                <img ng-src="{{product.picurl}}" class="product-img">
+                <img ng-src="{{product.picurl}}" class="product-img" ng-click="goToZoom(product.picurl)">
             </div>
 
             <div>
