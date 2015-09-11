@@ -100,13 +100,6 @@ ctModule.controller('navController', function ($scope, $http, $location, $routeP
 ctModule.controller('piczoomController', function ($scope, $http, $routeParams) {
     goToZoom();
     $scope.picurl = decodeURIComponent($routeParams.picurl);
-    setTimeout(function () {
-        MPreview({
-            data: [$scope.picurl],
-            wrap: '#overlay',
-        });
-    }, 300);
-
 });
 
 ctModule.controller('productController', function ($scope, $http, $routeParams, $location) {
