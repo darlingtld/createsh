@@ -173,7 +173,11 @@ public class UserService {
             if (user.getOpenid() == null || user.getPassword() == null || user.getPassword() == null) {
                 throw new RuntimeException("注册失败");
             } else {
-                userDao.registerUser(user);
+                if (userDao.getUserByWechatId(user.getOpenid()) == null) {
+                    userDao.save(user);
+                } else {
+                    userDao.registerUser(user);
+                }
             }
         }
         return user;
