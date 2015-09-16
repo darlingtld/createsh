@@ -181,9 +181,9 @@ public class ProductController {
         product.setPrice(price);
         product.setUnit(unit);
         // for Linux
-//        String dstFilePath = "/" + PathUtil.getWebInfPath() + "/product_images/" + product.generatePicurlHash() + ".jpg";
+        String dstFilePath = "/" + PathUtil.getWebInfPath() + "/product_images/" + product.generatePicurlHash() + ".jpg";
         // for Windows
-        String dstFilePath = PathUtil.getWebInfPath() + "/product_images/" + product.generatePicurlHash() + ".jpg";
+//        String dstFilePath = PathUtil.getWebInfPath() + "/product_images/" + product.generatePicurlHash() + ".jpg";
         System.out.println("dstFilePath =" + dstFilePath);
 
         if (pic != null) {
