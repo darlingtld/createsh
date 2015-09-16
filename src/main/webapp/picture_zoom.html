@@ -1,7 +1,6 @@
 <style type="text/css">
     div.pinch-zoom,
     div.pinch-zoom img {
-        width: 100%;
         -webkit-user-drag: none;
     }
 
@@ -19,6 +18,7 @@
         $('div.pinch-zoom').each(function () {
             new RTP.PinchZoom($(this), {});
         });
+        $('div.pinch-zoom-container').css('overflow', 'visible');
     })
 
 </script>

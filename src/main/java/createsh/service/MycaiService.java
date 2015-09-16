@@ -159,10 +159,9 @@ public class MycaiService {
             newsMessage.setFuncFlag(0);
             List<Article> articleList = new ArrayList<Article>();
             Article article = new Article();
-            article.setTitle("送达");
-            article.setDescription("上海三林地区最大的农产品移动电商平台̨");
-            article.setPicUrl(PropertyHolder.SERVER + "/images/logo.jpg");
-            article.setUrl(PropertyHolder.SERVER);
+            article.setTitle("含嘉优品");
+            article.setDescription("梁源集团————含嘉优品̨");
+            article.setPicUrl(PropertyHolder.SERVER + "/images/logo-bg.jpg");
             articleList.add(article);
             newsMessage.setArticleCount(articleList.size());
             newsMessage.setArticles(articleList);

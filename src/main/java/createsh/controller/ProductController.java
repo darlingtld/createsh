@@ -141,7 +141,7 @@ public class ProductController {
 
     @RequestMapping("/export")
     public ResponseEntity<byte[]> download() throws IOException {
-        String fileName = String.format("菜品列表%s.xlsx", new SimpleDateFormat("yyyyMMdd").format(new Date()));
+        String fileName = String.format("商品列表%s.xlsx", new SimpleDateFormat("yyyyMMdd").format(new Date()));
         ExcelFactory.exportProducts(fileName, productService.getAll(), productService.getTypeMap(), productService.getProcurement());
         File file = new File(fileName);
         HttpHeaders headers = new HttpHeaders();
@@ -155,6 +155,7 @@ public class ProductController {
     public
     @ResponseBody
     void uploadProduct(@RequestParam(value = "pic", required = false) MultipartFile pic,
+                       @RequestParam(value = "picZoom", required = false) MultipartFile picZoom,
                        @RequestParam(value = "id", required = false) Integer id,
                        @RequestParam("name") String name,
                        @RequestParam("description") String description,
@@ -180,28 +181,36 @@ public class ProductController {
         product.setPrice(price);
         product.setUnit(unit);
         // for Linux
-        String dstFilePath = "/" + PathUtil.getWebInfPath() + "/product_images/" + product.generatePicurlHash() + ".jpg";
+//        String dstFilePath = "/" + PathUtil.getWebInfPath() + "/product_images/" + product.generatePicurlHash() + ".jpg";
         // for Windows
-//        String dstFilePath = PathUtil.getWebInfPath() + "/product_images/" + product.generatePicurlHash() + ".jpg";
+        String dstFilePath = PathUtil.getWebInfPath() + "/product_images/" + product.generatePicurlHash() + ".jpg";
         System.out.println("dstFilePath =" + dstFilePath);
+
         if (pic != null) {
+            savePicture(pic, dstFilePath);
             product.setPicurl("product_images/" + product.generatePicurlHash() + ".jpg");
+        }
 
-            File picFile = new File(dstFilePath);
-
-            try {
-                pic.transferTo(picFile);
-            } catch (IllegalStateException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+        if (picZoom != null) {
+            savePicture(picZoom, dstFilePath);
+            product.setPicurlZoom("product_images/" + product.generatePicurlZoomHash() + ".jpg");
         }
         product.setDataChangeLastTime(new Timestamp(System.currentTimeMillis()));
         if (id != null) {
             productService.update(product);
         } else {
             productService.save(product);
+        }
+    }
+
+    private void savePicture(MultipartFile pic, String dstFilePath) {
+        if (pic != null) {
+            File picFile = new File(dstFilePath);
+            try {
+                pic.transferTo(picFile);
+            } catch (IllegalStateException | IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 

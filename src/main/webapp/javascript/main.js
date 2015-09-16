@@ -91,9 +91,10 @@ ctModule.controller('navController', function ($scope, $http, $location, $routeP
     $http.get(url).success(function (data, status, headers, config) {
         $scope.productList = data;
     });
-    $scope.goToZoom = function (picurl) {
-        picurl = encodeURIComponent(picurl);
-        $location.path('/piczoom/' + picurl);
+    $scope.goToZoom = function (picurl, picurlZoom) {
+        var pic = picurlZoom == null ? picurl : picurlZoom;
+        pic = encodeURIComponent(pic);
+        $location.path('/piczoom/' + pic);
     }
 });
 
@@ -121,9 +122,10 @@ ctModule.controller('productController', function ($scope, $http, $routeParams, 
         $scope.products = data;
         fillSpinner($scope.products);
     });
-    $scope.goToZoom = function (picurl) {
-        picurl = encodeURIComponent(picurl);
-        $location.path('/piczoom/' + picurl);
+    $scope.goToZoom = function (picurl, picurlZoom) {
+        var pic = picurlZoom == null ? picurl : picurlZoom;
+        pic = encodeURIComponent(pic);
+        $location.path('/piczoom/' + pic);
     }
 });
 

@@ -182,6 +182,9 @@ public class ProductService {
             if (product.getPicurl() != null) {
                 productInDB.setPicurl(product.getPicurl());
             }
+            if (product.getPicurlZoom() != null) {
+                productInDB.setPicurlZoom(product.getPicurlZoom());
+            }
         }
         productDao.update(productInDB);
         if (product.getProcindex() < 0.01 && product.getProcprice() < 0.01) {

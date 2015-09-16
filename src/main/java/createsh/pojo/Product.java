@@ -27,6 +27,8 @@ public class Product {
     private String unit;
     @Column(name = "picurl")
     private String picurl;
+    @Column(name = "picurl_zoom")
+    private String picurlZoom;
     @Column(name = "onsale")
     private int onsale;
     @Column(name = "data_change_last_time")
@@ -39,6 +41,35 @@ public class Product {
     private int orderIndex;
     @Column(name = "detail")
     private String detail;
+
+    @Override
+    public String toString() {
+        return "Product{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", type=" + type +
+                ", category=" + category +
+                ", price=" + price +
+                ", unit='" + unit + '\'' +
+                ", picurl='" + picurl + '\'' +
+                ", picurlZoom='" + picurlZoom + '\'' +
+                ", onsale=" + onsale +
+                ", dataChangeLastTime=" + dataChangeLastTime +
+                ", procprice=" + procprice +
+                ", procindex=" + procindex +
+                ", orderIndex=" + orderIndex +
+                ", detail='" + detail + '\'' +
+                '}';
+    }
+
+    public String getPicurlZoom() {
+        return picurlZoom;
+    }
+
+    public void setPicurlZoom(String picurlZoom) {
+        this.picurlZoom = picurlZoom;
+    }
 
     public String getDetail() {
         return detail;
@@ -70,22 +101,6 @@ public class Product {
 
     public void setProcindex(double procindex) {
         this.procindex = procindex;
-    }
-
-    @Override
-    public String toString() {
-        return "Product{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", description='" + description + '\'' +
-                ", type=" + type +
-                ", category=" + category +
-                ", price=" + price +
-                ", unit='" + unit + '\'' +
-                ", picurl='" + picurl + '\'' +
-                ", onsale=" + onsale +
-                ", dataChangeLastTime=" + dataChangeLastTime +
-                '}';
     }
 
     public int getOnsale() {
@@ -175,5 +190,9 @@ public class Product {
     @Override
     public boolean equals(Object obj) {
         return obj.toString().equals(this.toString());
+    }
+
+    public String generatePicurlZoomHash() {
+        return "piczoom" + name.hashCode() + +description.toString().hashCode() + type.toString().hashCode() + System.currentTimeMillis();
     }
 }

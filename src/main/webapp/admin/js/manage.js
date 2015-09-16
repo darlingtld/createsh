@@ -173,6 +173,7 @@ adminModule.controller('productController', function ($scope, $http, $routeParam
         $('#unit').val(product.unit);
         $('#pic').attr('src', app + "/" + product.picurl);
         $('#ppic').val('');
+        $('#ppic-zoom').val('');
         $('#detail').val(product.detail);
     };
 
@@ -196,6 +197,7 @@ adminModule.controller('productController', function ($scope, $http, $routeParam
         $('#uprice').val('');
         $('#uunit').val('');
         $('#upic').val('');
+        $('#upic-zoom').val('');
         $('#udetail').val('');
     };
 
@@ -215,6 +217,7 @@ adminModule.controller('productController', function ($scope, $http, $routeParam
             product.append("unit", $('#unit').val());
             product.append("detail", $("#detail").val());
             product.append("pic", $("#ppic").get(0).files[0]);
+            product.append("picZoom", $("#ppic-zoom").get(0).files[0]);
             $.ajax({
                 type: 'POST',
                 url: app + "/product/upload",
@@ -329,7 +332,7 @@ adminModule.controller('productController', function ($scope, $http, $routeParam
             product.append("unit", $('#uunit').val());
             product.append("detail", $("#udetail").val());
             product.append("pic", $("#upic").get(0).files[0]);
-
+            product.append("picZoom", $("#upic-zoom").get(0).files[0]);
 
             $.ajax({
                 type: 'POST',
