@@ -45,7 +45,7 @@ public class Utils {
     public static String getWebInfoPath() {
         String os = System.getenv("OS");
         String prefix = "";
-        if (!os.toLowerCase().contains("windows")) {
+        if (os == null || !os.toLowerCase().contains("windows")) {
             prefix = "/";
         }
         return prefix + PathUtil.getWebInfPath();
