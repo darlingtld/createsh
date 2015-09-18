@@ -7,6 +7,7 @@ import createsh.excel.ExcelFactory;
 import createsh.pojo.*;
 import createsh.service.ProductService;
 import createsh.util.PathUtil;
+import createsh.util.Utils;
 import org.apache.commons.io.FileUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -180,23 +181,22 @@ public class ProductController {
         product.setCategory(Category.valueOf(category));
         product.setPrice(price);
         product.setUnit(unit);
-        // for Linux
-        String dstFilePath = "/" + PathUtil.getWebInfPath() + "/product_images/";
-        // for Windows
-//        String dstFilePath = PathUtil.getWebInfPath() + "/product_images/";
+
+        String dstFilePath = Utils.getWebInfoPath() + "/product_images/";
+
         System.out.println("dstFilePath =" + dstFilePath);
 
         if (pic != null) {
             String picLoc = product.generatePicurlHash() + ".jpg";
             String filePath = dstFilePath + picLoc;
-            savePicture(pic, filePath);
+            Utils.savePicture(pic, filePath);
             product.setPicurl("product_images/" + picLoc);
         }
 
         if (picZoom != null) {
             String picLoc = product.generatePicurlZoomHash() + ".jpg";
             String filePath = dstFilePath + picLoc;
-            savePicture(picZoom, filePath);
+            Utils.savePicture(picZoom, filePath);
             product.setPicurlZoom("product_images/" + picLoc);
         }
         product.setDataChangeLastTime(new Timestamp(System.currentTimeMillis()));
@@ -207,24 +207,34 @@ public class ProductController {
         }
     }
 
-    private void savePicture(MultipartFile pic, String dstFilePath) {
-        if (pic != null) {
-            File picFile = new File(dstFilePath);
-            try {
-                pic.transferTo(picFile);
-                logger.info("Save file at {}", picFile);
-            } catch (IllegalStateException | IOException e) {
-                e.printStackTrace();
-            }
-        }
-    }
-
     @RequestMapping(value = "/save_sort", method = RequestMethod.POST)
     public
     @ResponseBody
     void saveSort(@RequestBody List<ProductOrder> productOrderList) {
         System.out.println(productOrderList);
         productService.saveProductSortOrder(productOrderList);
+    }
+
+    @RequestMapping(value = "/upload_pic", method = RequestMethod.POST)
+    public
+    @ResponseBody
+    JSONObject uploadProduct(@RequestParam(value = "pic", required = false) MultipartFile pic, HttpServletResponse response) {
+        if (pic == null) {
+            return null;
+        }
+        String dstFilePath = Utils.getWebInfoPath() + "/images/";
+
+        System.out.println("dstFilePath =" + dstFilePath);
+
+        if (pic != null) {
+            String picLoc = "pic" + pic.getOriginalFilename().hashCode() + System.currentTimeMillis() + ".jpg";
+            String filePath = dstFilePath + picLoc;
+            Utils.savePicture(pic, filePath);
+            JSONObject jsonObject = new JSONObject();
+            jsonObject.put("picLoc", "images/" + picLoc);
+            return jsonObject;
+        }
+        return null;
     }
 
 }

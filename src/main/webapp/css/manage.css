@@ -12,7 +12,8 @@ select.product-picker {
     /*margin-top: 20px;*/
 /*}*/
 
-.menu-product {
+
+.menu-product,.upload-pic {
     margin-top: 20px;
 }
 

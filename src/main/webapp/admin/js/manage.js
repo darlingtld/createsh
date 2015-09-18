@@ -596,6 +596,56 @@ adminModule.controller('accountController', function ($scope, $http) {
 
 });
 
+adminModule.controller('materialController', function ($scope, $http, $routeParams, $location) {
+    $('li[role]').removeClass('active');
+    $('li[role="manage_material"]').addClass('active');
+
+    var picurl = app + '/material/picture/list';
+
+    $http.get(picurl).success(function (data, status, headers, config) {
+        $scope.picList = data;
+    });
+
+    $scope.delete = function (picLoc) {
+        if (confirm('确认删除')) {
+            $http.post(app + '/material/picture/delete', {picLoc: picLoc}).success(function () {
+                alert('删除成功！');
+                location.href = app + '/admin/manage.html#/material';
+                location.reload();
+            }).error(function () {
+                alert('删除失败！');
+            });
+        }
+    }
+
+    $scope.create = function () {
+        $('#pic').val('');
+    };
+
+    $scope.upload = function () {
+        if ($('#pic').val() != '') {
+            var pic = new FormData();
+            pic.append("pic", $("#pic").get(0).files[0]);
+            $.ajax({
+                type: 'POST',
+                url: app + "/material/picture/upload",
+                data: pic,
+                processData: false,
+                contentType: false,
+                success: function () {
+                    alert("修改成功");
+                    location.reload();
+                },
+                error: function () {
+                    alert("修改失败");
+                    location.reload();
+                }
+            });
+        }
+    }
+});
+
+
 adminModule.filter('translate', function () {
     return function (text, type) {
         if (!angular.isString(text)) {
@@ -660,6 +710,10 @@ adminModule.config(['$routeProvider', function ($routeProvider) {
         .when('/message', {
             controller: 'messageController',
             templateUrl: 'message.html'
+        })
+        .when('/material', {
+            controller: 'materialController',
+            templateUrl: 'material.html'
         })
         .otherwise({
             redirectTo: '/product/category/nianmiji'
