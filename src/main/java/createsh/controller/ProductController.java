@@ -181,19 +181,23 @@ public class ProductController {
         product.setPrice(price);
         product.setUnit(unit);
         // for Linux
-        String dstFilePath = "/" + PathUtil.getWebInfPath() + "/product_images/" + product.generatePicurlHash() + ".jpg";
+        String dstFilePath = "/" + PathUtil.getWebInfPath() + "/product_images/";
         // for Windows
-//        String dstFilePath = PathUtil.getWebInfPath() + "/product_images/" + product.generatePicurlHash() + ".jpg";
+//        String dstFilePath = PathUtil.getWebInfPath() + "/product_images/";
         System.out.println("dstFilePath =" + dstFilePath);
 
         if (pic != null) {
-            savePicture(pic, dstFilePath);
-            product.setPicurl("product_images/" + product.generatePicurlHash() + ".jpg");
+            String picLoc = product.generatePicurlHash() + ".jpg";
+            String filePath = dstFilePath + picLoc;
+            savePicture(pic, filePath);
+            product.setPicurl("product_images/" + picLoc);
         }
 
         if (picZoom != null) {
-            savePicture(picZoom, dstFilePath);
-            product.setPicurlZoom("product_images/" + product.generatePicurlZoomHash() + ".jpg");
+            String picLoc = product.generatePicurlZoomHash() + ".jpg";
+            String filePath = dstFilePath + picLoc;
+            savePicture(picZoom, filePath);
+            product.setPicurlZoom("product_images/" + picLoc);
         }
         product.setDataChangeLastTime(new Timestamp(System.currentTimeMillis()));
         if (id != null) {
@@ -208,6 +212,7 @@ public class ProductController {
             File picFile = new File(dstFilePath);
             try {
                 pic.transferTo(picFile);
+                logger.info("Save file at {}", picFile);
             } catch (IllegalStateException | IOException e) {
                 e.printStackTrace();
             }
