@@ -17,4 +17,5 @@ public class ComplexButton extends Button {
     public void setSub_button(CommonButton[] sub_button) {
         this.sub_button = sub_button;
     }
+
 }

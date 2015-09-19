@@ -10,9 +10,18 @@ package createsh.pojo.button;
 public class CommonButton extends Button {
     private String type;
     private String key;
+    private String url;
 
     public String getType() {
         return type;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
     }
 
     public void setType(String type) {

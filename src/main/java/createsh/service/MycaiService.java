@@ -89,6 +89,17 @@ public class MycaiService {
                 } else if (eventType.equals(MessageUtil.EVENT_TYPE_UNSUBSCRIBE)) {
                 } else if (eventType.equals(MessageUtil.EVENT_TYPE_CLICK)) {
                     String eventKey = requestMap.get("EventKey");
+                    if (eventKey.equalsIgnoreCase(PropertyHolder.MENU_ONLINE_CS)) {
+                        TextMessage textMessage = new TextMessage();
+                        textMessage.setToUserName(fromUserName);
+                        textMessage.setFromUserName(toUserName);
+                        textMessage.setCreateTime(new Date().getTime());
+                        textMessage.setMsgType(MessageUtil.RESP_MESSAGE_TYPE_TEXT);
+                        textMessage.setContent(String.format("亲,感谢关注含佳优品\n" +
+                                "在线客服每天8:30-24:00真人值守,全新全意为您服务!\n" +
+                                "请描述一下您遇到的问题,我们将对应问题安排客服快速有效地帮助亲,谢谢!"));
+                        return MessageUtil.messageToXml(textMessage);
+                    }
 
                 }
             } else if (msgType.equals(MessageUtil.REQ_MESSAGE_TYPE_TEXT)) {

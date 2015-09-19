@@ -9,6 +9,7 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import createsh.pojo.AccessToken;
 import createsh.pojo.button.ClickButton;
+import createsh.pojo.button.CommonButton;
 import createsh.pojo.button.ComplexButton;
 import createsh.pojo.button.ViewButton;
 import createsh.util.PropertyHolder;
@@ -88,9 +89,9 @@ public class MenuManager {
         btn34.setName(PropertyHolder.MENU_SHOP_INFO);
         btn34.setUrl(oauthUrl.replace("$appid", PropertyHolder.APPID).replace("$redirect_uri", URLEncoder.encode(PropertyHolder.SERVER + "/shop_info.html", "UTF-8")));
 
-        ViewButton btn35 = new ViewButton();
+        ClickButton btn35 = new ClickButton();
         btn35.setName(PropertyHolder.MENU_ONLINE_CS);
-        btn35.setUrl(oauthUrl.replace("$appid", PropertyHolder.APPID).replace("$redirect_uri", URLEncoder.encode(PropertyHolder.SERVER + "/online_cs.html", "UTF-8")));
+        btn35.setKey(PropertyHolder.MENU_ONLINE_CS);
 
         ComplexButton mainBtn1 = new ComplexButton();
         mainBtn1.setName(PropertyHolder.MENU_SHOPPING_MALL);
@@ -102,7 +103,7 @@ public class MenuManager {
 
         ComplexButton mainBtn3 = new ComplexButton();
         mainBtn3.setName(PropertyHolder.MENU_POST_SALE_SERVICE);
-        mainBtn3.setSub_button(new ViewButton[]{btn31, btn32, btn33, btn34, btn35});
+        mainBtn3.setSub_button(new CommonButton[]{btn31, btn32, btn33, btn34, btn35});
 
         JSONArray jsonArray = new JSONArray();
         jsonArray.add(mainBtn1);
