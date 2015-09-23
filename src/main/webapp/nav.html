@@ -9,6 +9,7 @@
             </div>
             <div class="text-left" style="line-height: 2">
                 <span class="item-price" ng-bind="product.price | currency : '￥'"></span>
+                /<span class="item-unit" ng-bind="product.unit"></span>
                 <a class="btn btn-sm orange" style="float: right;margin: 0px 20px 5px 0px;"
                    href="#/product/itemid/{{product.id}}">查看详情</a>
             </div>
