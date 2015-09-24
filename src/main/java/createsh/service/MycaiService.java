@@ -59,7 +59,7 @@ public class MycaiService {
             if (msgType.equals(MessageUtil.REQ_MESSAGE_TYPE_EVENT)) {
                 String eventType = requestMap.get("Event");
                 if (eventType.equals(MessageUtil.EVENT_TYPE_SUBSCRIBE)) {
-                    String respContent = "您好，欢迎关注含嘉优品！";
+                    String respContent = "您好，欢迎关注含嘉优品！\n梁源食品客服热线:\n4008051715";
                     TextMessage textMessage = new TextMessage();
                     textMessage.setToUserName(fromUserName);
                     textMessage.setFromUserName(toUserName);
