@@ -28,6 +28,9 @@ public class OrderService {
 
     private static final Logger logger = LoggerFactory.getLogger(OrderService.class);
 
+    private static final String DEVLIVER_PAY = "DELIVER_PAY";
+    private static final String ONLINE_PAY = "ONLINE_PAY";
+
     @Autowired
     private OrderDao orderDao;
 
@@ -69,10 +72,17 @@ public class OrderService {
 
         JSONObject jsonObject = JSON.parseObject(order.getBill());
         double totalPrice = jsonObject.getDouble("totalPrice");
-        if (user.getAccount() - totalPrice < 0) {
-            throw new RuntimeException("余额不足");
+        if (order.getPayMethod().equalsIgnoreCase(ONLINE_PAY)) {
+            if (user.getAccount() - totalPrice < 0) {
+                throw new RuntimeException("余额不足");
+            } else {
+                userDao.saveAccount(user.getUsername(), user.getAccount() - totalPrice);
+                order.setStatus(OrderStatus.PAID_NOT_DELIVERED);
+            }
+        } else if (order.getPayMethod().equalsIgnoreCase(DEVLIVER_PAY)) {
+            order.setStatus(OrderStatus.NOT_DELIVERED);
         } else {
-            userDao.saveAccount(user.getUsername(), user.getAccount() - totalPrice);
+            throw new RuntimeException("pay method not supported yet!");
         }
         jsonObject.put("totalPrice", Utils.formatDouble(totalPrice, 2));
         order.setBill(jsonObject.toJSONString());

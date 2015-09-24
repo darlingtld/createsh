@@ -5,10 +5,7 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import createsh.util.Utils;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -67,7 +64,19 @@ public class Order {
                 ", confirmCode='" + confirmCode + '\'' +
                 ", confirmBill='" + confirmBill + '\'' +
                 ", confirmTs='" + confirmTs + '\'' +
+                ", payMethod='" + payMethod + '\'' +
                 '}';
+    }
+
+    @Transient
+    private String payMethod;
+
+    public String getPayMethod() {
+        return payMethod;
+    }
+
+    public void setPayMethod(String payMethod) {
+        this.payMethod = payMethod;
     }
 
     public String getUsername() {

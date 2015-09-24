@@ -39,8 +39,8 @@
                             </td>
                         </tr>
                         <tr>
-                            <td><span>买家信息</span></td>
-                            <td><input id="buyer_info" type="text" class="form-control" placeholder="填写买家信息"></td>
+                            <td><span>买家姓名</span></td>
+                            <td><input id="buyer_info" type="text" class="form-control" placeholder="填写买家姓名"></td>
                         </tr>
                         <tr>
                             <td><span>买家地址</span></td>
@@ -57,7 +57,13 @@
                         </tr>
                         <tr>
                             <td><span>付款方式</span></td>
-                            <td><input id="pay_method" type="text" class="form-control" value="货到付款" disabled></td>
+                            <td>
+                                <!--<input id="pay_method" type="text" class="form-control" value="货到付款" disabled>-->
+                                <select id="pay_method" class="form-control">
+                                    <option value="DELIVER_PAY" selected="selected">货到付款</option>
+                                    <option value="ONLINE_PAY">使用余额</option>
+                                </select>
+                            </td>
                         </tr>
                         <tr>
                             <td><span>运费</span></td>

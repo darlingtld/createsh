@@ -261,8 +261,11 @@ ctModule.controller('confirmController', function ($scope, $http, $location) {
                         buyerInfo: $('#buyer_info').val(),
                         buyerAddress: $('#buyer_address').val(),
                         consignee: $('#consignee').val(),
-                        consigneeContact: $('#consignee_contact').val()
+                        consigneeContact: $('#consignee_contact').val(),
+                        payMethod: $('#pay_method').val()
                     };
+
+                    console.log(order);
 
                     if (validateOrder(order)) {
                         goToOrderHistory();

@@ -8,4 +8,5 @@ public class OrderStatus {
     public static final String IN_DELIVERY = "配送中";
     public static final String DELIVERED_NOT_PAID = "已配送（未付款）";
     public static final String DELIVERED_PAID = "已配送（已付款）";
+    public static final String PAID_NOT_DELIVERED = "已支付（未配送）";
 }

@@ -165,7 +165,7 @@ public class ProductController {
                        @RequestParam("price") double price,
                        @RequestParam("unit") String unit,
                        HttpServletResponse response) {
-        if (type == null || name == null || pic == null || description == null || category == null || price == 0 || unit == null) {
+        if (type == null || name == null || pic == null || description == null || category == null || unit == null) {
             response.setStatus(HttpStatus.NOT_ACCEPTABLE.value());
             return;
         }
