@@ -1,8 +1,11 @@
 package createsh.other;
 
+import createsh.pojo.OrderStatus;
 import createsh.util.PropertyHolder;
 
 import java.io.UnsupportedEncodingException;
+import java.lang.reflect.Field;
+import java.lang.reflect.Modifier;
 import java.math.BigInteger;
 import java.net.URLEncoder;
 import java.security.MessageDigest;
@@ -66,6 +69,16 @@ public class Test {
     public void testPattern4Code(){
         String content = "123123223";
         System.out.println(Pattern.compile("\\d{9}").matcher(content).find());
+    }
+
+    @org.junit.Test
+    public void testReflect() throws IllegalAccessException {
+        Field[] fields = OrderStatus.class.getDeclaredFields();
+        for (Field field : fields) {
+
+            String descriptor = Modifier.toString(field.getModifiers());
+            System.out.println(descriptor + field.get(field.getName()));
+        }
     }
 
 }

@@ -392,6 +392,10 @@ adminModule.controller('orderController', function ($scope, $http) {
         $scope.orders = data;
     });
 
+    $http.get(app + '/order/status/jsonlist').success(function (data) {
+        $scope.orderStatusList = data;
+    });
+
     $scope.modify = function (id) {
         $('#myDialog').attr('method', 'update');
         for (var i = 0; i < $scope.orders.length; i++) {
@@ -410,6 +414,7 @@ adminModule.controller('orderController', function ($scope, $http) {
         $('#orderStatus').val(order.status);
         $('#consignee').val(order.consignee);
         $('#consigneeContact').val(order.consigneeContact);
+        $scope.selectOrderStatus = {key: order.status, value: order.status};
 
     };
 

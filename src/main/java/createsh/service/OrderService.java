@@ -18,6 +18,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.lang.reflect.Field;
+import java.lang.reflect.Modifier;
 import java.util.*;
 
 /**
@@ -228,8 +230,25 @@ public class OrderService {
         return String.format("[数量]%s%s [送货时间]%s [收件人]%s %s [收货地址]%s [电话]%s [下单时间]%s", amount, unit, order.getDeliveryTs(), order.getConsignee(), order.getBuyerInfo(), order.getBuyerAddress(), order.getConsigneeContact(), order.getOrderTs());
     }
 
-    public List<String> getStatusList() {
-        return Arrays.asList(OrderStatus.NOT_DELIVERED, OrderStatus.IN_DELIVERY, OrderStatus.DELIVERED_NOT_PAID, OrderStatus.DELIVERED_PAID);
+    public List<String> getStatusList() throws IllegalAccessException {
+        List<String> statusList = new ArrayList<>();
+        Field[] fields = OrderStatus.class.getDeclaredFields();
+        for (Field field : fields) {
+            statusList.add((String) field.get(field.getName()));
+        }
+        return statusList;
+    }
+
+    public JSONArray getOrderStatusList() throws IllegalAccessException {
+        JSONArray orderList = new JSONArray();
+        Field[] fields = OrderStatus.class.getDeclaredFields();
+        for (Field field : fields) {
+            JSONObject jsonObject = new JSONObject();
+            jsonObject.put("key", field.getName());
+            jsonObject.put("value", field.get(field.getName()));
+            orderList.add(jsonObject);
+        }
+        return orderList;
     }
 
     @Transactional

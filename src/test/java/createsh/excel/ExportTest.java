@@ -28,7 +28,7 @@ public class ExportTest {
     }
 
     @Test
-    public void exportOrders() {
+    public void exportOrders() throws IllegalAccessException {
         ExcelFactory.exportOrders("订单列表.xlsx", orderService.getAll(), orderService.getStatusList());
     }
 

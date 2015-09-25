@@ -1,5 +1,6 @@
 package createsh.controller;
 
+import com.alibaba.fastjson.JSONArray;
 import createsh.excel.ExcelFactory;
 import createsh.pojo.Dispatch;
 import createsh.pojo.Order;
@@ -109,8 +110,22 @@ public class OrderController {
         return orderService.getDispatchList();
     }
 
+    @RequestMapping(value = "/status/list", method = RequestMethod.GET)
+    public
+    @ResponseBody
+    List<String> getOrderStatusList() throws IllegalAccessException {
+        return orderService.getStatusList();
+    }
+
+    @RequestMapping(value = "/status/jsonlist", method = RequestMethod.GET)
+    public
+    @ResponseBody
+    JSONArray getOrderStatusJSONArray() throws IllegalAccessException {
+        return orderService.getOrderStatusList();
+    }
+
     @RequestMapping("/export")
-    public ResponseEntity<byte[]> download() throws IOException {
+    public ResponseEntity<byte[]> download() throws IOException, IllegalAccessException {
         String fileName = String.format("订单列表%s.xlsx", new SimpleDateFormat("yyyyMMdd").format(new Date()));
         ExcelFactory.exportOrders(fileName, orderService.getAll(), orderService.getStatusList());
         File file = new File(fileName);

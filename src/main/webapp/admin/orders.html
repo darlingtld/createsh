@@ -94,11 +94,7 @@
                 </div>
                 <div class="input-group input-group-lg">
                     <span class="input-group-addon">订单状态:</span>
-                    <select id="orderStatus" class="form-control" style="width:100%;">
-                        <option value="未配送">未配送</option>
-                        <option value="配送中">配送中</option>
-                        <option value="已配送（未付款）">已配送（未付款）</option>
-                        <option value="已配送（已付款）">已配送（已付款）</option>
+                    <select id="orderStatus" class="form-control" style="width:100%;" ng-init="selectOrderStatus" ng-model="selectOrderStatus" ng-options="s.value for s in orderStatusList track by s.value">
                     </select>
                 </div>
             </div>
