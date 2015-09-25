@@ -58,6 +58,6 @@ public class UserDao {
     }
 
     public void saveAccount(String username, double account) {
-        sessionFactory.getCurrentSession().createQuery(String.format("update User set account=%s where username='%s'", account, username)).executeUpdate();
+        sessionFactory.getCurrentSession().createQuery(String.format("update User set account=account+%s where username='%s'", account, username)).executeUpdate();
     }
 }
