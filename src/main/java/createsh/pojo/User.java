@@ -36,7 +36,7 @@ public class User {
     @Column(name = "username")
     private String username;
     @Column(name = "password")
-    private String password;
+    private String password = "000000";
     @Column(name = "phone")
     private String phone;
     @Column(name = "role")

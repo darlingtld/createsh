@@ -151,15 +151,17 @@ ctModule.controller('mostBuyController', function ($scope, $http, $routeParams) 
 });
 
 ctModule.controller('checkoutController', function ($scope, $location, $http) {
-    if (user.username == null) {
-        alert('您尚未登录，请先登录~')
-        $location.path('/login');
-    } else if (bill.totalAmount == 0) {
+    //if (user.username == null) {
+    //    alert('您尚未登录，请先登录~')
+    //    $location.path('/login');
+    //} else
+    if (bill.totalAmount == 0) {
         alert('您还未购买任何物品');
         init();
         $location.path('/');
     } else {
         goToCheckout();
+        user.username = user.openid;
         if (user == undefined || user == null) {
             var code = getURLParameter('code');
             $http.get(app + "/user/code/" + code).success(function (data, status, headers, config) {
@@ -178,16 +180,17 @@ ctModule.controller('checkoutController', function ($scope, $location, $http) {
 
 
 ctModule.controller('confirmController', function ($scope, $http, $location) {
-        if (user.username == null) {
-            alert('您尚未登录，请先登录~')
-            $location.path('/login');
-        } else if (bill.totalAmount == 0) {
+        //if (user.username == null) {
+        //    alert('您尚未登录，请先登录~')
+        //    $location.path('/login');
+        //} else
+        if (bill.totalAmount == 0) {
             alert('您还未购买任何物品');
             init();
             $location.path('/');
         } else {
-
             goToConfirm();
+            user.username = user.openid;
             if (user == undefined || user == null) {
                 var code = getURLParameter('code');
                 $http.get(app + "/user/code/" + code).success(function (data, status, headers, config) {
