@@ -87,6 +87,7 @@ ctModule.controller('mainController', function ($scope, $location, authService) 
 
 ctModule.controller('navController', function ($scope, $http, $location, $routeParams) {
     goToNav();
+    init();
     var url = app + '/nav/admin/category/' + $routeParams.category;
     $http.get(url).success(function (data, status, headers, config) {
         $scope.productList = data;
@@ -807,23 +808,6 @@ function goToMessage() {
 
 function saveToLocalStorage(bill) {
     setLocalStorage('bill', JSON.stringify(bill));
-}
-
-function setLocalStorage(key, value) {
-    if (typeof(Storage) != "undefined") {
-        localStorage.setItem(app + '_' + key, value);
-        //console.log('[' + key + ']:[' + value + ']');
-    } else {
-        console.log("local storage is not supported!")
-    }
-}
-
-function getLocalStorage(key) {
-    if (typeof(Storage) != "undefined") {
-        return localStorage.getItem(app + '_' + key);
-    } else {
-        console.log("local storage is not supported!");
-    }
 }
 
 function clearLocalStorage() {

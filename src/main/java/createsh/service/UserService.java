@@ -120,11 +120,9 @@ public class UserService {
     public User saveOrUpdate(User user) {
         logger.info(user.toString());
         // filter emoji
+        user.setUsername(user.getOpenid());
         try {
             user.setNickname(new String(user.getNickname().getBytes("utf-8"), "utf-8"));
-            if (user.getUsername() == null) {
-                user.setUsername(user.getOpenid());
-            }
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
             user.setNickname("songda user");
@@ -140,11 +138,6 @@ public class UserService {
             userInDB.setNickname(user.getNickname());
             userInDB.setUsername(user.getUsername());
             userInDB.setHeadimgurl(user.getHeadimgurl());
-//            userInDB.setMobile(user.getMobile());
-//            userInDB.setEmail(user.getEmail());
-//            userInDB.setBuyerInfo(user.getBuyerInfo());
-//            userInDB.setConsignee(user.getConsignee());
-//            userInDB.setConsigneeContact(user.getConsigneeContact());
             userDao.update(userInDB);
         }
         return userDao.getUserByWechatId(user.getOpenid());
