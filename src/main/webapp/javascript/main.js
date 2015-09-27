@@ -87,7 +87,7 @@ ctModule.controller('mainController', function ($scope, $location, authService) 
 
 ctModule.controller('navController', function ($scope, $http, $location, $routeParams) {
     goToNav();
-    init();
+
     var url = app + '/nav/admin/category/' + $routeParams.category;
     $http.get(url).success(function (data, status, headers, config) {
         $scope.productList = data;
@@ -106,6 +106,7 @@ ctModule.controller('piczoomController', function ($scope, $http, $routeParams) 
 
 ctModule.controller('productController', function ($scope, $http, $routeParams, $location) {
     goToProduct();
+    init();
     if (user == undefined || user == null) {
         var code = getURLParameter('code');
         $http.get(app + "/user/code/" + code).success(function (data, status, headers, config) {
