@@ -241,7 +241,12 @@ ctModule.controller('confirmController', function ($scope, $http, $location) {
                 $('#buyer_address').val(user.buyerAddress);
                 $('#consignee').val(user.consignee);
                 $('#consignee_contact').val(user.consigneeContact);
-            } else if (getLocalStorage('buyer_info') != undefined && getLocalStorage('buyer_info') != null) {
+            } else if (getLocalStorage('buyer_info') != null && getLocalStorage('buyer_info') != null) {
+                $('#buyer_info').val(getLocalStorage('buyer_info'));
+                $('#buyer_address').val(getLocalStorage('buyer_address'));
+                $('#consignee').val(getLocalStorage('consignee'));
+                $('#consignee_contact').val(getLocalStorage('consignee_contact'));
+            } else {
                 $('#buyer_info').val(getLocalStorage('buyer_info'));
                 $('#buyer_address').val(getLocalStorage('buyer_address'));
                 $('#consignee').val(getLocalStorage('consignee'));
@@ -344,6 +349,56 @@ ctModule.controller('orderDetailController', function ($http, $scope, $routePara
     });
 
 });
+
+ctModule.controller('orderModifyController', function ($http, $scope, $routeParams) {
+    goToOrderHistory();
+    $('.datetime').mobiscroll().datetime({
+        theme: 'sense-ui',     // Specify theme like: theme: 'ios' or omit setting to use default
+        mode: 'scroller',       // Specify scroller mode like: mode: 'mixed' or omit setting to use default
+        lang: 'zh',       // Specify language like: lang: 'pl' or omit setting to use default
+        minDate: new Date(),  // More info about minDate: http://docs.mobiscroll.com/2-14-0/datetime#!opt-minDate
+        maxDate: new Date(2020, 1, 1, 1, 1),   // More info about maxDate: http://docs.mobiscroll.com/2-14-0/datetime#!opt-maxDate
+        stepMinute: 10  // More info about stepMinute: http://docs.mobiscroll.com/2-14-0/datetime#!opt-stepMinute
+    });
+    var amountList = [];
+    for (var i = 0; i <= 100; i++) {
+        amountList.push(i);
+    }
+    $scope.amountList = amountList;
+    var url = app + '/order/detail/' + $routeParams.id;
+    $http.get(url).success(function (data, status, headers, config) {
+        $scope.orderDetail = data;
+        $scope.items = JSON.parse($scope.orderDetail.bill).items;
+        $scope.total = JSON.parse($scope.orderDetail.bill);
+        $scope.total.price = parseFloat($scope.total.price).toFixed(2);
+        $scope.itemAmount = $scope.items.length;
+    });
+
+    $scope.save = function () {
+        console.log($scope.items);
+        var totalPrice = 0;
+        for (var i = 0; i < $scope.items.length; i++) {
+            totalPrice += $scope.items[i].amount * $scope.items[i].productPrice;
+        }
+        $scope.orderDetail.bill = JSON.stringify({
+            items: $scope.items,
+            totalAmount: $scope.items.length,
+            totalPrice: parseFloat(totalPrice).toFixed(2)
+        });
+
+        console.log($scope.orderDetail);
+        var modifyUrl = app + '/order/modify';
+        $http.post(modifyUrl, $scope.orderDetail).success(function () {
+            alert('修改成功');
+            location.href = app + '/myorder.html';
+        }).error(function (data) {
+            alert(data.message);
+        })
+
+    }
+
+});
+
 ctModule.controller('routerController', function ($http, $scope, $location) {
     if (user == undefined || user.username == undefined) {
         alert('您尚未注册，请先注册~')
@@ -510,6 +565,10 @@ ctModule.config(['$routeProvider', function ($routeProvider) {
         .when('/order/details/:id', {
             controller: 'orderDetailController',
             templateUrl: 'orderDetails.html'
+        })
+        .when('/order/modify/:id', {
+            controller: 'orderModifyController',
+            templateUrl: 'orderModify.html'
         })
         .when('/register', {
             controller: 'registerController',

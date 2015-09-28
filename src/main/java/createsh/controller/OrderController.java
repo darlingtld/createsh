@@ -1,6 +1,7 @@
 package createsh.controller;
 
 import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import createsh.excel.ExcelFactory;
 import createsh.pojo.Dispatch;
 import createsh.pojo.Order;
@@ -23,6 +24,7 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 
 @Controller
@@ -47,6 +49,21 @@ public class OrderController {
         } catch (Exception e) {
             response.setStatus(HttpStatus.EXPECTATION_FAILED.value());
         }
+    }
+
+    @RequestMapping(value = "/modify", method = RequestMethod.POST, headers = "Content-Type=application/json")
+    public
+    @ResponseBody
+    JSONObject modifyOrder(@RequestBody Order order, HttpServletResponse response) {
+        JSONObject ret = new JSONObject();
+        try {
+            orderService.update(order);
+        } catch (Exception e) {
+            response.setStatus(HttpStatus.EXPECTATION_FAILED.value());
+            ret.put(PropertyHolder.HEADER_MSG, e.getMessage());
+            return ret;
+        }
+        return null;
     }
 
     @RequestMapping(value = "/get/{wechatid}", method = RequestMethod.GET)

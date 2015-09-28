@@ -15,9 +15,21 @@
             <td><span ng-bind="(order.orderTs | part : 0)"></span>
                 <br><span ng-bind="(order.orderTs | part : 1)"></span></td>
             <td class="text-center"><span ng-bind="order.status"></span></td>
-            <td>
+            <td ng-if="order.status.indexOf('未配送')==-1">
                 <a href="#/order/details/{{order.id}}" role="button" class="btn btn-xs btn-success">查看</a>
-                <a confirm_code="{{order.confirmCode}}" role="button" class="btn btn-xs btn-danger">确认码</a>
+
+                <a role="button" class="btn btn-xs btn-default">修改</a>
+                <br/>
+                <a confirm_code="{{order.confirmCode}}" role="button" class="btn btn-xs btn-info"
+                   style="margin-top: 3px;">确认码</a>
+            </td>
+            <td ng-if="order.status.indexOf('未配送')!=-1">
+                <a href="#/order/details/{{order.id}}" role="button" class="btn btn-xs btn-success">查看</a>
+
+                <a href="#/order/modify/{{order.id}}" role="button" class="btn btn-xs btn-danger">修改</a>
+                <br/>
+                <a confirm_code="{{order.confirmCode}}" role="button" class="btn btn-xs btn-info"
+                   style="margin-top: 3px;">确认码</a>
             </td>
         </tr>
     </table>

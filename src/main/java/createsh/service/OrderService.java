@@ -19,7 +19,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.lang.reflect.Field;
-import java.lang.reflect.Modifier;
 import java.util.*;
 
 /**
@@ -30,7 +29,7 @@ public class OrderService {
 
     private static final Logger logger = LoggerFactory.getLogger(OrderService.class);
 
-    private static final String DEVLIVER_PAY = "DELIVER_PAY";
+    private static final String DELIVER_PAY = "DELIVER_PAY";
     private static final String ONLINE_PAY = "ONLINE_PAY";
 
     @Autowired
@@ -81,7 +80,7 @@ public class OrderService {
                 userDao.saveAccount(user.getUsername(), user.getAccount() - totalPrice);
                 order.setStatus(OrderStatus.PAID_NOT_DELIVERED);
             }
-        } else if (order.getPayMethod().equalsIgnoreCase(DEVLIVER_PAY)) {
+        } else if (order.getPayMethod().equalsIgnoreCase(DELIVER_PAY)) {
             order.setStatus(OrderStatus.NOT_DELIVERED);
         } else {
             throw new RuntimeException("pay method not supported yet!");
@@ -91,6 +90,8 @@ public class OrderService {
         markUsedCoupon(jsonObject.getString("usedCoupon"));
         orderDao.save(order);
     }
+
+
 
     private void markUsedCoupon(String couponJson) {
         Coupon coupon = JSON.parseObject(couponJson, Voucher.class);
@@ -145,9 +146,18 @@ public class OrderService {
 
     @Transactional
     public boolean update(Order order) {
-//        Order orderInDb = getById(order.getId());
-//        orderInDb.setDeliveryTs(order.getDeliveryTs());
-//        orderInDb.setStatus(order.getStatus());
+        User user = userDao.getUserByWechatId(order.getWechatId());
+        JSONObject jsonObject = JSON.parseObject(order.getBill());
+        double totalPrice = jsonObject.getDouble("totalPrice");
+        if (order.getStatus().equalsIgnoreCase(OrderStatus.PAID_NOT_DELIVERED)) {
+            if (user.getAccount() - totalPrice < 0) {
+                throw new RuntimeException("余额不足");
+            } else {
+                userDao.saveAccount(user.getUsername(), user.getAccount() - totalPrice);
+            }
+        }
+        jsonObject.put("totalPrice", Utils.formatDouble(totalPrice, 2));
+        order.setBill(jsonObject.toJSONString());
         return orderDao.update(order);
     }
 

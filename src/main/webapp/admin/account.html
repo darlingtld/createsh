@@ -3,8 +3,8 @@
         <thead>
         <tr>
             <th width="10%">头像</th>
-            <th ng-click="f='name'; rev=!rev">名字 <span class="glyphicon glyphicon-sort" aria-hidden="true"></span></th>
-            <th ng-click="f='username'; rev=!rev">用户名 <span class="glyphicon glyphicon-sort" aria-hidden="true"></span></th>
+            <th ng-click="f='nickname'; rev=!rev">名字 <span class="glyphicon glyphicon-sort" aria-hidden="true"></span></th>
+            <!--<th ng-click="f='nickname'; rev=!rev">用户名 <span class="glyphicon glyphicon-sort" aria-hidden="true"></span></th>-->
             <th ng-click="f='account'; rev=!rev">账户余额 <span class="glyphicon glyphicon-sort" aria-hidden="true"></span>
             </th>
             <th>操作 <span class="glyphicon glyphicon-sort" aria-hidden="true"></span></th>
@@ -14,7 +14,7 @@
         <tr ng-repeat="user in userList | orderBy: f : rev">
             <td><img ng-src="{{user.headimgurl}}" width="100px"></td>
             <td ng-bind="user.nickname"></td>
-            <td ng-bind="user.username"></td>
+            <!--<td ng-bind="user.username"></td>-->
             <td ng-bind="user.account | currency : '￥'"></td>
             <td>
                 <button class="btn btn-success" data-toggle="modal" data-target="#messageDialog"
