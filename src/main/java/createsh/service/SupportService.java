@@ -47,8 +47,8 @@ public class SupportService {
         response.put("touser", message.getString("openid"));
         response.put("msgtype", "text");
         JSONObject body = new JSONObject();
-        body.put("content", message.getString("message"));
-        response.put("text", "[客服回复]："+body);
+        body.put("content", "[客服回复]："+message.getString("message"));
+        response.put("text", body);
         logger.info(response.toJSONString());
         restTemplate.postForObject(url, response, String.class);
 
