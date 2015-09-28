@@ -167,6 +167,11 @@ public class MycaiService {
                 csMessage.setOpenid(fromUserName);
                 csMessage.setTimestamp(new Date());
                 csMessage.setMessage(content);
+                User user = userService.getUserByWechatId(fromUserName);
+                if(user!=null){
+                    csMessage.setNickname(user.getNickname());
+                    csMessage.setHeadimgurl(user.getHeadimgurl());
+                }
                 supportService.saveCSMessage(csMessage);
                 return null;
             }

@@ -20,6 +20,11 @@ public class CSMessage {
     private String message;
     @Column(name="timestamp")
     private Date timestamp;
+    @Column(name = "headimgurl")
+    private String headimgurl;
+    @Column(name="nickname")
+
+    private String nickname;
 
     @Override
     public String toString() {
@@ -28,7 +33,25 @@ public class CSMessage {
                 ", openid='" + openid + '\'' +
                 ", message='" + message + '\'' +
                 ", timestamp=" + timestamp +
+                ", headimgurl='" + headimgurl + '\'' +
+                ", nickname='" + nickname + '\'' +
                 '}';
+    }
+
+    public String getNickname() {
+        return nickname;
+    }
+
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
+    }
+
+    public String getHeadimgurl() {
+        return headimgurl;
+    }
+
+    public void setHeadimgurl(String headimgurl) {
+        this.headimgurl = headimgurl;
     }
 
     public int getId() {

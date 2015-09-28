@@ -2,14 +2,16 @@
     <table class="table table-bordered table-hover table-responsive">
         <thead>
         <tr>
-            <th>用户id</th>
+            <th width="10%">头像</th>
+            <th>用户</th>
             <th>消息</th>
             <th>操作</th>
         </tr>
         </thead>
         <tbody>
         <tr ng-repeat="csmessage in csmessageList">
-            <td><span ng-bind="csmessage.openid"></span></td>
+            <td><img ng-src="{{csmessage.headimgurl}}" style="width: 100px"></td>
+            <td><span ng-bind="csmessage.nickname"></span></td>
             <td><span ng-bind="csmessage.message"></span></td>
             <td>
                 <button class="btn btn-success" data-toggle="modal" data-target="#messageDialog" ng-click="sendMessage(csmessage.openid)">回复消息</button>
