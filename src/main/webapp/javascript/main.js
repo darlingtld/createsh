@@ -107,6 +107,9 @@ ctModule.controller('piczoomController', function ($scope, $http, $routeParams) 
 ctModule.controller('productController', function ($scope, $http, $routeParams, $location) {
     goToProduct();
     init();
+    setTimeout(function () {
+        $('span.item_bought').text($('input[spinner-instance]').val())
+    }, 500);
     if (user == undefined || user == null) {
         var code = getURLParameter('code');
         $http.get(app + "/user/code/" + code).success(function (data, status, headers, config) {
