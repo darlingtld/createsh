@@ -39,6 +39,7 @@
                 <value>createsh.pojo.User</value>
                 <value>createsh.pojo.Procurement</value>
                 <value>createsh.pojo.Feedback</value>
+                <value>createsh.pojo.CSMessage</value>
                 <value>event.coupon.pojo.Coupon</value>
                 <value>event.coupon.pojo.Voucher</value>
                 <value>event.coupon.pojo.Discount</value>

@@ -1,5 +1,6 @@
 package createsh.service;
 
+import createsh.pojo.CSMessage;
 import event.message.pojo.Message;
 import event.message.service.MessageService;
 import createsh.pojo.OrderStatus;
@@ -42,6 +43,9 @@ public class MycaiService {
 
     @Autowired
     private MessageService messageService;
+
+    @Autowired
+    private SupportService supportService;
 
     @Transactional
     public String processRequest(HttpServletRequest request) {
@@ -151,15 +155,20 @@ public class MycaiService {
                     }
 
                 }
-                String respContent = tulingApiService.getTulingResult(content);
-                TextMessage textMessage = new TextMessage();
-                textMessage.setToUserName(fromUserName);
-                textMessage.setFromUserName(toUserName);
-                textMessage.setCreateTime(new Date().getTime());
-                textMessage.setMsgType(MessageUtil.RESP_MESSAGE_TYPE_TEXT);
-                textMessage.setContent(respContent);
-                return MessageUtil.messageToXml(textMessage);
-//                return null;
+//                String respContent = tulingApiService.getTulingResult(content);
+//                TextMessage textMessage = new TextMessage();
+//                textMessage.setToUserName(fromUserName);
+//                textMessage.setFromUserName(toUserName);
+//                textMessage.setCreateTime(new Date().getTime());
+//                textMessage.setMsgType(MessageUtil.RESP_MESSAGE_TYPE_TEXT);
+//                textMessage.setContent(respContent);
+//                return MessageUtil.messageToXml(textMessage);
+                CSMessage csMessage = new CSMessage();
+                csMessage.setOpenid(fromUserName);
+                csMessage.setTimestamp(new Date());
+                csMessage.setMessage(content);
+                supportService.saveCSMessage(csMessage);
+                return null;
             }
 
 

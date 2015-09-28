@@ -566,6 +566,38 @@ adminModule.controller('messageController', function ($scope, $http) {
     }
 
 });
+
+adminModule.controller('csmessageController', function ($scope, $http) {
+    $('li[role]').removeClass('active');
+    $('li[role="manage_csmessage"]').addClass('active');
+    $http.get(app + '/service/csmessage').success(function (data) {
+        $scope.csmessageList = data;
+    });
+
+
+    $scope.sendMessage = function (openid) {
+        $scope.openid2Send = openid;
+    }
+    $scope.send = function () {
+        var message = {
+            openid: $scope.openid2Send,
+            message: $('#message-body').val(),
+            timestamp: new Date(),
+        }
+        console.log(message)
+        $http.post(app + '/service/customer', message).success(function () {
+            alert('消息发送成功');
+            window.location.href = app + '/admin/manage.html#/csmessage';
+            window.location.reload();
+        }).error(function () {
+            alert('消息发送失败');
+            window.location.href = app + '/admin/manage.html#/csmessage';
+            window.location.reload();
+        });
+    }
+
+});
+
 adminModule.controller('accountController', function ($scope, $http) {
     $('li[role]').removeClass('active');
     $('li[role="manage_account"]').addClass('active');
@@ -715,6 +747,10 @@ adminModule.config(['$routeProvider', function ($routeProvider) {
         .when('/message', {
             controller: 'messageController',
             templateUrl: 'message.html'
+        })
+        .when('/csmessage', {
+            controller: 'csmessageController',
+            templateUrl: 'csmessage.html'
         })
         .when('/material', {
             controller: 'materialController',
