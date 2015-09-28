@@ -159,6 +159,7 @@ public class MycaiService {
                 textMessage.setMsgType(MessageUtil.RESP_MESSAGE_TYPE_TEXT);
                 textMessage.setContent(respContent);
                 return MessageUtil.messageToXml(textMessage);
+//                return null;
             }
 
 

@@ -25,7 +25,7 @@ public class OrderDao {
             sessionFactory.getCurrentSession().save(order);
         } catch (Exception e) {
             e.printStackTrace();
-            order.setUserId("songda user");
+            order.setUserId("user");
             sessionFactory.getCurrentSession().save(order);
         }
     }
@@ -49,7 +49,9 @@ public class OrderDao {
             return true;
         } catch (Exception e) {
             e.printStackTrace();
-            return false;
+            order.setUserId("user");
+            sessionFactory.getCurrentSession().update(order);
+            return true;
         }
     }
 

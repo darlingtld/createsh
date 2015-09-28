@@ -49,6 +49,9 @@ public class WechatController {
         response.setCharacterEncoding("UTF-8");
         response.setContentType("text/html;charset=UTF-8");
         String respXml = mycaiService.processRequest(request);
+        if (respXml == null) {
+            return;
+        }
         ServletOutputStream outputStream = response.getOutputStream();
         PrintStream printStream = new PrintStream(outputStream);
         printStream.write(respXml.getBytes("utf-8"));
