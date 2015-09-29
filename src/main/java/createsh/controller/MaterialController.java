@@ -6,6 +6,7 @@ import com.google.common.collect.Lists;
 import createsh.excel.ExcelFactory;
 import createsh.pojo.*;
 import createsh.service.ProductService;
+import createsh.util.PropertyHolder;
 import createsh.util.Utils;
 import org.apache.commons.io.FileUtils;
 import org.slf4j.Logger;
@@ -32,6 +33,9 @@ import java.util.*;
 public class MaterialController {
 
     private static final Logger logger = LoggerFactory.getLogger(MaterialController.class);
+    private String ABOUT_JPG = "about.jpg";
+    private String COOK_TRICKS_JPG = "cook-tricks.jpg";
+    private String DAOGU_KNOWLEDGE_JPG = "daogu-knowledge.jpg";
 
     @RequestMapping(value = "/picture/upload", method = RequestMethod.POST)
     public
@@ -97,5 +101,62 @@ public class MaterialController {
 
         picFile.delete();
 
+    }
+
+    @RequestMapping(value = "/content", method = RequestMethod.GET)
+    public
+    @ResponseBody
+    JSONArray getMenuContentList() {
+        JSONArray menuContentList = new JSONArray();
+        JSONObject menuAboutLiangyuan = new JSONObject();
+        menuAboutLiangyuan.put("title", PropertyHolder.MENU_ABOUT_LIANGYUAN);
+        menuAboutLiangyuan.put("picLoc", ABOUT_JPG);
+        menuContentList.add(menuAboutLiangyuan);
+        JSONObject menuDaoguKnowledge = new JSONObject();
+        menuDaoguKnowledge.put("title", PropertyHolder.MENU_RICE_KNOWLEDGE);
+        menuDaoguKnowledge.put("picLoc", DAOGU_KNOWLEDGE_JPG);
+        menuContentList.add(menuDaoguKnowledge);
+        JSONObject menuCookTricks = new JSONObject();
+        menuCookTricks.put("title", PropertyHolder.MENU_COOK_TRICKS);
+        menuCookTricks.put("picLoc", COOK_TRICKS_JPG);
+        menuContentList.add(menuCookTricks);
+        return menuContentList;
+
+    }
+
+    @RequestMapping(value = "/content/switch", method = RequestMethod.POST)
+    public
+    @ResponseBody
+    JSONObject switchContentPicture(@RequestParam(value = "pic") MultipartFile pic, @RequestParam("menu") String menu, HttpServletResponse response) {
+        if (pic == null) {
+            return null;
+        }
+        String dstFilePath = Utils.getWebInfoPath() + "/images/";
+
+        System.out.println("dstFilePath =" + dstFilePath);
+
+        if (pic != null) {
+            String picLoc = null;
+            switch (menu) {
+                case PropertyHolder.MENU_ABOUT_LIANGYUAN:
+                    picLoc = ABOUT_JPG;
+                    break;
+                case PropertyHolder.MENU_RICE_KNOWLEDGE:
+                    picLoc = DAOGU_KNOWLEDGE_JPG;
+                    break;
+                case PropertyHolder.MENU_COOK_TRICKS:
+                    picLoc = COOK_TRICKS_JPG;
+                    break;
+            }
+            if (picLoc == null) {
+                return null;
+            }
+            String filePath = dstFilePath + picLoc;
+            Utils.savePicture(pic, filePath);
+            JSONObject jsonObject = new JSONObject();
+            jsonObject.put("picLoc", "images/" + picLoc);
+            return jsonObject;
+        }
+        return null;
     }
 }

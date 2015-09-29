@@ -1,0 +1,53 @@
+<div class="container">
+    <style>
+        img{
+            width: 50%;;
+        }
+    </style>
+    <table class="table table-bordered table-hover">
+        <thead>
+        <tr>
+            <th>菜单</th>
+            <th width="50%">图片</th>
+            <th>操作</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="content in contentList">
+            <td><span ng-bind="content.title"></span></td>
+            <td><img ng-src="../images/{{content.picLoc}}"></td>
+            <td>
+                <button ng-click="switch(content.title)" class="btn btn-danger btn-md-width" data-toggle="modal"
+                        data-target="#myDialog">替换</button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+
+</div>
+
+<div id="myDialog" class="modal fade" method="update" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <a class="close" data-dismiss="modal">×</a>
+
+                <h3>替换图片</h3>
+            </div>
+            <div class="modal-body">
+                <div class="input-group input-group">
+                    <span class="input-group-addon">图片:</span>
+                    <input type="file" class="form-control" id="pic">
+                </div>
+                <div class="input-group input-group">
+                    <span style="color: red;">请上传jpg图片</span>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <a href="#" class="btn btn-success" ng-click="upload()">上传</a>
+                <a href="#" class="btn btn-danger" data-dismiss="modal">关闭</a>
+            </div>
+        </div>
+    </div>
+</div>

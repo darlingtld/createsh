@@ -671,11 +671,11 @@ adminModule.controller('materialController', function ($scope, $http, $routePara
                 contentType: false,
                 success: function () {
                     alert("修改成功");
+                    location.href = app + '/admin/manage.html#/material';
                     location.reload();
                 },
                 error: function () {
                     alert("修改失败");
-                    location.reload();
                 }
             });
         }
@@ -710,6 +710,44 @@ adminModule.filter('translate', function () {
             }
         }
     };
+});
+
+adminModule.controller('contentController', function ($scope, $http, $routeParams, $location) {
+    $('li[role]').removeClass('active');
+    $('li[role="manage_content"]').addClass('active');
+
+    var contentUrl = app + '/material/content';
+
+    $http.get(contentUrl).success(function (data, status, headers, config) {
+        $scope.contentList = data;
+    });
+
+    $scope.switch = function (menu) {
+        $scope.menu = menu;
+    }
+
+    $scope.upload = function () {
+        if ($('#pic').val() != '') {
+            var pic = new FormData();
+            pic.append("pic", $("#pic").get(0).files[0]);
+            pic.append("menu", $scope.menu);
+            $.ajax({
+                type: 'POST',
+                url: app + "/material/content/switch",
+                data: pic,
+                processData: false,
+                contentType: false,
+                success: function () {
+                    alert("替换成功");
+                    location.href = app + '/admin/manage.html#/content';
+                    location.reload();
+                },
+                error: function () {
+                    alert("替换失败");
+                }
+            });
+        }
+    }
 });
 
 adminModule.filter('tochinese', function () {
@@ -751,6 +789,10 @@ adminModule.config(['$routeProvider', function ($routeProvider) {
         .when('/csmessage', {
             controller: 'csmessageController',
             templateUrl: 'csmessage.html'
+        })
+        .when('/content', {
+            controller: 'contentController',
+            templateUrl: 'content.html'
         })
         .when('/material', {
             controller: 'materialController',
