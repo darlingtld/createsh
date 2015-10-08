@@ -256,6 +256,26 @@ ctModule.controller('confirmController', function ($scope, $http, $location) {
                 $('#consignee_contact').val(getLocalStorage('consignee_contact'));
             }
 
+            $scope.refreshAddress = function(){
+                console.log("refresh address");
+                if (user != undefined) {
+                    $('#buyer_info').val(user.buyerInfo);
+                    $('#buyer_address').val(user.buyerAddress);
+                    $('#consignee').val(user.consignee);
+                    $('#consignee_contact').val(user.consigneeContact);
+                } else if (getLocalStorage('buyer_info') != null && getLocalStorage('buyer_info') != null) {
+                    $('#buyer_info').val(getLocalStorage('buyer_info'));
+                    $('#buyer_address').val(getLocalStorage('buyer_address'));
+                    $('#consignee').val(getLocalStorage('consignee'));
+                    $('#consignee_contact').val(getLocalStorage('consignee_contact'));
+                } else {
+                    $('#buyer_info').val(getLocalStorage('buyer_info'));
+                    $('#buyer_address').val(getLocalStorage('buyer_address'));
+                    $('#consignee').val(getLocalStorage('consignee'));
+                    $('#consignee_contact').val(getLocalStorage('consignee_contact'));
+                }
+            }
+
             $('div.checkout').on('click', 'a.next', function () {
                     if (user == undefined) {
                         user = {
