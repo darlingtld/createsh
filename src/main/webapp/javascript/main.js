@@ -334,6 +334,20 @@ ctModule.controller('orderController', function ($http, $scope) {
     $http.get(url).success(function (data, status, headers, config) {
         $scope.orders = data;
     });
+
+    $scope.deleteOrder = function (orderId) {
+        $scope.deleteOrderId = orderId;
+    }
+
+    $scope.confirmDelete = function () {
+        console.log($scope.deleteOrderId);
+        $http.post(app + '/order/delete/'+$scope.deleteOrderId, {}).success(function(){
+            alert("取消订单成功！");
+            location.reload();
+        }).error(function(){
+            alert("取消订单失败！");
+        });
+    }
 });
 
 ctModule.controller('orderDetailController', function ($http, $scope, $routeParams) {

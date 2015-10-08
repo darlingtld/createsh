@@ -20,14 +20,16 @@
 
                 <a role="button" class="btn btn-xs btn-default">修改</a>
                 <br/>
+                <a role="button" class="btn btn-xs btn-default">取消</a>
                 <a confirm_code="{{order.confirmCode}}" role="button" class="btn btn-xs btn-info"
                    style="margin-top: 3px;">确认码</a>
             </td>
             <td ng-if="order.status.indexOf('未配送')!=-1">
                 <a href="#/order/details/{{order.id}}" role="button" class="btn btn-xs btn-success">查看</a>
 
-                <a href="#/order/modify/{{order.id}}" role="button" class="btn btn-xs btn-danger">修改</a>
+                <a href="#/order/modify/{{order.id}}" role="button" class="btn btn-xs btn-primary">修改</a>
                 <br/>
+                <a id='deleteOrder' class="btn btn-xs btn-danger" data-toggle="modal" data-target="#deleteModal" ng-click="deleteOrder(order.id)">取消</a>
                 <a confirm_code="{{order.confirmCode}}" role="button" class="btn btn-xs btn-info"
                    style="margin-top: 3px;">确认码</a>
             </td>
@@ -37,4 +39,27 @@
 
 <div class="row row-sm">
     <div style="height: 80px;"></div>
+</div>
+
+<div id="deleteModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">取消订单</h4>
+            </div>
+            <div class="modal-body">
+                <p id="order-status">
+                    <button class="btn btn-danger btn-block" ng-click="confirmDelete()">确认删除</button>
+                    <br>
+                    <button class="btn btn-primary btn-block" data-dismiss="modal">返回</button>
+                    <br>
+                </p>
+
+            </div>
+        </div>
+
+    </div>
 </div>
