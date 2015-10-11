@@ -256,24 +256,20 @@ ctModule.controller('confirmController', function ($scope, $http, $location) {
                 $('#consignee_contact').val(getLocalStorage('consignee_contact'));
             }
 
-            $scope.refreshAddress = function(){
+            $scope.refreshAddress = function () {
                 console.log("refresh address");
-                if (user != undefined) {
-                    $('#buyer_info').val(user.buyerInfo);
-                    $('#buyer_address').val(user.buyerAddress);
-                    $('#consignee').val(user.consignee);
-                    $('#consignee_contact').val(user.consigneeContact);
-                } else if (getLocalStorage('buyer_info') != null && getLocalStorage('buyer_info') != null) {
-                    $('#buyer_info').val(getLocalStorage('buyer_info'));
-                    $('#buyer_address').val(getLocalStorage('buyer_address'));
-                    $('#consignee').val(getLocalStorage('consignee'));
-                    $('#consignee_contact').val(getLocalStorage('consignee_contact'));
-                } else {
-                    $('#buyer_info').val(getLocalStorage('buyer_info'));
-                    $('#buyer_address').val(getLocalStorage('buyer_address'));
-                    $('#consignee').val(getLocalStorage('consignee'));
-                    $('#consignee_contact').val(getLocalStorage('consignee_contact'));
+                if (wechatId == undefined) {
+                    wechatId = getLocalStorage('wechatid');
                 }
+                var url = app + '/user/wechatId/' + wechatId;
+                $http.get(url).success(function (data, status, headers, config) {
+                    $('#buyer_info').val(data.buyerInfo);
+                    $('#buyer_address').val(data.buyerAddress);
+                    $('#consignee').val(data.consignee);
+                    $('#consignee_contact').val(data.consigneeContact);
+                }).error(function () {
+
+                });
             }
 
             $('div.checkout').on('click', 'a.next', function () {
@@ -361,10 +357,10 @@ ctModule.controller('orderController', function ($http, $scope) {
 
     $scope.confirmDelete = function () {
         console.log($scope.deleteOrderId);
-        $http.post(app + '/order/delete/'+$scope.deleteOrderId, {}).success(function(){
+        $http.post(app + '/order/delete/' + $scope.deleteOrderId, {}).success(function () {
             alert("取消订单成功！");
             location.reload();
-        }).error(function(){
+        }).error(function () {
             alert("取消订单失败！");
         });
     }
