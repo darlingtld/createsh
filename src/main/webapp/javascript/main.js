@@ -353,6 +353,14 @@ ctModule.controller('orderController', function ($http, $scope) {
 
     $scope.deleteOrder = function (orderId) {
         $scope.deleteOrderId = orderId;
+        if(confirm("确认取消")){
+            $http.post(app + '/order/delete/'+$scope.deleteOrderId, {}).success(function(){
+                alert("取消订单成功！");
+                location.reload();
+            }).error(function(){
+                alert("取消订单失败！");
+            });
+        }
     }
 
     $scope.confirmDelete = function () {
