@@ -2,7 +2,10 @@ package createsh.controller;
 
 
 import com.alibaba.fastjson.JSONObject;
+import createsh.pojo.TradeStat;
+import createsh.pojo.Transaction;
 import createsh.pojo.User;
+import createsh.service.TransactionService;
 import createsh.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -25,6 +28,9 @@ public class UserController {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private TransactionService transactionService;
 
     @RequestMapping(value = "/code/{code}", method = RequestMethod.GET)
     public
@@ -95,6 +101,8 @@ public class UserController {
     void saveAccount(@RequestBody User user) {
         logger.info("save account {} {}", user.getUsername(), user.getAccount());
         userService.saveAccount(user.getUsername(), user.getAccount());
+
+        transactionService.recordTransaction(new TradeStat(user.getUsername(), Transaction.DEPOSIT, 0, user.getAccount()));
     }
 
     @RequestMapping(value = "/account/stat", method = RequestMethod.GET)

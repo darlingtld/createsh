@@ -1,12 +1,12 @@
 package createsh.controller;
 
+import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import createsh.excel.ExcelFactory;
-import createsh.pojo.Dispatch;
-import createsh.pojo.Order;
-import createsh.pojo.OrderStatus;
+import createsh.pojo.*;
 import createsh.service.OrderService;
+import createsh.service.TransactionService;
 import createsh.util.PropertyHolder;
 import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,6 +34,9 @@ public class OrderController {
     @Autowired
     private OrderService orderService;
 
+    @Autowired
+    private TransactionService transactionService;
+
     @RequestMapping(value = "/submit", method = RequestMethod.POST, headers = "Content-Type=application/json")
     public
     @ResponseBody
@@ -46,6 +49,10 @@ public class OrderController {
         }
         try {
             orderService.save(order);
+
+            JSONObject jsonObject = JSON.parseObject(order.getBill());
+            double totalPrice = jsonObject.getDouble("totalPrice");
+            transactionService.recordTransaction(new TradeStat(order.getWechatId(), Transaction.EXPENSE, orderService.getLatestList(order.getWechatId(), 1).get(0).getId(), totalPrice));
         } catch (Exception e) {
             response.setStatus(HttpStatus.EXPECTATION_FAILED.value());
         }
@@ -58,6 +65,10 @@ public class OrderController {
         JSONObject ret = new JSONObject();
         try {
             orderService.update(order);
+
+            JSONObject jsonObject = JSON.parseObject(order.getBill());
+            double totalPrice = jsonObject.getDouble("totalPrice");
+            transactionService.updateTransaction(new TradeStat(order.getWechatId(), Transaction.EXPENSE, order.getId(), totalPrice));
         } catch (Exception e) {
             response.setStatus(HttpStatus.EXPECTATION_FAILED.value());
             ret.put(PropertyHolder.HEADER_MSG, e.getMessage());

@@ -1,6 +1,11 @@
 package createsh.dao;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import createsh.pojo.Order;
+import createsh.pojo.TradeStat;
+import createsh.pojo.Transaction;
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -21,12 +26,14 @@ public class OrderDao {
     private SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
     public void save(Order order) {
+        Session session = sessionFactory.getCurrentSession();
+        Integer id;
         try {
-            sessionFactory.getCurrentSession().save(order);
+            id = (Integer) session.save(order);
         } catch (Exception e) {
             e.printStackTrace();
             order.setUserId("user");
-            sessionFactory.getCurrentSession().save(order);
+            id = (Integer) session.save(order);
         }
     }
 
@@ -44,15 +51,16 @@ public class OrderDao {
     }
 
     public boolean update(Order order) {
+        Session session = sessionFactory.getCurrentSession();
         try {
-            sessionFactory.getCurrentSession().update(order);
-            return true;
+            session.update(order);
         } catch (Exception e) {
             e.printStackTrace();
             order.setUserId("user");
-            sessionFactory.getCurrentSession().update(order);
-            return true;
+            session.update(order);
         }
+
+        return true;
     }
 
     public List<Order> getLatestList(String wechatId, int count) {

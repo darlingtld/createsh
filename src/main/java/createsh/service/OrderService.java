@@ -3,6 +3,7 @@ package createsh.service;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import createsh.dao.TransactionDao;
 import event.coupon.dao.CouponDao;
 import event.coupon.pojo.Coupon;
 import event.coupon.pojo.Discount;
@@ -43,6 +44,9 @@ public class OrderService {
 
     @Autowired
     private CouponDao couponDao;
+
+    @Autowired
+    private TransactionDao transactionDao;
 
     @Transactional
     public void save(Order order) {
@@ -88,9 +92,9 @@ public class OrderService {
         jsonObject.put("totalPrice", Utils.formatDouble(totalPrice, 2));
         order.setBill(jsonObject.toJSONString());
         markUsedCoupon(jsonObject.getString("usedCoupon"));
+
         orderDao.save(order);
     }
-
 
 
     private void markUsedCoupon(String couponJson) {
@@ -158,7 +162,8 @@ public class OrderService {
         }
         jsonObject.put("totalPrice", Utils.formatDouble(totalPrice, 2));
         order.setBill(jsonObject.toJSONString());
-        return orderDao.update(order);
+        orderDao.update(order);
+        return true;
     }
 
     @Transactional
