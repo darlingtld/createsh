@@ -1,4 +1,12 @@
 <div class="container">
+    <div>
+        <div class="form-group">
+            <input type="text" class="form-control" id="autoreply-content" placeholder="请输入自动回复内容">
+        </div>
+        <label class="checkbox-inline pull-right">
+            <input id="autoreply-checkbox" type="checkbox" ng-click="enableAutoReply()"><span style="margin-left: 50px;">自动回复</span>
+        </label>
+    </div>
     <table class="table table-bordered table-hover table-responsive">
         <thead>
         <tr>
@@ -14,7 +22,9 @@
             <td><span ng-bind="csmessage.nickname"></span></td>
             <td><span ng-bind="csmessage.message"></span></td>
             <td>
-                <button class="btn btn-success" data-toggle="modal" data-target="#messageDialog" ng-click="sendMessage(csmessage.openid)">回复消息</button>
+                <button class="btn btn-success" data-toggle="modal" data-target="#messageDialog"
+                        ng-click="sendMessage(csmessage.openid)">回复消息
+                </button>
             </td>
         </tr>
         </tbody>

@@ -550,6 +550,8 @@ adminModule.controller('messageController', function ($scope, $http) {
     $scope.sendMessage = function (openid) {
         $scope.openid2Send = openid;
     }
+
+
     $scope.send = function () {
         var message = {
             openid: $scope.openid2Send,
@@ -577,6 +579,27 @@ adminModule.controller('csmessageController', function ($scope, $http) {
     $http.get(app + '/service/csmessage').success(function (data) {
         $scope.csmessageList = data;
     });
+
+    if (typeof(EventSource) !== "undefined") {
+        var source = new EventSource(app + '/service/csmessage/push');
+        source.onmessage = function (event) {
+            var csmsg = JSON.parse(event.data);
+            if (csmsg != null) {
+                $scope.csmessageList.unshift(JSON.parse(event.data));
+                $scope.$apply();
+                console.log($scope.csmessageList)
+            }
+        };
+    } else {
+        console.log("Sorry, your browser does not support server-sent events...");
+    }
+
+    $scope.enableAutoReply = function () {
+        var isEnabled = $('#autoreply-checkbox').is(":checked");
+        $http.post(app + '/service/enable_auto_reply/' + isEnabled, {content: $('#autoreply-content').val()}).success(function () {
+
+        });
+    }
 
 
     $scope.sendMessage = function (openid) {
