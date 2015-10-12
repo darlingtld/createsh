@@ -1,10 +1,12 @@
 package createsh.dao;
 
+import com.alibaba.fastjson.JSONObject;
 import createsh.pojo.User;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.sql.ResultSet;
 import java.util.List;
 
 /**
@@ -59,5 +61,13 @@ public class UserDao {
 
     public void saveAccount(String username, double account) {
         sessionFactory.getCurrentSession().createQuery(String.format("update User set account=account+%s where username='%s'", account, username)).executeUpdate();
+    }
+
+    public JSONObject getAccountStat() {
+        Object[] object = (Object[]) sessionFactory.getCurrentSession().createSQLQuery(String.format("SELECT sum(account), count(*) FROM `user` where account>0")).uniqueResult();
+        JSONObject jsonObject=new JSONObject();
+        jsonObject.put("totalAccount", object[0]);
+        jsonObject.put("totalMember", object[1]);
+        return jsonObject;
     }
 }

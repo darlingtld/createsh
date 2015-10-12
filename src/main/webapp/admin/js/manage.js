@@ -605,10 +605,17 @@ adminModule.controller('accountController', function ($scope, $http) {
         $scope.userList = data;
     });
 
+    $http.get(app + '/user/account/stat').success(function (data) {
+        $scope.totalAccount = data.totalAccount;
+        $scope.totalMember = data.totalMember;
+    });
+
 
     $scope.deposit = function (username) {
         $scope.username = username;
     }
+
+
     $scope.save = function () {
         var user = {
             username: $scope.username,

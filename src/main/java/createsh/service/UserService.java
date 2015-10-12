@@ -195,4 +195,9 @@ public class UserService {
     public void saveAccount(String username, double account) {
         userDao.saveAccount(username, account);
     }
+
+    @Transactional
+    public JSONObject getAccountStat() {
+        return userDao.getAccountStat();
+    }
 }

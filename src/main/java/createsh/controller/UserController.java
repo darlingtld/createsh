@@ -1,6 +1,7 @@
 package createsh.controller;
 
 
+import com.alibaba.fastjson.JSONObject;
 import createsh.pojo.User;
 import createsh.service.UserService;
 import org.slf4j.Logger;
@@ -94,5 +95,13 @@ public class UserController {
     void saveAccount(@RequestBody User user) {
         logger.info("save account {} {}", user.getUsername(), user.getAccount());
         userService.saveAccount(user.getUsername(), user.getAccount());
+    }
+
+    @RequestMapping(value = "/account/stat", method = RequestMethod.GET)
+    public
+    @ResponseBody
+    JSONObject getAccountStat() {
+        logger.info("get account stat");
+        return userService.getAccountStat();
     }
 }
