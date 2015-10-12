@@ -277,3 +277,19 @@ INSERT INTO `user` VALUES ('36', 'oh88lw58rD8OStujg82PIQyXO-M4', 'oh88lw58rD8OSt
 INSERT INTO `user` VALUES ('37', 'oh88lw_qAufZMHXTwTV1xV7wfpe8', 'oh88lw_qAufZMHXTwTV1xV7wfpe8', '000000', null, '开心每一天', 'USER', 'http://wx.qlogo.cn/mmopen/a5ejNnmFDsCT6dlRFqyeNo4OuEtsk7ttdUB1ianojraa2zcXnmhTc6e2oWylp2Wymh17NvoIxLfDHaC5Nr1gkialpcafLxjJ99/0', '好', '好', '好', '好', '0.00');
 INSERT INTO `user` VALUES ('38', 'oh88lw3T3gM0BvtR1dhMuJlg2ECc', 'oh88lw3T3gM0BvtR1dhMuJlg2ECc', '000000', null, 'na', null, null, '人', '啊', '在', '于', '0.00');
 INSERT INTO `user` VALUES ('39', 'oh88lwzCFC3SLW0wb2OTaUyvqtIg', 'oh88lwzCFC3SLW0wb2OTaUyvqtIg', '000000', null, 'Vincent wang', 'USER', 'http://wx.qlogo.cn/mmopen/PiajxSqBRaEJxdWSBrL3KBhX20UL994MRMEYdwaTuwGlwe98NstibxxsJAChx17ulLRUxhDibuSribuo8PAoQvFaZg/0', null, null, null, null, '0.00');
+
+SET FOREIGN_KEY_CHECKS=0;
+
+-- ----------------------------
+-- Table structure for trade_stat
+-- ----------------------------
+DROP TABLE IF EXISTS `trade_stat`;
+CREATE TABLE `trade_stat` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `openid` varchar(255) DEFAULT NULL,
+  `transaction` varchar(255) DEFAULT NULL,
+  `orderid` int(11) DEFAULT NULL,
+  `amount` double DEFAULT NULL,
+  `timestamp` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4;
