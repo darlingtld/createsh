@@ -101,7 +101,8 @@ public class MycaiService {
                         textMessage.setMsgType(MessageUtil.RESP_MESSAGE_TYPE_TEXT);
                         textMessage.setContent(String.format("亲,感谢关注含嘉优品\n" +
                                 "在线客服每天9:00-18:00真人值守,全新全意为您服务!\n" +
-                                "请描述一下您遇到的问题,我们将对应问题安排客服快速有效地帮助亲,谢谢!"));
+                                "请描述一下您遇到的问题,我们将对应问题安排客服快速有效地帮助亲,谢谢!\n"+
+                                "客服热线：4008051715"));
                         return MessageUtil.messageToXml(textMessage);
                     }
 

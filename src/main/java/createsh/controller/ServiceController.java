@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;
+import java.io.UnsupportedEncodingException;
 import java.util.List;
 import java.util.Random;
 
@@ -49,12 +50,13 @@ public class ServiceController {
     @RequestMapping(value = "/csmessage/push", method = RequestMethod.GET)
     public
     @ResponseBody
-    String pushCustomerMessages(HttpServletResponse response) {
+    String pushCustomerMessages(HttpServletResponse response) throws UnsupportedEncodingException {
         response.setContentType("text/event-stream");
         response.setHeader("Cache-Control", "no-cache");
 //        System.out.println(supportService.getCsMessageQueue().size());
         CSMessage csMessage = supportService.getCsMessageQueue().poll();
-        String data = "data:" + JSONObject.toJSONString(csMessage) + "\n\n";
+        String data = "data:" + new String(JSONObject.toJSONString(csMessage).getBytes("utf-8"), "iso-8859-1") + "\n\n";
+        System.out.println(data);
         return data;
 
     }
