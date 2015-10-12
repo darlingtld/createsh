@@ -20,6 +20,7 @@ public class UserDao {
 
     public void save(User user) {
         try {
+            user.setUsername(user.getOpenid());
             sessionFactory.getCurrentSession().save(user);
         } catch (Exception e) {
             e.printStackTrace();
@@ -39,6 +40,7 @@ public class UserDao {
 
     public boolean update(User user) {
         try {
+            user.setUsername(user.getOpenid());
             sessionFactory.getCurrentSession().update(user);
             return true;
         } catch (Exception e) {
