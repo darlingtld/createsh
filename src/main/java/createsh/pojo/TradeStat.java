@@ -25,6 +25,8 @@ public class TradeStat {
     @Column(name = "timestamp")
     private Date timestamp;
 
+    public TradeStat(){}
+
     public TradeStat(String openid, String transaction, int orderid, double amount) {
         this.openid = openid;
         this.transaction = transaction;

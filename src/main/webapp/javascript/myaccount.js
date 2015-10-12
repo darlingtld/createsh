@@ -32,6 +32,9 @@ accountModule.controller('accountController', function ($http, $scope) {
             $scope.user = data;
         });
     }
+    $http.get(app + '/transaction/user/' + wechatId).success(function (data) {
+        $scope.tradeStatList = data;
+    })
 });
 
 accountModule.config(['$routeProvider', function ($routeProvider) {
@@ -51,5 +54,18 @@ accountModule.filter('part', function () {
             return input;
         }
         return input.split(' ')[which];
+    };
+});
+
+accountModule.filter('toChinese', function () {
+    return function (input, which) {
+        if (!angular.isString(input)) {
+            return input;
+        }
+        if (input.toUpperCase() == 'DEPOSIT') {
+            return '充值';
+        } else if (input.toUpperCase() == 'EXPENSE') {
+            return '消费';
+        }
     };
 });
