@@ -1,5 +1,6 @@
 package createsh.service;
 
+import com.alibaba.fastjson.JSONObject;
 import createsh.dao.TransactionDao;
 import createsh.pojo.TradeStat;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,5 +31,10 @@ public class TransactionService {
     @Transactional
     public void updateTransaction(TradeStat tradeStat) {
         transactionDao.updateTradeStat(tradeStat);
+    }
+
+    @Transactional
+    public JSONObject getTotalTransactionStat() {
+        return transactionDao.getTotalTransactionStat();
     }
 }

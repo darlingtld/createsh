@@ -396,6 +396,10 @@ adminModule.controller('orderController', function ($scope, $http) {
         $scope.orderStatusList = data;
     });
 
+    $http.get(app + '/transaction/stat').success(function (data) {
+        $scope.transactionStat = data;
+    });
+
     $scope.modify = function (id) {
         $('#myDialog').attr('method', 'update');
         for (var i = 0; i < $scope.orders.length; i++) {
@@ -636,7 +640,6 @@ adminModule.controller('accountController', function ($scope, $http) {
             location.reload();
         });
     }
-
 
 });
 

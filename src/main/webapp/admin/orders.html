@@ -7,6 +7,30 @@
     <!--</span>-->
     <!--Service Table-->
 
+    <div class="table-responsive">
+        <table class="table table-bordered table-striped">
+            <thead>
+            <tr>
+                <th>今日订单总额</th>
+                <th>今日充值总额</th>
+                <th>今日下单笔数</th>
+                <th>历史订单总额</th>
+                <th>历史充值总额</th>
+                <th>历史下单笔数</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td ng-bind="transactionStat.salesVolume | currency : '￥'"></td>
+                <td ng-bind="transactionStat.depositVolume | currency : '￥'"></td>
+                <td ng-bind="transactionStat.totalOrders"></td>
+                <td ng-bind="transactionStat.salesVolumeHistory | currency : '￥'"></td>
+                <td ng-bind="transactionStat.depositVolumeHistory | currency : '￥'"></td>
+                <td ng-bind="transactionStat.totalOrdersHistory"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
     <button id="export_order" class="btn btn-success btn-sm export_button" ng-click="export()">导出Excel</button>
     <table class="table table-bordered table-hover">
         <thead>
@@ -17,7 +41,8 @@
             </th>
             <th ng-click="f='deliveryTs'; rev=!rev">配送时间 <span class="glyphicon glyphicon-sort"
                                                                aria-hidden="true"></span></th>
-            <th ng-click="f='buyerInfo'; rev=!rev">买家信息 <span class="glyphicon glyphicon-sort" aria-hidden="true"></span>
+            <th ng-click="f='buyerInfo'; rev=!rev">买家信息 <span class="glyphicon glyphicon-sort"
+                                                              aria-hidden="true"></span>
             </th>
             <th ng-click="f='consignee'; rev=!rev">收货人 <span class="glyphicon glyphicon-sort" aria-hidden="true"></span>
             </th>
@@ -94,7 +119,8 @@
                 </div>
                 <div class="input-group input-group-lg">
                     <span class="input-group-addon">订单状态:</span>
-                    <select id="orderStatus" class="form-control" style="width:100%;" ng-init="selectOrderStatus" ng-model="selectOrderStatus" ng-options="s.value for s in orderStatusList track by s.value">
+                    <select id="orderStatus" class="form-control" style="width:100%;" ng-init="selectOrderStatus"
+                            ng-model="selectOrderStatus" ng-options="s.value for s in orderStatusList track by s.value">
                     </select>
                 </div>
             </div>

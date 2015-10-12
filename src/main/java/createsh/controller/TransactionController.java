@@ -37,4 +37,13 @@ public class TransactionController {
         return transactionService.getStat4User(openid);
     }
 
+    @RequestMapping(value = "/stat", method = RequestMethod.GET)
+    public
+    @ResponseBody
+    JSONObject getTotalTransactionStat() {
+        logger.info("Get total transaction stat");
+
+        return transactionService.getTotalTransactionStat();
+    }
+
 }
