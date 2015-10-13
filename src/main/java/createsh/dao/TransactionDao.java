@@ -57,4 +57,8 @@ public class TransactionDao {
         return jsonObject;
 
     }
+
+    public void deleteTradeStatByOrderId(int orderId) {
+        sessionFactory.getCurrentSession().createQuery(String.format("delete TradeStat where orderid = %d", orderId)).executeUpdate();
+    }
 }

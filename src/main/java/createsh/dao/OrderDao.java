@@ -53,7 +53,8 @@ public class OrderDao {
     public boolean update(Order order) {
         Session session = sessionFactory.getCurrentSession();
         try {
-            session.update(order);
+            Order order1 = (Order) session.merge(order);
+            session.update(order1);
         } catch (Exception e) {
             e.printStackTrace();
             order.setUserId("user");

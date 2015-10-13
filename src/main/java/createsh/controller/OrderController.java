@@ -98,6 +98,7 @@ public class OrderController {
         try {
             orderService.deleteOrder(orderId);
         } catch (Exception e) {
+            e.printStackTrace();
             response.setHeader(PropertyHolder.HEADER_MSG, URLEncoder.encode(e.getMessage(), "utf-8"));
             response.setStatus(HttpStatus.CONFLICT.value());
         }

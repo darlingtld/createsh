@@ -81,7 +81,7 @@ public class OrderService {
             if (user.getAccount() - totalPrice < 0) {
                 throw new RuntimeException("余额不足");
             } else {
-                userDao.saveAccount(user.getUsername(), user.getAccount() - totalPrice);
+                userDao.saveAccount(user.getUsername(), -totalPrice);
                 order.setStatus(OrderStatus.PAID_NOT_DELIVERED);
             }
         } else if (order.getPayMethod().equalsIgnoreCase(DELIVER_PAY)) {
@@ -150,6 +150,10 @@ public class OrderService {
 
     @Transactional
     public boolean update(Order order) {
+        Order oldOrder = orderDao.getById(order.getId());
+        JSONObject oldJO = JSON.parseObject(oldOrder.getBill());
+        double oldTotalPrice = oldJO.getDouble("totalPrice");
+
         User user = userDao.getUserByWechatId(order.getWechatId());
         JSONObject jsonObject = JSON.parseObject(order.getBill());
         double totalPrice = jsonObject.getDouble("totalPrice");
@@ -157,12 +161,13 @@ public class OrderService {
             if (user.getAccount() - totalPrice < 0) {
                 throw new RuntimeException("余额不足");
             } else {
-                userDao.saveAccount(user.getUsername(), user.getAccount() - totalPrice);
+                userDao.saveAccount(user.getUsername(), oldTotalPrice - totalPrice);
             }
         }
         jsonObject.put("totalPrice", Utils.formatDouble(totalPrice, 2));
         order.setBill(jsonObject.toJSONString());
         orderDao.update(order);
+        transactionDao.updateTradeStat(new TradeStat(order.getWechatId(), Transaction.EXPENSE, order.getId(), totalPrice));
         return true;
     }
 
@@ -269,7 +274,13 @@ public class OrderService {
     @Transactional
     public void deleteOrder(int orderId) {
         Order order = getById(orderId);
-        if (order.getStatus().equals(OrderStatus.NOT_DELIVERED.toString())) {
+        if (order.getStatus().contains(OrderStatus.NOT_DELIVERED.toString())) {
+            if (order.getStatus().equals(OrderStatus.PAID_NOT_DELIVERED.toString())) {
+                JSONObject jsonObject = JSON.parseObject(order.getBill());
+                double totalPrice = jsonObject.getDouble("totalPrice");
+                userDao.saveAccount(order.getWechatId(), totalPrice);
+            }
+            transactionDao.deleteTradeStatByOrderId(orderId);
             orderDao.deleteOrder(orderId);
         } else {
             throw new IllegalStateException(String.format("无法删除[订单状态为%s]", order.getStatus()));
