@@ -16,14 +16,14 @@
 <div class="table-responsive">
     <table class="table table-bordered">
         <tr>
-            <td colspan="2">
+            <td colspan="3">
                 <i class="icon-basket-loaded i-lg"></i>
                 <span class="text-success">&nbsp;&nbsp;交易详情</span>
             </td>
         </tr>
         <tr ng-repeat="tradeStat in tradeStatList">
             <td><span class="text-info" ng-bind="tradeStat.transaction | toChinese"></span></td>
-            <td><span ng-bind="tradeStat.amount | currency : '￥'"></span></td>
+            <td>￥<span ng-bind="tradeStat.amount"></span></td>
             <td><span ng-bind="tradeStat.timestamp | date : 'yyyy-MM-dd HH:mm:ss'"></span></td>
         </tr>
     </table>
