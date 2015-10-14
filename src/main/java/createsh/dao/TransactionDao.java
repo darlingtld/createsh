@@ -26,7 +26,7 @@ public class TransactionDao {
     }
 
     public List<TradeStat> getStat4User(String openid) {
-        return sessionFactory.getCurrentSession().createQuery(String.format("from TradeStat where openid='%s' order by timestamp desc", openid)).list();
+        return sessionFactory.getCurrentSession().createQuery(String.format("from TradeStat where openid='%s' order by timestamp asc", openid)).list();
     }
 
     public void updateTradeStat(TradeStat tradeStat) {
@@ -60,5 +60,9 @@ public class TransactionDao {
 
     public void deleteTradeStatByOrderId(int orderId) {
         sessionFactory.getCurrentSession().createQuery(String.format("delete TradeStat where orderid = %d", orderId)).executeUpdate();
+    }
+
+    public List<TradeStat> getStat4User(String openid, int year, int month) {
+        return sessionFactory.getCurrentSession().createQuery(String.format("from TradeStat where extract(year from timestamp)=%d and extract(month from timestamp)=%d and openid='%s' order by timestamp asc", year, month, openid)).list();
     }
 }

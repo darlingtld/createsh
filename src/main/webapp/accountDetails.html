@@ -16,9 +16,13 @@
 <div class="table-responsive">
     <table class="table table-bordered">
         <tr>
-            <td colspan="3">
+            <td colspan="2">
                 <i class="icon-basket-loaded i-lg"></i>
                 <span class="text-success">&nbsp;&nbsp;交易详情</span>
+            </td>
+            <td>
+                <select class="form-control" ng-init="selectedDate" ng-model="selectedDate" ng-options="date.name for date in dateList track by date.value" ng-change="getTradeStat()">
+                </select>
             </td>
         </tr>
         <tr ng-repeat="tradeStat in tradeStatList">

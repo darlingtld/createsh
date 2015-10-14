@@ -37,6 +37,15 @@ public class TransactionController {
         return transactionService.getStat4User(openid);
     }
 
+    @RequestMapping(value = "/user/{openid}/{year}/{month}", method = RequestMethod.GET)
+    public
+    @ResponseBody
+    List<TradeStat> getUserTradeStatMonth(@PathVariable("openid") String openid, @PathVariable("year") int year, @PathVariable("month") int month, HttpServletResponse response) {
+        logger.info("Get trade stat for user {} year {} month {}", openid, year, month);
+
+        return transactionService.getStat4User(openid, year, month);
+    }
+
     @RequestMapping(value = "/stat", method = RequestMethod.GET)
     public
     @ResponseBody

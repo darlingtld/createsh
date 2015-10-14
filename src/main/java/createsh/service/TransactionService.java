@@ -37,4 +37,9 @@ public class TransactionService {
     public JSONObject getTotalTransactionStat() {
         return transactionDao.getTotalTransactionStat();
     }
+
+    @Transactional
+    public List<TradeStat> getStat4User(String openid, int year, int month) {
+        return transactionDao.getStat4User(openid, year, month);
+    }
 }

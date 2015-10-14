@@ -32,9 +32,36 @@ accountModule.controller('accountController', function ($http, $scope) {
             $scope.user = data;
         });
     }
-    $http.get(app + '/transaction/user/' + wechatId).success(function (data) {
-        $scope.tradeStatList = data;
-    })
+    //$http.get(app + '/transaction/user/' + wechatId).success(function (data) {
+    //    $scope.tradeStatList = data;
+    //})
+
+    var today = new Date();
+    $scope.dateList = [];
+
+    var year = today.getFullYear();
+    var month = today.getMonth() + 1;
+    for (var i = 0; i < 6; i++) {
+        if (month > 0) {
+        } else {
+            year -= 1;
+            month = 12;
+        }
+        $scope.dateList.push({name: year + '年' + month + '月', value: year + '#' + month})
+        month -= 1;
+    }
+    $scope.selectedDate = $scope.dateList[0];
+
+    $scope.getTradeStat = function () {
+        console.log($scope.selectedDate);
+        $http.get(app + '/transaction/user/' + wechatId + '/' + $scope.selectedDate.value.split('#')[0] + '/' + $scope.selectedDate.value.split('#')[1]).success(function (data) {
+            $scope.tradeStatList = data;
+        })
+    }
+
+    $scope.getTradeStat();
+
+
 });
 
 accountModule.config(['$routeProvider', function ($routeProvider) {
