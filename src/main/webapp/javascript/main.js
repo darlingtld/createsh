@@ -353,11 +353,11 @@ ctModule.controller('orderController', function ($http, $scope) {
 
     $scope.deleteOrder = function (orderId) {
         $scope.deleteOrderId = orderId;
-        if(confirm("确认取消")){
-            $http.post(app + '/order/delete/'+$scope.deleteOrderId, {}).success(function(){
+        if (confirm("确认取消")) {
+            $http.post(app + '/order/delete/' + $scope.deleteOrderId, {}).success(function () {
                 alert("取消订单成功！");
                 location.reload();
-            }).error(function(){
+            }).error(function () {
                 alert("取消订单失败！");
             });
         }
@@ -695,7 +695,11 @@ function validateOrder(order) {
     } else if (order.consigneeContact.trim() == '') {
         alert('请输入收货人联系方式');
         return false;
-    } else {
+    } else if (order.payMethod.trim() == '') {
+        alert('请选择付款方式');
+        return false;
+    }
+    else {
         return true;
     }
 }

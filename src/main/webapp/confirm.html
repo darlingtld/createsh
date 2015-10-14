@@ -31,7 +31,10 @@
                             </select></td>
                         </tr>
                         <tr class="active">
-                            <td colspan="2"><span class="text-info">收货信息</span><button class="btn btn-xs btn-success pull-right" ng-click="refreshAddress()">更新地址</button></td>
+                            <td colspan="2"><span class="text-info">收货信息</span>
+                                <button class="btn btn-xs btn-success pull-right" ng-click="refreshAddress()">更新地址
+                                </button>
+                            </td>
                         </tr>
                         <tr>
                             <td><span>收货时间</span></td>
@@ -58,9 +61,9 @@
                         <tr>
                             <td><span>付款方式</span></td>
                             <td>
-                                <!--<input id="pay_method" type="text" class="form-control" value="货到付款" disabled>-->
                                 <select id="pay_method" class="form-control">
-                                    <option value="DELIVER_PAY" selected="selected">货到付款</option>
+                                    <option value="">请选择付款方式</option>
+                                    <option value="DELIVER_PAY">货到付款</option>
                                     <option value="ONLINE_PAY">使用余额</option>
                                 </select>
                             </td>
