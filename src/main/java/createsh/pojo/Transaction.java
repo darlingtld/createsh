@@ -7,4 +7,5 @@ public class Transaction {
 
     public static final String DEPOSIT = "DEPOSIT";
     public static final String EXPENSE = "EXPENSE";
+    public static final String REFUND = "REFUND";
 }

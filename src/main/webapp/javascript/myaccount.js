@@ -93,6 +93,8 @@ accountModule.filter('toChinese', function () {
             return '充值';
         } else if (input.toUpperCase() == 'EXPENSE') {
             return '消费';
+        }else if (input.toUpperCase() == 'REFUND') {
+            return '退款';
         }
     };
 });

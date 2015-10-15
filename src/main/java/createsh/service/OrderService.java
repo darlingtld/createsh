@@ -274,13 +274,15 @@ public class OrderService {
     @Transactional
     public void deleteOrder(int orderId) {
         Order order = getById(orderId);
+        JSONObject jsonObject = JSON.parseObject(order.getBill());
+        double totalPrice = jsonObject.getDouble("totalPrice");
         if (order.getStatus().contains(OrderStatus.NOT_DELIVERED.toString())) {
             if (order.getStatus().equals(OrderStatus.PAID_NOT_DELIVERED.toString())) {
-                JSONObject jsonObject = JSON.parseObject(order.getBill());
-                double totalPrice = jsonObject.getDouble("totalPrice");
                 userDao.saveAccount(order.getWechatId(), totalPrice);
+                transactionDao.recordTransaction(new TradeStat(order.getWechatId(), Transaction.REFUND, orderId, totalPrice));
+            } else {
+                transactionDao.deleteTradeStatByOrderId(orderId);
             }
-            transactionDao.deleteTradeStatByOrderId(orderId);
             orderDao.deleteOrder(orderId);
         } else {
             throw new IllegalStateException(String.format("无法删除[订单状态为%s]", order.getStatus()));
