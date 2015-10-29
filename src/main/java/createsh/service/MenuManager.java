@@ -61,49 +61,49 @@ public class MenuManager {
         btn13.setUrl(oauthUrl.replace("$appid", PropertyHolder.APPID).replace("$redirect_uri", URLEncoder.encode(PropertyHolder.SERVER + "/myaccount.html", "UTF-8")));
 
 
-        ViewButton btn21 = new ViewButton();
-        btn21.setName(PropertyHolder.MENU_ABOUT_LIANGYUAN);
-        btn21.setUrl(oauthUrl.replace("$appid", PropertyHolder.APPID).replace("$redirect_uri", URLEncoder.encode(PropertyHolder.SERVER + "/about.html", "UTF-8")));
-
         ViewButton btn22 = new ViewButton();
-        btn22.setName(PropertyHolder.MENU_RICE_KNOWLEDGE);
-        btn22.setUrl(oauthUrl.replace("$appid", PropertyHolder.APPID).replace("$redirect_uri", URLEncoder.encode(PropertyHolder.SERVER + "/rice_knowledge.html", "UTF-8")));
+        btn22.setName(PropertyHolder.MENU_COOPERATION_INFO);
+        btn22.setUrl(oauthUrl.replace("$appid", PropertyHolder.APPID).replace("$redirect_uri", URLEncoder.encode(PropertyHolder.SERVER + "/about.html", "UTF-8")));
 
         ViewButton btn23 = new ViewButton();
-        btn23.setName(PropertyHolder.MENU_COOK_TRICKS);
-        btn23.setUrl(oauthUrl.replace("$appid", PropertyHolder.APPID).replace("$redirect_uri", URLEncoder.encode(PropertyHolder.SERVER + "/cook_tricks.html", "UTF-8")));
+        btn23.setName(PropertyHolder.MENU_LIANGYUAN_ENCYCLO);
+        btn23.setUrl(oauthUrl.replace("$appid", PropertyHolder.APPID).replace("$redirect_uri", URLEncoder.encode(PropertyHolder.SERVER + "/rice_knowledge.html", "UTF-8")));
+
+        ViewButton btn21 = new ViewButton();
+        btn21.setName(PropertyHolder.MENU_HEALTH_DIET);
+        btn21.setUrl(oauthUrl.replace("$appid", PropertyHolder.APPID).replace("$redirect_uri", URLEncoder.encode(PropertyHolder.SERVER + "/cook_tricks.html", "UTF-8")));
+
+//        ViewButton btn31 = new ViewButton();
+//        btn31.setName(PropertyHolder.MENU_FEEDBACK);
+//        btn31.setUrl(oauthUrl.replace("$appid", PropertyHolder.APPID).replace("$redirect_uri", URLEncoder.encode(PropertyHolder.SERVER + "/feedback.html", "UTF-8")));
 
         ViewButton btn31 = new ViewButton();
-        btn31.setName(PropertyHolder.MENU_FEEDBACK);
-        btn31.setUrl(oauthUrl.replace("$appid", PropertyHolder.APPID).replace("$redirect_uri", URLEncoder.encode(PropertyHolder.SERVER + "/feedback.html", "UTF-8")));
+        btn31.setName(PropertyHolder.MENU_CONSIGNEE_INFO);
+        btn31.setUrl(oauthUrl.replace("$appid", PropertyHolder.APPID).replace("$redirect_uri", URLEncoder.encode(PropertyHolder.SERVER + "/consignee_info.html", "UTF-8")));
 
         ViewButton btn32 = new ViewButton();
-        btn32.setName(PropertyHolder.MENU_CONSIGNEE_INFO);
-        btn32.setUrl(oauthUrl.replace("$appid", PropertyHolder.APPID).replace("$redirect_uri", URLEncoder.encode(PropertyHolder.SERVER + "/consignee_info.html", "UTF-8")));
+        btn32.setName(PropertyHolder.MENU_POST_SALE_RULE);
+        btn32.setUrl(oauthUrl.replace("$appid", PropertyHolder.APPID).replace("$redirect_uri", URLEncoder.encode(PropertyHolder.SERVER + "/postsale_rule.html", "UTF-8")));
 
-        ViewButton btn33 = new ViewButton();
-        btn33.setName(PropertyHolder.MENU_POST_SALE_RULE);
-        btn33.setUrl(oauthUrl.replace("$appid", PropertyHolder.APPID).replace("$redirect_uri", URLEncoder.encode(PropertyHolder.SERVER + "/postsale_rule.html", "UTF-8")));
+//        ViewButton btn34 = new ViewButton();
+//        btn34.setName(PropertyHolder.MENU_SHOP_INFO);
+//        btn34.setUrl(oauthUrl.replace("$appid", PropertyHolder.APPID).replace("$redirect_uri", URLEncoder.encode(PropertyHolder.SERVER + "/shop_info.html", "UTF-8")));
 
-        ViewButton btn34 = new ViewButton();
-        btn34.setName(PropertyHolder.MENU_SHOP_INFO);
-        btn34.setUrl(oauthUrl.replace("$appid", PropertyHolder.APPID).replace("$redirect_uri", URLEncoder.encode(PropertyHolder.SERVER + "/shop_info.html", "UTF-8")));
-
-        ClickButton btn35 = new ClickButton();
-        btn35.setName(PropertyHolder.MENU_ONLINE_CS);
-        btn35.setKey(PropertyHolder.MENU_ONLINE_CS);
+        ClickButton btn33 = new ClickButton();
+        btn33.setName(PropertyHolder.MENU_ONLINE_CS);
+        btn33.setKey(PropertyHolder.MENU_ONLINE_CS);
 
         ComplexButton mainBtn1 = new ComplexButton();
         mainBtn1.setName(PropertyHolder.MENU_SHOPPING_MALL);
         mainBtn1.setSub_button(new ViewButton[]{btn11, btn12, btn13});
 
         ComplexButton mainBtn2 = new ComplexButton();
-        mainBtn2.setName(PropertyHolder.MENU_LIANGYUAN_ENCYCLO);
+        mainBtn2.setName(PropertyHolder.MENU_BRAND_CULTURE);
         mainBtn2.setSub_button(new ViewButton[]{btn21, btn22, btn23});
 
         ComplexButton mainBtn3 = new ComplexButton();
         mainBtn3.setName(PropertyHolder.MENU_POST_SALE_SERVICE);
-        mainBtn3.setSub_button(new CommonButton[]{btn31, btn32, btn33, btn34, btn35});
+        mainBtn3.setSub_button(new CommonButton[]{btn31, btn32, btn33});
 
         JSONArray jsonArray = new JSONArray();
         jsonArray.add(mainBtn1);

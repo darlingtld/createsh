@@ -30,15 +30,15 @@ public class PropertyHolder {
     public static final String MENU_MY_ORDER = "我的订单";
     public static final String MENU_MY_ACCOUNT = "我的账户";
 
+    public static final String MENU_BRAND_CULTURE = "品牌文化";
+    public static final String MENU_COOPERATION_INFO = "合作信息";
     public static final String MENU_LIANGYUAN_ENCYCLO = "梁源百科";
-    public static final String MENU_ABOUT_LIANGYUAN = "关于梁源";
-    public static final String MENU_RICE_KNOWLEDGE = "稻谷知识";
-    public static final String MENU_COOK_TRICKS = "煮饭窍门";
+    public static final String MENU_HEALTH_DIET = "健康饮食";
 
-    public static final String MENU_POST_SALE_SERVICE = "售后信息";
+    public static final String MENU_POST_SALE_SERVICE = "售后服务";
     public static final String MENU_FEEDBACK = "问题反馈";
     public static final String MENU_CONSIGNEE_INFO = "收货信息";
-    public static final String MENU_POST_SALE_RULE = "售后规则";
+    public static final String MENU_POST_SALE_RULE = "退换条例";
     public static final String MENU_SHOP_INFO = "商户信息";
     public static final String MENU_ONLINE_CS = "在线客服";
 

@@ -2,30 +2,16 @@ package createsh.controller;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-import com.google.common.collect.Lists;
-import createsh.excel.ExcelFactory;
-import createsh.pojo.*;
-import createsh.service.ProductService;
 import createsh.util.PropertyHolder;
 import createsh.util.Utils;
-import org.apache.commons.io.FileUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.File;
-import java.io.IOException;
-import java.io.Serializable;
-import java.sql.Timestamp;
-import java.text.SimpleDateFormat;
 import java.util.*;
 
 @Controller
@@ -109,15 +95,15 @@ public class MaterialController {
     JSONArray getMenuContentList() {
         JSONArray menuContentList = new JSONArray();
         JSONObject menuAboutLiangyuan = new JSONObject();
-        menuAboutLiangyuan.put("title", PropertyHolder.MENU_ABOUT_LIANGYUAN);
+        menuAboutLiangyuan.put("title", PropertyHolder.MENU_COOPERATION_INFO);
         menuAboutLiangyuan.put("picLoc", ABOUT_JPG);
         menuContentList.add(menuAboutLiangyuan);
         JSONObject menuDaoguKnowledge = new JSONObject();
-        menuDaoguKnowledge.put("title", PropertyHolder.MENU_RICE_KNOWLEDGE);
+        menuDaoguKnowledge.put("title", PropertyHolder.MENU_LIANGYUAN_ENCYCLO);
         menuDaoguKnowledge.put("picLoc", DAOGU_KNOWLEDGE_JPG);
         menuContentList.add(menuDaoguKnowledge);
         JSONObject menuCookTricks = new JSONObject();
-        menuCookTricks.put("title", PropertyHolder.MENU_COOK_TRICKS);
+        menuCookTricks.put("title", PropertyHolder.MENU_HEALTH_DIET);
         menuCookTricks.put("picLoc", COOK_TRICKS_JPG);
         menuContentList.add(menuCookTricks);
         return menuContentList;
@@ -138,13 +124,13 @@ public class MaterialController {
         if (pic != null) {
             String picLoc = null;
             switch (menu) {
-                case PropertyHolder.MENU_ABOUT_LIANGYUAN:
+                case PropertyHolder.MENU_COOPERATION_INFO:
                     picLoc = ABOUT_JPG;
                     break;
-                case PropertyHolder.MENU_RICE_KNOWLEDGE:
+                case PropertyHolder.MENU_LIANGYUAN_ENCYCLO:
                     picLoc = DAOGU_KNOWLEDGE_JPG;
                     break;
-                case PropertyHolder.MENU_COOK_TRICKS:
+                case PropertyHolder.MENU_HEALTH_DIET:
                     picLoc = COOK_TRICKS_JPG;
                     break;
             }
